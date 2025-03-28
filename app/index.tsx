@@ -8,9 +8,11 @@ export default function Index() {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        gap: 20,
       }}
     >
-      <Link href="/add">Home</Link>
+      <Link href="/auth/login">login</Link>
+      <Link href="/auth/login">register</Link>
     </View>
   );
 }

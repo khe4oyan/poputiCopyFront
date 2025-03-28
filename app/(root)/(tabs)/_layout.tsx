@@ -30,20 +30,20 @@ const TabsLayout = () => {
       
       <Tabs.Screen name='messages'
         options={{
-          title: "Messages",
+          title: "Chat",
           headerShown: true,
           tabBarIcon: () => (
-            <TabIcon title="Messages"/>
+            <TabIcon title="Chat"/>
           )
         }}
       />
 
       <Tabs.Screen name='add'
         options={{
-          title: "Add new",
+          title: "Search",
           headerShown: true,
           tabBarIcon: () => (
-            <TabIcon title="Add"/>
+            <TabIcon title="Search"/>
           )
         }}
       />
@@ -53,7 +53,7 @@ const TabsLayout = () => {
           title: "My Traffics",
           headerShown: true,
           tabBarIcon: () => (
-            <TabIcon title="My Traffics"/>
+            <TabIcon title="My Rides"/>
           )
         }}
       />
