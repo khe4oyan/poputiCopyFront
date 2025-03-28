@@ -77,8 +77,6 @@ const styles = StyleSheet.create({
   tabs: {
     position: 'absolute',
     backgroundColor: "white",
-    borderTopColor: "#FF4E00",
-    borderTopWidth: 1,
     minHeight: 70,
   },
 
