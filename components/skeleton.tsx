@@ -6,7 +6,7 @@ const Skeleton = ({
   height = 50,
   radius = 5,
   color = '#0004',
-  styles = null,
+  style = null,
   indicatorColor = null
 }: any) => {
   const mainStyles = {
@@ -19,7 +19,7 @@ const Skeleton = ({
   };
 
   return (
-    <View style={[mainStyles, styles && styles]}>
+    <View style={[mainStyles, style && style]}>
       {indicatorColor && <ActivityIndicator size="small" color={indicatorColor} />}
     </View>
   );
