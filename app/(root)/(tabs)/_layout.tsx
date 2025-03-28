@@ -2,11 +2,11 @@ import { StyleSheet, Text, View } from 'react-native'
 import { Tabs } from 'expo-router'
 import React from 'react'
 
-const TabIcon = ({ title }: any) => {
+const TabIcon = ({ title, focused }: any) => {
   return (
     <View style={styles.view}>
-      <Text style={styles.text}>{title}</Text>
-    </View>
+      <Text style={[styles.text, focused && styles.focusedText]}>{title}</Text>
+    </View >
   );
 }
 
@@ -22,18 +22,18 @@ const TabsLayout = () => {
         options={{
           title: "Notifications",
           headerShown: true,
-          tabBarIcon: () => (
-            <TabIcon title="Notification"/>
+          tabBarIcon: ({ focused }) => (
+            <TabIcon title="Notification" focused={focused} />
           )
         }}
       />
-      
+
       <Tabs.Screen name='messages'
         options={{
           title: "Chat",
           headerShown: true,
-          tabBarIcon: () => (
-            <TabIcon title="Chat"/>
+          tabBarIcon: ({ focused }) => (
+            <TabIcon title="Chat" focused={focused} />
           )
         }}
       />
@@ -42,8 +42,8 @@ const TabsLayout = () => {
         options={{
           title: "Search",
           headerShown: true,
-          tabBarIcon: () => (
-            <TabIcon title="Search"/>
+          tabBarIcon: ({ focused }) => (
+            <TabIcon title="Search" focused={focused} />
           )
         }}
       />
@@ -52,8 +52,8 @@ const TabsLayout = () => {
         options={{
           title: "My Traffics",
           headerShown: true,
-          tabBarIcon: () => (
-            <TabIcon title="My Rides"/>
+          tabBarIcon: ({ focused }) => (
+            <TabIcon title="My Rides" focused={focused} />
           )
         }}
       />
@@ -62,8 +62,8 @@ const TabsLayout = () => {
         options={{
           title: "Profile",
           headerShown: false,
-          tabBarIcon: () => (
-            <TabIcon title="Profile"/>
+          tabBarIcon: ({ focused }) => (
+            <TabIcon title="Profile" focused={focused} />
           )
         }}
       />
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   tabs: {
     position: 'absolute',
     backgroundColor: "white",
-    borderTopColor: "red",
+    borderTopColor: "#FF4E00",
     borderTopWidth: 1,
     minHeight: 70,
   },
@@ -91,5 +91,9 @@ const styles = StyleSheet.create({
   text: {
     width: "100%",
     fontSize: 10.9,
+  },
+
+  focusedText: {
+    color: "#FF4E00",
   }
 })
