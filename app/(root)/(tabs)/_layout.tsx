@@ -21,6 +21,7 @@ const TabsLayout = () => {
     >
       <Tabs.Screen name='notifications'
         options={{
+          headerTintColor: "#ff4e00",
           title: "Notifications",
           headerShown: true,
           tabBarIcon: ({ focused }) => (
@@ -31,6 +32,7 @@ const TabsLayout = () => {
 
       <Tabs.Screen name='messages'
         options={{
+          headerTintColor: "#ff4e00",
           title: "Chat",
           headerShown: true,
           tabBarIcon: ({ focused }) => (
@@ -41,6 +43,7 @@ const TabsLayout = () => {
 
       <Tabs.Screen name='search'
         options={{
+          headerTintColor: "#ff4e00",
           title: "Search",
           headerShown: true,
           tabBarIcon: ({ focused }) => (
@@ -59,6 +62,7 @@ const TabsLayout = () => {
 
       <Tabs.Screen name='traffics'
         options={{
+          headerTintColor: "#ff4e00",
           title: "My Traffics",
           headerShown: true,
           tabBarIcon: ({ focused }) => (
@@ -69,7 +73,6 @@ const TabsLayout = () => {
 
       <Tabs.Screen name='profile'
         options={{
-          title: "Profile",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcon title="Profile" focused={focused} />

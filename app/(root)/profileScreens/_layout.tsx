@@ -1,9 +1,12 @@
-import { Stack } from "expo-router";
+import { Stack, useRouter  } from "expo-router";
+import { Button } from "react-native";
 
 export default function ProfileScreenLayout() {
+  const route = useRouter();
+
   return <Stack screenOptions={{
     headerShown: true,
-    headerBackVisible: false,
+    headerLeft: () => <Button onPress={() => route.dismiss()} title="back" />
   }}>
     <Stack.Screen name="personalData" options={{ headerTintColor: "#ff4e00", title: "Personal Data" }} />
     <Stack.Screen name="paymentsMethods" options={{ headerTintColor: "#ff4e00", title: "Payments Methods" }} />
