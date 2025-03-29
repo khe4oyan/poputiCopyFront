@@ -3,33 +3,35 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import Skeleton from '@/components/skeleton';
-
-const statisticsData = [
-  { icon: null, title: "+37499001122", },
-  { icon: null, title: 0, },
-  { icon: null, title: 0, },
-];
-
-const sectionsData = [
-  { icon: null, title: "Personal data" },
-  { icon: null, title: "Payments" },
-  { icon: null, title: "Rides history" },
-  { icon: null, title: "Settings" },
-  { icon: null, title: "My cars" },
-  { icon: null, title: "Security" },
-  { icon: null, title: "Feedback" },
-  { icon: null, title: "Logout" },
-];
-
-type sectionData = {
-  icon: any,
-  title: string,
-};
+import { Href, Link } from 'expo-router';
 
 type statisticData = {
   icon: any,
   title: string | number,
 };
+
+type sectionData = {
+  icon: any,
+  title: string,
+  link: Href,
+};
+
+const statisticsData: Array<statisticData> = [
+  { icon: null, title: "+37499111222", },
+  { icon: null, title: 0, },
+  { icon: null, title: 0, },
+];
+
+const sectionsData: Array<sectionData> = [
+  { icon: null, title: "Personal data", link: "/profileScreens/personalData" },
+  { icon: null, title: "Payments", link: "/profileScreens/paymentsMethods" },
+  { icon: null, title: "Rides history", link: "/profileScreens/ridesHistory" },
+  { icon: null, title: "Settings", link: "/profileScreens/settings" },
+  { icon: null, title: "My cars", link: "/profileScreens/myCars" },
+  { icon: null, title: "Security", link: "/profileScreens/security" },
+  { icon: null, title: "Feedback", link: "/profileScreens/feedback" },
+  { icon: null, title: "Logout", link: "/profileScreens/logout" },
+];
 
 const Statistic = ({ data }: { data: statisticData }) => {
   return (
@@ -41,15 +43,16 @@ const Statistic = ({ data }: { data: statisticData }) => {
 };
 
 const Section = ({ data }: { data: sectionData }) => {
-  // TODO: modificate Text to Link for go other screen
   return (
-    <View style={styles.sectionContainer}>
-      <View style={styles.leftBox}>
-        <Skeleton radius="100%" width={30} height={30} /> 
-        <Text>{data.title}</Text>
+    <Link href={data.link}>
+      <View style={styles.sectionContainer}>
+        <View style={styles.leftBox}>
+          <Skeleton radius="100%" width={30} height={30} />
+          <Text>{data.title}</Text>
+        </View>
+        <Skeleton radius="0" width={8} height={18} />
       </View>
-      <Skeleton radius="0" width={8} height={18} />
-    </View>
+    </Link>
   );
 }
 
@@ -192,6 +195,7 @@ const styles = StyleSheet.create({
   },
 
   sectionContainer: {
+    width: "100%",
     padding: 15,
     borderBottomWidth: 1,
     borderColor: "#0003",

@@ -11,10 +11,9 @@ export default function Index() {
         gap: 20,
       }}
     >
-      <Link href="/add">login</Link>
+      <Link href="/profile">profile</Link>
       <Link href="/messages">messages</Link>
       <Link href="/notifications">notifications</Link>
-      <Link href="/profile">profile</Link>
       <Link href="/traffics">traffics</Link>
       <Link href="/auth/login">login</Link>
       <Link href="/auth/register">register</Link>

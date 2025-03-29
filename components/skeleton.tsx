@@ -1,5 +1,13 @@
 import { View, ActivityIndicator } from 'react-native'
-import React from 'react'
+
+type props = {
+  width?: number;
+  height?: number;
+  radius?: number | string;
+  color?: string;
+  style?: null | Object;
+  indicatorColor?: null | string;
+};
 
 const Skeleton = ({
   width = 50,
@@ -8,7 +16,7 @@ const Skeleton = ({
   color = '#0004',
   style = null,
   indicatorColor = null
-}: any) => {
+}: props) => {
   const mainStyles = {
     width: width,
     height: height,

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { Tabs } from 'expo-router'
 import React from 'react'
+import Skeleton from '@/components/skeleton';
 
 const TabIcon = ({ title, focused }: any) => {
   return (
@@ -43,7 +44,15 @@ const TabsLayout = () => {
           title: "Search",
           headerShown: true,
           tabBarIcon: ({ focused }) => (
-            <TabIcon title="Search" focused={focused} />
+            <View>
+              <Skeleton
+                color='#ff4e00'
+                height={70}
+                width={50}
+                style={styles.searchIcon}
+              />
+              <TabIcon title="Search" focused={focused} />
+            </View>
           )
         }}
       />
@@ -93,5 +102,11 @@ const styles = StyleSheet.create({
 
   focusedText: {
     color: "#FF4E00",
-  }
+  },
+
+  searchIcon: {
+    position: 'absolute',
+    top: -65,
+    left: -8,
+  },
 })
