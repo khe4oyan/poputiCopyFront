@@ -1,31 +1,54 @@
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import Skeleton from '@/components/skeleton';
 
-
 const statisticsData = [
-  {
-    icon: null,
-    title: "+37499001122",
-  },
-  {
-    icon: null,
-    title: 0,
-  },
-  {
-    icon: null,
-    title: 0,
-  },
+  { icon: null, title: "+37499001122", },
+  { icon: null, title: 0, },
+  { icon: null, title: 0, },
 ];
 
-const Statistic = ({ data }: any) => {
+const sectionsData = [
+  { icon: null, title: "Personal data" },
+  { icon: null, title: "Payments" },
+  { icon: null, title: "Rides history" },
+  { icon: null, title: "Settings" },
+  { icon: null, title: "My cars" },
+  { icon: null, title: "Security" },
+  { icon: null, title: "Feedback" },
+  { icon: null, title: "Logout" },
+];
+
+type sectionData = {
+  icon: any,
+  title: string,
+};
+
+type statisticData = {
+  icon: any,
+  title: string | number,
+};
+
+const Statistic = ({ data }: { data: statisticData }) => {
   return (
     <View style={styles.statistic}>
-      {/* icon */}
-      <Skeleton width={25} height={25} />
+      <Skeleton width={25} height={25} /> {/* icon */}
       <Text>{data.title}</Text>
+    </View>
+  );
+};
+
+const Section = ({ data }: { data: sectionData }) => {
+  // TODO: modificate to link to go other screen
+  return (
+    <View style={styles.sectionContainer}>
+      <View style={styles.leftBox}>
+        <Skeleton radius="100%" width={30} height={30} /> {/* icon */}
+        <Text>{data.title}</Text>
+      </View>
+      <Skeleton radius="0" width={8} height={18} /> {/* arrow icon */}
     </View>
   );
 }
@@ -55,7 +78,7 @@ const Profile = () => {
 
             <View style={styles.rating}>
               <Text>0.00</Text>
-              <Skeleton width={15} height={15} color="orange"/>
+              <Skeleton width={15} height={15} color="orange" />
               <Skeleton width={15} height={15} />
             </View>
           </View>
@@ -74,6 +97,17 @@ const Profile = () => {
           />
         )}
       </View>
+
+      <ScrollView style={styles.sections}>
+        {
+          sectionsData.map((sectionsData, i) =>
+            <Section
+              key={i}
+              data={sectionsData}
+            />
+          )
+        }
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -148,11 +182,31 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     flexDirection: "row",
   },
-  
+
   statistic: {
     flex: 1,
     backgroundColor: "",
     alignItems: "center",
     gap: 3,
-  }
+  },
+
+  sections: {
+    padding: 20,
+  },
+
+  sectionContainer: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderColor: "#0003",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    justifyContent: "space-between",
+  },
+  
+  leftBox: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
 })
