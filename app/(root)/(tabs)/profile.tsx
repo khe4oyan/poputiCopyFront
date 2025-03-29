@@ -34,21 +34,21 @@ type statisticData = {
 const Statistic = ({ data }: { data: statisticData }) => {
   return (
     <View style={styles.statistic}>
-      <Skeleton width={25} height={25} /> {/* icon */}
+      <Skeleton width={25} height={25} />
       <Text>{data.title}</Text>
     </View>
   );
 };
 
 const Section = ({ data }: { data: sectionData }) => {
-  // TODO: modificate to link to go other screen
+  // TODO: modificate Text to Link for go other screen
   return (
     <View style={styles.sectionContainer}>
       <View style={styles.leftBox}>
-        <Skeleton radius="100%" width={30} height={30} /> {/* icon */}
+        <Skeleton radius="100%" width={30} height={30} /> 
         <Text>{data.title}</Text>
       </View>
-      <Skeleton radius="0" width={8} height={18} /> {/* arrow icon */}
+      <Skeleton radius="0" width={8} height={18} />
     </View>
   );
 }
@@ -58,9 +58,7 @@ const Profile = () => {
     <SafeAreaView style={styles.root}>
       <View style={styles.mainInfoContainer}>
         <View style={styles.avatarContainer} >
-          {/* profile image */}
           <Skeleton width={100} height={100} radius="100%" />
-          {/* edit image icon */}
           <Skeleton width={25} height={25} radius="100%" color="gray" style={styles.avatarEdit} />
         </View>
 
@@ -71,7 +69,6 @@ const Profile = () => {
               <Text>Balance</Text>
               <View style={styles.balanceSpan}>
                 <Text>2010 AMD</Text>
-                {/* add balance button */}
                 <Skeleton width={25} height={25} radius="100%" color="orange" />
               </View>
             </View>
@@ -203,7 +200,7 @@ const styles = StyleSheet.create({
     gap: 10,
     justifyContent: "space-between",
   },
-  
+
   leftBox: {
     flexDirection: "row",
     alignItems: "center",
