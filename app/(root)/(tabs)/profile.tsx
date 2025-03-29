@@ -188,11 +188,11 @@ const styles = StyleSheet.create({
   },
 
   sections: {
-    padding: 20,
+    padding: 10,
   },
 
   sectionContainer: {
-    padding: 10,
+    padding: 15,
     borderBottomWidth: 1,
     borderColor: "#0003",
     flexDirection: "row",
@@ -204,6 +204,6 @@ const styles = StyleSheet.create({
   leftBox: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 10,
+    gap: 30,
   },
 })
