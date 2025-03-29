@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Add = () => {
+const Search = () => {
   return (
     <View>
-      <Text>Add</Text>
+      <Text>Search</Text>
     </View>
   )
 }
 
-export default Add
+export default Search;
 
 const styles = StyleSheet.create({})
