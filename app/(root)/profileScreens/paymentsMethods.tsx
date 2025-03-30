@@ -58,6 +58,4 @@ const styles = StyleSheet.create({
   contentText: {
     fontSize: 20
   },
-
-
 })  

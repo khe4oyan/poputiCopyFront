@@ -1,7 +1,17 @@
 import { Text, View } from "react-native";
+import { useRouter } from "expo-router";
 import { Link } from "expo-router";
+import { useEffect } from "react";
 
 export default function Index() {
+  const route = useRouter();
+
+  useEffect(() => {
+    setTimeout(() => {
+      route.push("/profileScreens/personalData");
+    }, 1000);
+  }, []);
+
   return (
     <View
       style={{
