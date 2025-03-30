@@ -99,14 +99,12 @@ const Profile = () => {
       </View>
 
       <ScrollView style={styles.sections}>
-        {
-          sectionsData.map((sectionsData, i) =>
-            <Section
-              key={i}
-              data={sectionsData}
-            />
-          )
-        }
+        {sectionsData.map((sectionsData, i) =>
+          <Section
+            key={i}
+            data={sectionsData}
+          />
+        )}
       </ScrollView>
     </SafeAreaView>
   )
