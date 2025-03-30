@@ -144,6 +144,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     flex: 1,
-    marginBottom: 5,
+    borderBottomColor: "#0001",
+    paddingTop: 5,
+    paddingBottom: 5,
+    borderBottomWidth: .5,
   },
 })
