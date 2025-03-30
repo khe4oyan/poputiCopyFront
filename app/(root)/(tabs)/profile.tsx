@@ -51,6 +51,7 @@ const Section = ({ data }: { data: sectionData }) => {
 }
 
 const Profile = () => {
+  // TODO: statisticsData load dynamicaly from backend
   const statisticsData: Array<statisticData> = [
     { icon: null, title: "+37499111222", },
     { icon: null, title: 0, },
