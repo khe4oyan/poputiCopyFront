@@ -16,12 +16,6 @@ type sectionData = {
   link: Href,
 };
 
-const statisticsData: Array<statisticData> = [
-  { icon: null, title: "+37499111222", },
-  { icon: null, title: 0, },
-  { icon: null, title: 0, },
-];
-
 const sectionsData: Array<sectionData> = [
   { icon: null, title: "Personal data", link: "/profileScreens/personalData" },
   { icon: null, title: "Payments", link: "/profileScreens/paymentsMethods" },
@@ -57,6 +51,12 @@ const Section = ({ data }: { data: sectionData }) => {
 }
 
 const Profile = () => {
+  const statisticsData: Array<statisticData> = [
+    { icon: null, title: "+37499111222", },
+    { icon: null, title: 0, },
+    { icon: null, title: 0, },
+  ];
+
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.mainInfoContainer}>
