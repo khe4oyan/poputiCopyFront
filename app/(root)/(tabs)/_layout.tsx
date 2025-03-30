@@ -48,12 +48,12 @@ const TabsLayout = () => {
           headerShown: true,
           tabBarIcon: ({ focused }) => (
             <View>
-              <Skeleton
+              {/* <Skeleton
                 color='#ff4e00'
                 height={70}
                 width={50}
                 style={styles.searchIcon}
-              />
+              /> */}
               <TabIcon title="Search" focused={focused} />
             </View>
           )
