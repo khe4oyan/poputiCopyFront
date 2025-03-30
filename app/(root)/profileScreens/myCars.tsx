@@ -39,8 +39,8 @@ const CarCard = ({ carData }: { carData: carDataType }) => {
       </View>
 
       <CarCardProperty name='Model' value={carData.model} />
-      <CarCardProperty name='Car Number' value={carData.carNum} />
-      <CarCardProperty name='Car Year' value={carData.year} />
+      <CarCardProperty name='Number' value={carData.carNum} />
+      <CarCardProperty name='Year' value={carData.year} />
       <CarCardProperty name='Document'>
         <Text>
           {carData.pass ?
