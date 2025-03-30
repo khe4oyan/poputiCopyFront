@@ -4,13 +4,13 @@ import { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 
 type customFileInputProps = {
-  title?: string | number,
   value: any,
   setValue: any,
+  title?: string | number,
   placeholder?: string,
 };
 
-const CustomFileInput = ({ title, value, setValue } : customFileInputProps) => {
+const CustomFileInput = ({ title, value, setValue }: customFileInputProps) => {
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
@@ -26,7 +26,8 @@ const CustomFileInput = ({ title, value, setValue } : customFileInputProps) => {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.title}>{title}</Text>
+      {title && <Text style={styles.title}>{title}</Text>}
+
       <View style={styles.container}>
         <Text>{value ? "selected 1 file" : "(not selected)"}</Text>
         <TouchableHighlight
@@ -34,7 +35,7 @@ const CustomFileInput = ({ title, value, setValue } : customFileInputProps) => {
           onPress={pickImage}
         >
           <Text style={styles.buttonText}>
-            {value ? "Select other photo": "Select photo"}
+            {value ? "Select other photo" : "Select photo"}
           </Text>
         </TouchableHighlight>
       </View>

@@ -2,17 +2,18 @@ import { KeyboardTypeOptions, StyleSheet, Text, TextInput, View } from 'react-na
 import React from 'react'
 
 type customInputProps = {
-  title?: string | number,
   value: any,
   setValue: any,
+  title?: string | number,
   placeholder?: string,
   type?: KeyboardTypeOptions,
 };
 
-const CustomInput = ({ title, value, setValue, placeholder, type="default" }: customInputProps) => {
+const CustomInput = ({ title, value, setValue, placeholder, type = "default" }: customInputProps) => {
   return (
     <View style={styles.root}>
-      <Text style={styles.title}>{title}</Text>
+      { title && <Text style={styles.title}>{title}</Text> }
+      
       <TextInput
         value={value}
         onChange={setValue}
