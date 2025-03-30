@@ -49,7 +49,7 @@ const PersonalData = () => {
         setValue={setResidence}
         placeholder='enter your residence'
       />
-
+      
       <CustomFileInput 
         title="Drive license"
         value={driveLicense}
