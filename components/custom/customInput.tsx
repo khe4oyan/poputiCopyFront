@@ -20,6 +20,7 @@ const CustomInput = ({ title, value, setValue, placeholder, type = "default" }: 
         style={styles.input}
         placeholder={placeholder}
         keyboardType={type}
+        placeholderTextColor="gray"
       />
     </View>
   )
