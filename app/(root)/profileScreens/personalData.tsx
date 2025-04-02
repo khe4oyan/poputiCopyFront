@@ -1,4 +1,4 @@
-import { StyleSheet, View, ScrollView, Button } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Button, Image, TouchableWithoutFeedback } from 'react-native'
 import CustomInput from '@/components/custom/customInput'
 import CustomFileInput from '@/components/custom/customFileInput'
 import CustomDropDownMenu from '@/components/custom/customDropDownMenu'
@@ -75,17 +75,43 @@ const PersonalData = () => {
           setValue={setDriveLicense}
         />
 
+        {
+          driveLicense &&
+          <View style={styles.imagePreview}>
+            <TouchableWithoutFeedback onPress={() => setDriveLicense("")}>
+              <Text style={styles.closeButton} >x</Text>
+            </TouchableWithoutFeedback>
+            <Image source={{uri: driveLicense}} width={100} height={100} borderRadius={10}/>
+          </View>
+        }
+
         <Button title='Save' onPress={submitHandler}/> 
       </View>
     </ScrollView>
   )
 }
 
-export default PersonalData
+export default PersonalData;
 
 const styles = StyleSheet.create({
   root: {
     padding: 10,
     gap:15,
-  }
+  },
+
+  imagePreview: {
+    position: "relative",
+    backgroundColor: "orange",
+    width: 100,
+  },
+
+  closeButton: {
+    position: "absolute",
+    right: 0,
+    backgroundColor: "red",
+    zIndex: 100,
+    padding: 5,
+    borderRadius: 5,
+    color: 'white',
+  },
 })

@@ -10,7 +10,7 @@ type customInputProps = {
 };
 
 const CustomDropDownMenu = ({ title, options, valueIndex, setValueIndex }: customInputProps) => {
-  const [isOptionsOpened, setIsOptionsOpened] = React.useState(true);
+  const [isOptionsOpened, setIsOptionsOpened] = React.useState(false);
 
   const openToggle = () => {
     setIsOptionsOpened(prev => !prev);
@@ -24,7 +24,7 @@ const CustomDropDownMenu = ({ title, options, valueIndex, setValueIndex }: custo
   return (
     <View style={styles.root}>
       {title && <Text style={styles.title}>{title}</Text>}
-      <TouchableWithoutFeedback onPress={openToggle}>
+      <TouchableWithoutFeedback onPress={openToggle} >
         <View style={styles.box}>
           <View style={styles.content} >
             <Text>{options[valueIndex]}</Text>
