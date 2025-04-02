@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View, ScrollView, Button } from 'react-native'
 import CustomInput from '@/components/custom/customInput'
 import CustomFileInput from '@/components/custom/customFileInput'
 import CustomDropDownMenu from '@/components/custom/customDropDownMenu'
@@ -16,59 +16,68 @@ const PersonalData = () => {
 
   const gendersOptions = [
     "Male",
-    "Femalte",
+    "Female",
   ];
 
+  const submitHandler = () => {
+    // TODO: validate and send to backend
+  };
+
   return (
-    <View style={styles.root}>
-      <CustomInput 
-        title="Phone number"
-        value={phoneNum}
-        setValue={setPhoneNum}
-        placeholder='enter phone number'
-      />
+    <ScrollView>
 
-      <CustomInput 
-        title="Name"
-        value={name}
-        setValue={setName}
-        placeholder='enter your name'
-      />
+      <View style={styles.root}>
+        <CustomInput 
+          title="Phone number"
+          value={phoneNum}
+          setValue={setPhoneNum}
+          placeholder='enter phone number'
+        />
 
-      <CustomInput 
-        title="Surname"
-        value={surname}
-        setValue={setSurname}
-        placeholder='enter your surname'
-      />
+        <CustomInput 
+          title="Name"
+          value={name}
+          setValue={setName}
+          placeholder='enter your name'
+        />
 
-      <CustomInput 
-        title="Birth Day"
-        value={birthDay}
-        setValue={setBirthDay}
-        placeholder='enter your birth day'
-      />
+        <CustomInput 
+          title="Surname"
+          value={surname}
+          setValue={setSurname}
+          placeholder='enter your surname'
+        />
 
-      <CustomInput 
-        title="Residence"
-        value={residence}
-        setValue={setResidence}
-        placeholder='enter your residence'
-      />
+        <CustomInput 
+          title="Birth Day"
+          value={birthDay}
+          setValue={setBirthDay}
+          placeholder='enter your birth day'
+        />
 
-      <CustomDropDownMenu 
-        title={"Gender"}
-        valueIndex={genderInd}
-        setValueIndex={setGenderInd}
-        options={gendersOptions}
-      />
-      
-      <CustomFileInput 
-        title="Drive license"
-        value={driveLicense}
-        setValue={setDriveLicense}
-      />
-    </View>
+        <CustomInput 
+          title="Residence"
+          value={residence}
+          setValue={setResidence}
+          placeholder='enter your residence'
+        />
+
+        <CustomDropDownMenu 
+          title={"Gender"}
+          valueIndex={genderInd}
+          setValueIndex={setGenderInd}
+          options={gendersOptions}
+        />
+        
+        <CustomFileInput 
+          title="Drive license"
+          value={driveLicense}
+          setValue={setDriveLicense}
+        />
+
+        <Button title='Save' onPress={submitHandler}/> 
+      </View>
+    </ScrollView>
   )
 }
 
