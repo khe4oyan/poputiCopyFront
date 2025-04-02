@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import CustomInput from '@/components/custom/customInput'
 import CustomFileInput from '@/components/custom/customFileInput'
+import CustomDropDownMenu from '@/components/custom/customDropDownMenu'
 
 import React from 'react'
 
@@ -10,8 +11,13 @@ const PersonalData = () => {
   const [surname, setSurname] = React.useState("");
   const [birthDay, setBirthDay] = React.useState("");
   const [residence, setResidence] = React.useState("");
-  const [gender, setGender] = React.useState("");
+  const [genderInd, setGenderInd] = React.useState(0);
   const [driveLicense, setDriveLicense] = React.useState("");
+
+  const gendersOptions = [
+    "Male",
+    "Femalte",
+  ];
 
   return (
     <View style={styles.root}>
@@ -48,6 +54,13 @@ const PersonalData = () => {
         value={residence}
         setValue={setResidence}
         placeholder='enter your residence'
+      />
+
+      <CustomDropDownMenu 
+        title={"Gender"}
+        valueIndex={genderInd}
+        setValueIndex={setGenderInd}
+        options={gendersOptions}
       />
       
       <CustomFileInput 
