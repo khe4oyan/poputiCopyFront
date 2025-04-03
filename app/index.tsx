@@ -8,7 +8,7 @@ export default function Index() {
 
   useEffect(() => {
     setTimeout(() => {
-      route.push("/profileScreens/personalData");
+      route.push("/profileScreens/ridesHistory");
     }, 1000);
   }, []);
 

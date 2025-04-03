@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     flex: 1,
   },
-  
+
   addCarContainer: {
     flexDirection: "row",
     alignItems: "center",

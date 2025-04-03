@@ -2,11 +2,12 @@ import { StyleSheet, Text, View, ScrollView, Button, Image, TouchableWithoutFeed
 import CustomInput from '@/components/custom/customInput'
 import CustomFileInput from '@/components/custom/customFileInput'
 import CustomDropDownMenu from '@/components/custom/customDropDownMenu'
+import { useRouter } from 'expo-router'
 
 import React from 'react'
 
 const PersonalData = () => {
-  const [phoneNum, setPhoneNum] = React.useState('');
+  const [phoneNum, setPhoneNum] = React.useState("");
   const [name, setName] = React.useState("");
   const [surname, setSurname] = React.useState("");
   const [birthDay, setBirthDay] = React.useState("");
@@ -14,21 +15,24 @@ const PersonalData = () => {
   const [genderInd, setGenderInd] = React.useState(0);
   const [driveLicense, setDriveLicense] = React.useState("");
 
+  const route = useRouter();
+
   const gendersOptions = [
     "Male",
     "Female",
   ];
 
   const submitHandler = () => {
-    if (!phoneNum) { Alert.alert("Invalid data", "Check phone number and try again"); return; } else
-    if (!name) { Alert.alert("Invalid data", "Check name and try again"); return; } else
-    if (!surname) { Alert.alert("Invalid data", "Check surname and try again"); return; } else
-    if (!birthDay) { Alert.alert("Invalid data", "Check birth day and try again"); return; } else
-    if (!residence) { Alert.alert("Invalid data", "Check residence and try again"); return; } else
-    if (!genderInd) { Alert.alert("Invalid data", "Check gender and try again"); return; } else
-    if (!driveLicense) { Alert.alert("Invalid data", "Check drive license and try again"); return; }
-
+    if (phoneNum === "") { Alert.alert("Invalid data", "Check phone number and try again"); return; } else
+    if (name === "") { Alert.alert("Invalid data", "Check name and try again"); return; } else
+    if (surname === "") { Alert.alert("Invalid data", "Check surname and try again"); return; } else
+    if (birthDay === "") { Alert.alert("Invalid data", "Check birth day and try again"); return; } else
+    if (residence === "") { Alert.alert("Invalid data", "Check residence and try again"); return; } else
+    if (driveLicense === "") { Alert.alert("Invalid data", "Check drive license and try again"); return; }
+    
+    // TODO: send to backend
     Alert.alert("Info", "Data saved");
+    route.back();
   };
 
   return (

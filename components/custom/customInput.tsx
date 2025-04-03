@@ -16,7 +16,7 @@ const CustomInput = ({ title, value, setValue, placeholder, type = "default" }: 
       
       <TextInput
         value={value}
-        onChange={setValue}
+        onChangeText={setValue}
         style={styles.input}
         placeholder={placeholder}
         keyboardType={type}
