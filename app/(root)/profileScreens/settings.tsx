@@ -23,7 +23,6 @@ const Settings = () => {
   return (
     <View style={styles.root}>
       <Setting data={{ icon: null, title: "Bank data" }} />
-      <Setting data={{ icon: null, title: "Security" }} />
       <Setting data={{ icon: null, title: "Language" }} />
       <Setting data={{ icon: null, title: "Delete account" }} />
     </View>
