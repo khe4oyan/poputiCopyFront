@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
 
   imagePreview: {
     position: "relative",
-    backgroundColor: "orange",
     width: 100,
   },
 
