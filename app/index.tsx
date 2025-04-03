@@ -8,8 +8,8 @@ export default function Index() {
 
   useEffect(() => {
     setTimeout(() => {
-      route.push("/profileScreens/ridesHistory");
-    }, 1000);
+      route.push("/profileScreens/settings");
+    }, 100);
   }, []);
 
   return (
