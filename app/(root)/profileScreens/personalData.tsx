@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, Button, Image, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Button, Image, TouchableWithoutFeedback, Alert } from 'react-native'
 import CustomInput from '@/components/custom/customInput'
 import CustomFileInput from '@/components/custom/customFileInput'
 import CustomDropDownMenu from '@/components/custom/customDropDownMenu'
@@ -20,56 +20,64 @@ const PersonalData = () => {
   ];
 
   const submitHandler = () => {
-    // TODO: validate and send to backend
+    if (!phoneNum) { Alert.alert("Invalid data", "Check phone number and try again"); return; } else
+    if (!name) { Alert.alert("Invalid data", "Check name and try again"); return; } else
+    if (!surname) { Alert.alert("Invalid data", "Check surname and try again"); return; } else
+    if (!birthDay) { Alert.alert("Invalid data", "Check birth day and try again"); return; } else
+    if (!residence) { Alert.alert("Invalid data", "Check residence and try again"); return; } else
+    if (!genderInd) { Alert.alert("Invalid data", "Check gender and try again"); return; } else
+    if (!driveLicense) { Alert.alert("Invalid data", "Check drive license and try again"); return; }
+
+    Alert.alert("Info", "Data saved");
   };
 
   return (
     <ScrollView>
 
       <View style={styles.root}>
-        <CustomInput 
+        <CustomInput
           title="Phone number"
           value={phoneNum}
           setValue={setPhoneNum}
           placeholder='enter phone number'
         />
 
-        <CustomInput 
+        <CustomInput
           title="Name"
           value={name}
           setValue={setName}
           placeholder='enter your name'
         />
 
-        <CustomInput 
+        <CustomInput
           title="Surname"
           value={surname}
           setValue={setSurname}
           placeholder='enter your surname'
         />
 
-        <CustomInput 
+        <CustomInput
           title="Birth Day"
           value={birthDay}
           setValue={setBirthDay}
           placeholder='enter your birth day'
         />
 
-        <CustomInput 
+        <CustomInput
           title="Residence"
           value={residence}
           setValue={setResidence}
           placeholder='enter your residence'
         />
 
-        <CustomDropDownMenu 
+        <CustomDropDownMenu
           title={"Gender"}
           valueIndex={genderInd}
           setValueIndex={setGenderInd}
           options={gendersOptions}
         />
-        
-        <CustomFileInput 
+
+        <CustomFileInput
           title="Drive license"
           value={driveLicense}
           setValue={setDriveLicense}
@@ -81,11 +89,11 @@ const PersonalData = () => {
             <TouchableWithoutFeedback onPress={() => setDriveLicense("")}>
               <Text style={styles.closeButton} >x</Text>
             </TouchableWithoutFeedback>
-            <Image source={{uri: driveLicense}} width={100} height={100} borderRadius={10}/>
+            <Image source={{ uri: driveLicense }} width={100} height={100} borderRadius={10} />
           </View>
         }
 
-        <Button title='Save' onPress={submitHandler}/> 
+        <Button title='Save' onPress={submitHandler} />
       </View>
     </ScrollView>
   )
@@ -96,7 +104,7 @@ export default PersonalData;
 const styles = StyleSheet.create({
   root: {
     padding: 10,
-    gap:15,
+    gap: 15,
   },
 
   imagePreview: {
