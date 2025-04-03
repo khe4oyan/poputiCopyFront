@@ -4,7 +4,11 @@ import React from 'react'
 const TrafficCard = () => {
   return (
     <View style={styles.root}>
-      
+      <View></View>
+      <View>
+        {/* delete button */}
+        {/* status: active || deactive */}
+      </View>
     </View>
   )
 }
