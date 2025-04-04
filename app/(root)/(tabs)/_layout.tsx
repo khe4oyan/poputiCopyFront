@@ -44,7 +44,7 @@ const TabsLayout = () => {
       <Tabs.Screen name='index'
         options={{
           headerTintColor: "#ff4e00",
-          title: "Search",
+          title: "New Ride",
           headerShown: true,
           tabBarIcon: ({ focused }) => (
             <View>
@@ -54,7 +54,7 @@ const TabsLayout = () => {
                 width={50}
                 style={styles.searchIcon}
               /> */}
-              <TabIcon title="Search" focused={focused} />
+              <TabIcon title="New Ride" focused={focused} />
             </View>
           )
         }}
