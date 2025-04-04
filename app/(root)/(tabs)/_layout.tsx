@@ -41,7 +41,7 @@ const TabsLayout = () => {
         }}
       />
 
-      <Tabs.Screen name='search'
+      <Tabs.Screen name='index'
         options={{
           headerTintColor: "#ff4e00",
           title: "Search",
