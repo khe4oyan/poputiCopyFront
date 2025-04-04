@@ -63,7 +63,7 @@ const TabsLayout = () => {
       <Tabs.Screen name='traffics'
         options={{
           headerTintColor: "#ff4e00",
-          title: "My Traffics",
+          title: "My Rides",
           headerShown: true,
           tabBarIcon: ({ focused }) => (
             <TabIcon title="My Rides" focused={focused} />
