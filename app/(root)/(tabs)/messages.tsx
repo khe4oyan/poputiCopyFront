@@ -3,7 +3,7 @@ import React from 'react'
 
 const Messages = () => {
   return (
-    <View>
+    <View style={styles.root}>
       <Text>Messages</Text>
     </View>
   )
@@ -11,4 +11,8 @@ const Messages = () => {
 
 export default Messages
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  root: {
+    padding: 10, 
+  }
+})

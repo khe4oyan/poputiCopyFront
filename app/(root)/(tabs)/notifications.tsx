@@ -3,7 +3,7 @@ import React from 'react'
 
 const Notifications = () => {
   return (
-    <View>
+    <View style={styles.root}>
       <Text>Notifications</Text>
     </View>
   )
@@ -11,4 +11,8 @@ const Notifications = () => {
 
 export default Notifications
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  root: {
+    padding: 10, 
+  }
+})

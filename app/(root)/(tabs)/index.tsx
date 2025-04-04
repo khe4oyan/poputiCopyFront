@@ -3,7 +3,7 @@ import React from 'react'
 
 const Add = () => {
   return (
-    <View>
+    <View style={styles.root}>
       <Text>Add New</Text>
     </View>
   )
@@ -11,4 +11,8 @@ const Add = () => {
 
 export default Add;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  root: {
+    padding: 10, 
+  }
+})
