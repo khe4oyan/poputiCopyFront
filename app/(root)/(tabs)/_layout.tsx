@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    width: "100%",
+    width: 80,
+    textAlign: "center",
     fontSize: 10.9,
   },
 
