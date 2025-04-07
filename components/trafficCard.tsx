@@ -63,13 +63,16 @@ const styles = StyleSheet.create({
 
   infoContainer: {
     flexDirection: "row",
-    gap: 40,
+    gap: 30,
   },
 
-  leftSection: {},
+  leftSection: {
+    maxWidth: 200,
+  },
+
   rightSection: {
-    flex: 1,
     alignItems: "center",
+    gap: 10,
   },
 
   fullName: {
@@ -78,7 +81,6 @@ const styles = StyleSheet.create({
 
   price: {
     fontWeight: 500,
-    marginTop: 13,
     color: "#ff4e00",
   },
 
