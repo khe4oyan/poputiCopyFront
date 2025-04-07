@@ -29,6 +29,6 @@ export default Traffics
 const styles = StyleSheet.create({
   root: {
     padding: 10,
-    paddingBottom: 70,
+    marginBottom: 80,
   }
 })
