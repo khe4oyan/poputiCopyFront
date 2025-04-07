@@ -16,7 +16,7 @@ const sections = [
 
 const Add = () => {
   const [step, setStep] = React.useState(0);
-  const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(false);
+  const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
   const nextStep = () => {
     const sectionsCount = sections.length - 1;
@@ -26,6 +26,8 @@ const Add = () => {
       // TODO: send data to server
       setStep(0);
     }
+
+    setIsNextButtonDisabled(true);
   };
 
   return (
@@ -38,10 +40,10 @@ const Add = () => {
         )}
       </View>
 
-      {step === 0 && <NewRideStep_1 nextStep={nextStep} />}
-      {step === 1 && <NewRideStep_2 nextStep={nextStep} />}
-      {step === 2 && <NewRideStep_3 nextStep={nextStep} />}
-      {step === 3 && <NewRideStep_4 nextStep={nextStep} />}
+      {step === 0 && <NewRideStep_1 setIsNextButtonDisabled={setIsNextButtonDisabled} />}
+      {step === 1 && <NewRideStep_2 setIsNextButtonDisabled={setIsNextButtonDisabled} />}
+      {step === 2 && <NewRideStep_3 setIsNextButtonDisabled={setIsNextButtonDisabled} />}
+      {step === 3 && <NewRideStep_4 setIsNextButtonDisabled={setIsNextButtonDisabled} />}
 
       <TouchableOpacity style={[styles.nextButton, isNextButtonDisabled && styles.nextButtonDisabled]} disabled={isNextButtonDisabled} onPress={nextStep} >
         <Text style={styles.nextButtonText}>{step < sections.length - 1 ? "Next" : "Save"}</Text>

@@ -1,6 +1,5 @@
-import { StyleSheet, Text, TextInput, View, Button, Image, TouchableHighlight } from 'react-native'
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native'
 import React from 'react'
-import { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 
 type customFileInputProps = {

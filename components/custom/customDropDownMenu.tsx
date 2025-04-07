@@ -1,4 +1,4 @@
-import { KeyboardTypeOptions, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native'
+import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import React from 'react'
 import Skeleton from '../skeleton';
 
