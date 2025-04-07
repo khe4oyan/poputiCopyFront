@@ -14,11 +14,6 @@ const sections = [
   "Set Price",
 ];
 
-function Step_1() { return <Text>Component 1</Text>; }
-function Step_2() { return <Text>Component 2</Text>; }
-function Step_3() { return <Text>Component 3</Text>; }
-function Step_4() { return <Text>Component 4</Text>; }
-
 const Add = () => {
   const [step, setStep] = React.useState(0);
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(false);
