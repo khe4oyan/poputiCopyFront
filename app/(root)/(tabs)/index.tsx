@@ -1,11 +1,12 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 
 import NewRideStep_1 from '@/components/newRideStep_1';
 import NewRideStep_2 from '@/components/newRideStep_2';
 import NewRideStep_3 from '@/components/newRideStep_3';
 import NewRideStep_4 from '@/components/newRideStep_4';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { clearRide } from '@/store/slices/newRideSlice';
 
 const sections = [
   "Select Place",
@@ -17,13 +18,17 @@ const sections = [
 const Add = () => {
   const [step, setStep] = React.useState(0);
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
+  const dispatch = useDispatch();
+  const newRideData = useSelector((s: any) => s.newRideSlice);
 
   const nextStep = () => {
     const sectionsCount = sections.length - 1;
     if (step < sectionsCount) {
       setStep(prev => prev + 1);
     } else {
-      // TODO: send data to server
+      // TODO: send newRideData to server
+      Alert.alert("Success", "New Ride is added!");
+      dispatch(clearRide());
       setStep(0);
     }
 
@@ -31,7 +36,7 @@ const Add = () => {
   };
 
   return (
-    <View style={styles.root}>
+    <ScrollView style={styles.root}>
       <Text style={styles.title}>{sections[step]}</Text>
 
       <View style={styles.progress}>
@@ -48,7 +53,7 @@ const Add = () => {
       <TouchableOpacity style={[styles.nextButton, isNextButtonDisabled && styles.nextButtonDisabled]} disabled={isNextButtonDisabled} onPress={nextStep} >
         <Text style={styles.nextButtonText}>{step < sections.length - 1 ? "Next" : "Save"}</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   )
 }
 
@@ -57,6 +62,7 @@ export default Add;
 const styles = StyleSheet.create({
   root: {
     padding: 10,
+    marginBottom: 90,
   },
 
   title: {

@@ -23,6 +23,12 @@ const newRideSlice = createSlice({
     setPrice(state, actions) {
       state.price = actions.payload;
     },
+    clearRide(state) {
+      state.place = null;
+      state.date = null;
+      state.car = null;
+      state.price = null;
+    }
   },
 });
 
@@ -32,4 +38,5 @@ export const {
   setDate,
   setCar,
   setPrice,
+  clearRide,
 } = newRideSlice.actions;
