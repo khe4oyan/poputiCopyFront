@@ -2,57 +2,68 @@ class API {
   static #SERVER_PATH = "http://localhost:3000";
 
   // AUTH
-  static authLogin() {
+  static async authLogin() {
     // `${API.#SERVER_PATH}/auth/login`;
   }
-  static authRegister() {
-    // `${API.#SERVER_PATH}/auth/register`;
+
+  static async authRegister(email: string, password: string) {
+    return fetch(`${API.#SERVER_PATH}/auth/register`, {
+      method: "POST",
+      headers: {
+        'content-type': "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+    .then(r => r.json())
   }
 
   // USER 
-  static userUpdatePersonalInfo() {
+  static async userUpdatePersonalInfo() {
     // `${API.#SERVER_PATH}//user/personalInformation`;
   }
-  static userGetById(id: number) {
+  static async userGetById(id: number) {
     // `${API.#SERVER_PATH}/user/${id}`;
   }
-  static userUpdateProfilePhoto() {
+  static async userUpdateProfilePhoto() {
     // `${API.#SERVER_PATH}/updateProfilePhoto`;
   }
 
   // FILE
-  static fileGetById(id: number) {
+  static async fileGetById(id: number) {
     // `${API.#SERVER_PATH}file/${id}`;
   }
-  static fileDeleteById(id: number) {
+  static async fileDeleteById(id: number) {
     // `${API.#SERVER_PATH}/file/${id}`;
   }
 
   // CAR
-  static carGetById(id: number) {
+  static async carGetById(id: number) {
     // `${API.#SERVER_PATH}/car/${id}`;
   }
-  static carDeleteById(id: number) {
+  static async carDeleteById(id: number) {
     // `${API.#SERVER_PATH}/car/${id}`;
   }
-  static carCreate() {
+  static async carCreate() {
     // `${API.#SERVER_PATH}/car`;
   }
 
   // JOURNEY
-  static journeyCreate() {
+  static async journeyCreate() {
     // `${API.#SERVER_PATH}/journey`;
   }
-  static journeyGetAll() {
+  static async journeyGetAll() {
     // `${API.#SERVER_PATH}/journey`;
   }
-  static journeyGetById(id: number) {
+  static async journeyGetById(id: number) {
     // `${API.#SERVER_PATH}/journey/${id}`;
   }
-  static journeyDeleteById(id: number) {
+  static async journeyDeleteById(id: number) {
     // `${API.#SERVER_PATH}/journey/${id}`;
   }
-  static journeyJoinById(id: number) {
+  static async journeyJoinById(id: number) {
     // `${API.#SERVER_PATH}/journey/joinJourney/${id}`;
   }
 };
