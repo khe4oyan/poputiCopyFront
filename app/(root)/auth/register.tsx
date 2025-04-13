@@ -4,14 +4,33 @@ import React from 'react'
 import CustomInput from '@/components/custom/customInput'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
+import API from '@/utils/API';
+import CustomDropDownMenu from '@/components/custom/customDropDownMenu';
+import { useRouter } from 'expo-router';
 
 const Register = () => {
-  const [register, setRegister] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [pass, setPass] = React.useState("");
+  const [role, setRole] = React.useState(0);
+
+  const router = useRouter();
+
+  const roles = [
+    "driver", 
+    "student"
+  ];
 
   const registerHandler = () => {
-    if (register !== "" && pass !== "") {
-      // TODO: send to back
+    if (email !== "" && pass !== "") {
+      API.authRegister(email, pass, roles[role])
+        .then(d => {
+          if (d?.data) {
+            router.replace("/auth/login");
+            Alert.alert("Success", "You're registered!");
+          } else {
+            Alert.alert("Error", "Invalid server response");
+          }
+        })
     } else {
       Alert.alert("Error", "Invalid inputs");
     }
@@ -21,14 +40,21 @@ const Register = () => {
     <SafeAreaView style={styles.root}>
       <Text style={styles.headerText}>Registration</Text>
       <CustomInput
-        value={register}
-        setValue={setRegister}
-        placeholder='Register'
+        value={email}
+        setValue={setEmail}
+        placeholder='mail'
       />
       <CustomInput
         value={pass}
         setValue={setPass}
         placeholder='Password'
+      />
+
+      <CustomDropDownMenu
+        options={roles}
+        setValueIndex={setRole}
+        valueIndex={role}
+        title="Role"
       />
 
       <TouchableWithoutFeedback onPress={registerHandler}>

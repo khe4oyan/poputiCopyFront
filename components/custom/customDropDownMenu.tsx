@@ -53,6 +53,7 @@ export default CustomDropDownMenu;
 const styles = StyleSheet.create({
   root: {
     position: "relative",
+    zIndex: 10,
   },
 
   title: {
@@ -80,7 +81,6 @@ const styles = StyleSheet.create({
     width: "100%",
     position: "absolute",
     top: "100%",
-    zIndex: 10,
     backgroundColor: "white",
     flexDirection: "column",
     gap: 10,

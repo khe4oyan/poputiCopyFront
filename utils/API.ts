@@ -2,11 +2,21 @@ class API {
   static #SERVER_PATH = "http://localhost:3000";
 
   // AUTH
-  static async authLogin() {
-    // `${API.#SERVER_PATH}/auth/login`;
+  static async authLogin(email: string, password: string) {
+    return fetch(`${API.#SERVER_PATH}/auth/login`, {
+      method: "POST",
+      headers: {
+        'content-type': "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+    .then(r => r.json())
   }
 
-  static async authRegister(email: string, password: string) {
+  static async authRegister(email: string, password: string, role: string) {
     return fetch(`${API.#SERVER_PATH}/auth/register`, {
       method: "POST",
       headers: {
@@ -15,6 +25,7 @@ class API {
       body: JSON.stringify({
         email,
         password,
+        role,
       }),
     })
     .then(r => r.json())

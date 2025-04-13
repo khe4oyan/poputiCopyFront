@@ -1,29 +1,38 @@
 import React from 'react'
 import { useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function useToken(): [
   string,
-  (token: string) => void,
+  (token: string) => any,
   () => void,
   () => void,
 ] {
-  const [token, setToken] = React.useState(() => {
-    // TODO: load in storage;
-    return "";
-  });
+  const [token, setToken] = React.useState("");
+
+  React.useEffect(() => {
+    const loadToken = async () => {
+      const accessToken = await AsyncStorage.getItem("token") || "";
+      setToken(accessToken);
+    };
+  
+    loadToken();
+  }, []);
 
   const router = useRouter();
 
   const saveToken = (token: string) => {
-    // TODO: save token in storage
+    setToken(token);
+    return AsyncStorage.setItem("token", token);
   };
 
   const deleteToken = () => {
-    // TODO: delete token
+    AsyncStorage.removeItem("token");
+    setToken("");
   };
 
   const navigateToAuth = () => {
-    router.push("/(root)/auth/login");
+    router.replace("/(root)/auth/register");
   }
 
   return [token, saveToken, deleteToken, navigateToAuth];

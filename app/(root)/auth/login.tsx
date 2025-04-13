@@ -4,14 +4,28 @@ import React from 'react'
 import CustomInput from '@/components/custom/customInput'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
+import API from '@/utils/API';
+import useToken from '@/customHooks/useToken';
+import { useRouter } from 'expo-router';
+
 
 const Login = () => {
-  const [login, setLogin] = React.useState("");
-  const [pass, setPass] = React.useState("");
+  const [login, setLogin] = React.useState("khc@gmail.com");
+  const [pass, setPass] = React.useState("qweqwe123");
+  const [_, saveToken] = useToken();
+  const router = useRouter();
 
   const loginHandler = () => {
     if (login !== "" && pass !== "") {
-      // TODO: send to back
+      API.authLogin(login, pass)
+      .then(async (d) => {
+        if (d?.data) {
+          saveToken(d.data)
+          .then(() => {
+            router.replace("/(root)/(tabs)");
+          });
+        }
+      });
     } else {
       Alert.alert("Error", "Invalid inputs");
     }

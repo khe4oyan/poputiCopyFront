@@ -1,5 +1,5 @@
 import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 
 import NewRideStep_1 from '@/components/newRideStep_1';
 import NewRideStep_2 from '@/components/newRideStep_2';
@@ -22,12 +22,20 @@ const Add = () => {
   const dispatch = useDispatch();
   const newRideData = useSelector((s: any) => s.newRideSlice);
   const [token, _, __, navigateToAuth] = useToken();
-  
-  useEffect(() => {
+
+  useLayoutEffect(() => {
+    let timer = null
+
     if (token === '') {
-      setTimeout(() => {
+      timer = setTimeout(() => {
         navigateToAuth();
-      }, 0);
+      }, 100);
+    }
+
+    return () => {
+      if (timer !== null) {
+        clearTimeout(timer);
+      }
     }
   }, [token]);
 
