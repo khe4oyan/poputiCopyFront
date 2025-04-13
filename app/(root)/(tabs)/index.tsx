@@ -1,5 +1,5 @@
 import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import NewRideStep_1 from '@/components/newRideStep_1';
 import NewRideStep_2 from '@/components/newRideStep_2';
@@ -7,6 +7,7 @@ import NewRideStep_3 from '@/components/newRideStep_3';
 import NewRideStep_4 from '@/components/newRideStep_4';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearRide } from '@/store/slices/newRideSlice';
+import useToken from '@/customHooks/useToken';
 
 const sections = [
   "Select Place",
@@ -20,6 +21,15 @@ const Add = () => {
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
   const dispatch = useDispatch();
   const newRideData = useSelector((s: any) => s.newRideSlice);
+  const [token, _, __, navigateToAuth] = useToken();
+  
+  useEffect(() => {
+    if (token === '') {
+      setTimeout(() => {
+        navigateToAuth();
+      }, 0);
+    }
+  }, [token]);
 
   const nextStep = () => {
     const sectionsCount = sections.length - 1;
