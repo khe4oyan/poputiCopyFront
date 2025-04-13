@@ -10,8 +10,8 @@ import { useRouter } from 'expo-router';
 
 
 const Login = () => {
-  const [login, setLogin] = React.useState("khc@gmail.com");
-  const [pass, setPass] = React.useState("qweqwe123");
+  const [login, setLogin] = React.useState("");
+  const [pass, setPass] = React.useState("");
   const [_, saveToken] = useToken();
   const router = useRouter();
 
