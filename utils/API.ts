@@ -32,9 +32,37 @@ class API {
   }
 
   // USER 
-  static async userUpdatePersonalInfo() {
-    // `${API.#SERVER_PATH}//user/personalInformation`;
-    
+  static async userUpdatePersonalInfo(
+    token: string,
+    phoneNum: any,
+    name: any,
+    surname: any,
+    birthDay: any,
+    residence: any,
+    gender: any,
+    role: any,
+    driveLicense: any,
+    pasportImage: any,
+  ) {
+    return fetch(`${API.#SERVER_PATH}//user/personalInformation`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        passportImage: pasportImage,
+        city: residence,
+        name,
+        surname,
+        pheneNumber: phoneNum,
+        pasportData: "(none)",
+        birthDay,
+        gender,
+        role,
+        driversLicenseImage: driveLicense,
+      }),
+    })
+    .then(r => r.json())
   }
   static async userGetById(id: number) {
     // `${API.#SERVER_PATH}/user/${id}`;

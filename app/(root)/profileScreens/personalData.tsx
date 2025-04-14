@@ -5,6 +5,8 @@ import CustomDropDownMenu from '@/components/custom/customDropDownMenu'
 import { useRouter } from 'expo-router'
 
 import React from 'react'
+import API from '@/utils/API'
+import useToken from '@/customHooks/useToken'
 
 const PersonalData = () => {
   const [phoneNum, setPhoneNum] = React.useState("");
@@ -13,14 +15,21 @@ const PersonalData = () => {
   const [birthDay, setBirthDay] = React.useState("");
   const [residence, setResidence] = React.useState("");
   const [genderInd, setGenderInd] = React.useState(0);
+  const [roleInd, setRoleInd] = React.useState(0);
   const [driveLicense, setDriveLicense] = React.useState("");
   const [pasportImage, setPassportImage] = React.useState("");
+  const [token] = useToken();
 
   const route = useRouter();
 
   const gendersOptions = [
     "Male",
     "Female",
+  ];
+
+  const roles = [
+    "driver",
+    "student",
   ];
 
   const submitHandler = () => {
@@ -32,9 +41,28 @@ const PersonalData = () => {
     if (driveLicense === "") { Alert.alert("Invalid data", "Check drive license and try again"); return; } else
     if (pasportImage === "") { Alert.alert("Invalid data", "Check passport image and try again"); return; }
 
-    // TODO: send to backend
-    Alert.alert("Info", "Data saved");
-    route.back();
+    API.userUpdatePersonalInfo(
+      token,
+      phoneNum,
+      name,
+      surname,
+      birthDay,
+      residence,
+      gendersOptions[genderInd],
+      roles[roleInd],
+      driveLicense,
+      pasportImage,
+    )
+    .then(d => {
+      if (d?.message) {
+        Alert.alert("Info", "Data saved");
+        route.back();
+      }
+    })
+    .catch((e) => {
+      Alert.alert("Error", "Something went wrong");
+      console.log(e);
+    });
   };
 
   return (
@@ -81,6 +109,13 @@ const PersonalData = () => {
           valueIndex={genderInd}
           setValueIndex={setGenderInd}
           options={gendersOptions}
+        />
+
+        <CustomDropDownMenu
+          title={"Role"}
+          valueIndex={roleInd}
+          setValueIndex={setRoleInd}
+          options={roles}
         />
 
         <CustomFileInput
