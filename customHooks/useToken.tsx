@@ -27,8 +27,9 @@ function useToken(): [
   };
 
   const deleteToken = () => {
-    AsyncStorage.removeItem("token");
-    setToken("");
+    AsyncStorage.removeItem("token").then(() => {
+      setToken("");
+    });
   };
 
   const navigateToAuth = () => {

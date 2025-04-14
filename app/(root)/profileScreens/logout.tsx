@@ -1,11 +1,20 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
+import useToken from '@/customHooks/useToken'
+import { useRouter } from 'expo-router'
 
 const Logout = () => {
-  // TODO: show logout modal, progress bar and message when logouted
+  const [, , deleteToken] = useToken();
+  const route = useRouter();
+  
+  useEffect(() => {
+    deleteToken();
+    route.replace("/(root)/(tabs)");
+  });
+
   return (
     <View>
-      <Text>Logout</Text>
+      <Text>In process...</Text>
     </View>
   )
 }

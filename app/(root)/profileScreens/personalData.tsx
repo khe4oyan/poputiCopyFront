@@ -14,6 +14,7 @@ const PersonalData = () => {
   const [residence, setResidence] = React.useState("");
   const [genderInd, setGenderInd] = React.useState(0);
   const [driveLicense, setDriveLicense] = React.useState("");
+  const [pasportImage, setPassportImage] = React.useState("");
 
   const route = useRouter();
 
@@ -24,12 +25,13 @@ const PersonalData = () => {
 
   const submitHandler = () => {
     if (phoneNum === "") { Alert.alert("Invalid data", "Check phone number and try again"); return; } else
-    if (name === "") { Alert.alert("Invalid data", "Check name and try again"); return; } else
-    if (surname === "") { Alert.alert("Invalid data", "Check surname and try again"); return; } else
-    if (birthDay === "") { Alert.alert("Invalid data", "Check birth day and try again"); return; } else
-    if (residence === "") { Alert.alert("Invalid data", "Check residence and try again"); return; } else
-    if (driveLicense === "") { Alert.alert("Invalid data", "Check drive license and try again"); return; }
-    
+      if (name === "") { Alert.alert("Invalid data", "Check name and try again"); return; } else
+        if (surname === "") { Alert.alert("Invalid data", "Check surname and try again"); return; } else
+          if (birthDay === "") { Alert.alert("Invalid data", "Check birth day and try again"); return; } else
+            if (residence === "") { Alert.alert("Invalid data", "Check residence and try again"); return; } else
+              if (driveLicense === "") { Alert.alert("Invalid data", "Check drive license and try again"); return; } else
+                if (pasportImage === "") { Alert.alert("Invalid data", "Check passport image and try again"); return; }
+
     // TODO: send to backend
     Alert.alert("Info", "Data saved");
     route.back();
@@ -86,7 +88,6 @@ const PersonalData = () => {
           value={driveLicense}
           setValue={setDriveLicense}
         />
-
         {
           driveLicense &&
           <View style={styles.imagePreview}>
@@ -96,6 +97,22 @@ const PersonalData = () => {
             <Image source={{ uri: driveLicense }} width={100} height={100} borderRadius={10} />
           </View>
         }
+
+        <CustomFileInput
+          title="Passport Image"
+          value={pasportImage}
+          setValue={setPassportImage}
+        />
+        {
+          pasportImage &&
+          <View style={styles.imagePreview}>
+            <TouchableWithoutFeedback onPress={() => setPassportImage("")}>
+              <Text style={styles.closeButton} >x</Text>
+            </TouchableWithoutFeedback>
+            <Image source={{ uri: pasportImage }} width={100} height={100} borderRadius={10} />
+          </View>
+        }
+
 
         <Button title='Save' onPress={submitHandler} />
       </View>
