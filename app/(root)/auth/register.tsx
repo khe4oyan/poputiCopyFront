@@ -16,7 +16,7 @@ const Register = () => {
   const router = useRouter();
 
   const roles = [
-    "driver", 
+    "driver",
     "student"
   ];
 
@@ -31,6 +31,9 @@ const Register = () => {
             Alert.alert("Error", "Invalid server response");
           }
         })
+        .catch((e) => {
+          Alert.alert("Error", `${email} is already registered`);
+        });
     } else {
       Alert.alert("Error", "Invalid inputs");
     }
