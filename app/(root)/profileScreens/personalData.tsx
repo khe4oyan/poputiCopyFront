@@ -25,12 +25,12 @@ const PersonalData = () => {
 
   const submitHandler = () => {
     if (phoneNum === "") { Alert.alert("Invalid data", "Check phone number and try again"); return; } else
-      if (name === "") { Alert.alert("Invalid data", "Check name and try again"); return; } else
-        if (surname === "") { Alert.alert("Invalid data", "Check surname and try again"); return; } else
-          if (birthDay === "") { Alert.alert("Invalid data", "Check birth day and try again"); return; } else
-            if (residence === "") { Alert.alert("Invalid data", "Check residence and try again"); return; } else
-              if (driveLicense === "") { Alert.alert("Invalid data", "Check drive license and try again"); return; } else
-                if (pasportImage === "") { Alert.alert("Invalid data", "Check passport image and try again"); return; }
+    if (name === "") { Alert.alert("Invalid data", "Check name and try again"); return; } else
+    if (surname === "") { Alert.alert("Invalid data", "Check surname and try again"); return; } else
+    if (birthDay === "") { Alert.alert("Invalid data", "Check birth day and try again"); return; } else
+    if (residence === "") { Alert.alert("Invalid data", "Check residence and try again"); return; } else
+    if (driveLicense === "") { Alert.alert("Invalid data", "Check drive license and try again"); return; } else
+    if (pasportImage === "") { Alert.alert("Invalid data", "Check passport image and try again"); return; }
 
     // TODO: send to backend
     Alert.alert("Info", "Data saved");
