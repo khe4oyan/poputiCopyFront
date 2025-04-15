@@ -34,35 +34,60 @@ class API {
   // USER 
   static async userUpdatePersonalInfo(
     token: string,
-    phoneNum: any,
-    name: any,
-    surname: any,
-    birthDay: any,
-    residence: any,
-    gender: any,
-    role: any,
-    driveLicense: any,
-    pasportImage: any,
+    phoneNum: string,
+    name: string,
+    surname: string,
+    birthDay: string,
+    residence: string,
+    gender: string,
+    role: string,
+    driveLicenseUri: string,
+    pasportImageUri: string,
   ) {
-    return fetch(`${API.#SERVER_PATH}//user/personalInformation`, {
+    const formData = new FormData();
+  
+    formData.append("pheneNumber", phoneNum);
+    formData.append("name", name);
+    formData.append("surname", surname);
+    formData.append("birthDay", birthDay);
+    formData.append("city", residence);
+    formData.append("gender", gender);
+    formData.append("role", role);
+    formData.append("pasportData", "(none)");
+  
+    // Преобразуем URI в Blob и добавляем
+    const getBlob = async (uri: string, name: string) => {
+      const response = await fetch(uri);
+      const blob = await response.blob();
+      return {
+        uri,
+        name,
+        type: blob.type || "image/jpeg",
+      };
+    };
+  
+    const driveLicenseFile = await getBlob(driveLicenseUri, "driveLicense.jpg");
+    const pasportImageFile = await getBlob(pasportImageUri, "pasportImage.jpg");
+  
+    formData.append("driversLicenseImage", {
+      uri: driveLicenseFile.uri,
+      name: driveLicenseFile.name,
+      type: driveLicenseFile.type,
+    } as any);
+  
+    formData.append("pasportImage", {
+      uri: pasportImageFile.uri,
+      name: pasportImageFile.name,
+      type: pasportImageFile.type,
+    } as any);
+  
+    return fetch(`${API.#SERVER_PATH}/user/personalInformation`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({
-        passportImage: pasportImage,
-        city: residence,
-        name,
-        surname,
-        pheneNumber: phoneNum,
-        pasportData: "(none)",
-        birthDay,
-        gender,
-        role,
-        driversLicenseImage: driveLicense,
-      }),
-    })
-    .then(r => r.json())
+      body: formData,
+    }).then((r) => r.json());
   }
   static async userGetById(id: number) {
     // `${API.#SERVER_PATH}/user/${id}`;
