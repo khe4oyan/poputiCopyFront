@@ -46,13 +46,14 @@ class API {
   ) {
     const formData = new FormData();
   
-    formData.append("pheneNumber", phoneNum);
+    formData.append("phoneNumber", phoneNum);
     formData.append("name", name);
     formData.append("surname", surname);
-    formData.append("birthDay", birthDay);
+    formData.append("birthDay", "2025-04-15");
     formData.append("city", residence);
     formData.append("gender", gender);
     formData.append("role", role);
+    formData.append("driversLicense", "(none)");
     formData.append("pasportData", "(none)");
   
     // Преобразуем URI в Blob и добавляем

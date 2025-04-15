@@ -61,7 +61,6 @@ const PersonalData = () => {
     })
     .catch((e) => {
       Alert.alert("Error", "Something went wrong");
-      console.log(e);
     });
   };
 
