@@ -13,7 +13,7 @@ class API {
         password,
       }),
     })
-    .then(r => r.json())
+      .then(r => r.json())
   }
 
   static async authRegister(email: string, password: string, role: string) {
@@ -28,7 +28,7 @@ class API {
         role,
       }),
     })
-    .then(r => r.json())
+      .then(r => r.json())
   }
 
   // USER 
@@ -45,7 +45,7 @@ class API {
     pasportImageUri: string,
   ) {
     const formData = new FormData();
-  
+
     formData.append("phoneNumber", phoneNum);
     formData.append("name", name);
     formData.append("surname", surname);
@@ -55,7 +55,7 @@ class API {
     formData.append("role", role);
     formData.append("driversLicense", "(none)");
     formData.append("pasportData", "(none)");
-  
+
     const getBlob = async (uri: string, name: string) => {
       const response = await fetch(uri);
       const blob = await response.blob();
@@ -65,22 +65,22 @@ class API {
         type: blob.type || "image/jpeg",
       };
     };
-  
+
     const driveLicenseFile = await getBlob(driveLicenseUri, "driveLicense.jpg");
     const pasportImageFile = await getBlob(pasportImageUri, "pasportImage.jpg");
-  
+
     formData.append("driversLicenseImage", {
       uri: driveLicenseFile.uri,
       name: driveLicenseFile.name,
       type: driveLicenseFile.type,
     } as any);
-  
+
     formData.append("pasportImage", {
       uri: pasportImageFile.uri,
       name: pasportImageFile.name,
       type: pasportImageFile.type,
     } as any);
-  
+
     return fetch(`${API.#SERVER_PATH}/user/personalInformation`, {
       method: "POST",
       headers: {
@@ -104,9 +104,9 @@ class API {
         type: blob.type || "image/jpeg",
       };
     };
-  
+
     const profilePhoto = await getBlob(photo, "driveLicense.jpg");
-  
+
     formData.append("profilePhoto", {
       uri: profilePhoto.uri,
       name: profilePhoto.name,
@@ -140,8 +140,20 @@ class API {
   static async carDeleteById(id: number) {
     // `${API.#SERVER_PATH}/car/${id}`;
   }
-  static async carCreate() {
-    // `${API.#SERVER_PATH}/car`;
+  static async carCreate(token: string, make: string, model: string, year: string) {
+    return fetch(`${API.#SERVER_PATH}/car`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        make, model, year
+      }),
+    }).then((r) => {
+      console.log("Response status:", r.status);
+      return r.json()
+    });
   }
 
   // JOURNEY

@@ -2,13 +2,15 @@ import { Button, FlatList, StyleSheet, Text, TouchableOpacity, TouchableWithoutF
 import React, { useState } from 'react'
 import Skeleton from '@/components/skeleton'
 import CustomInput from '@/components/custom/customInput';
+import API from '@/utils/API';
+import useToken from '@/customHooks/useToken';
 
 type carDataType = {
   mark: string,
   model: string,
-  carNum: string,
-  year: number,
-  pass: any,
+  // carNum: string,
+  year: string | number,
+  // pass: any,
 };
 
 type carCardPropertyType = {
@@ -31,51 +33,56 @@ const CarCardProperty = ({ name, value, children }: carCardPropertyType) => {
 }
 
 const CarCard = ({ carData }: { carData: carDataType }) => {
+  const onDeleteCar = () => {
+    // TODO: delete car
+  };
+
   return (
     <View style={styles.carCard}>
       <View style={styles.header}>
         <Text style={styles.headerText}>{carData.mark}</Text>
-        <Skeleton width={10} height={20} />
+        <TouchableOpacity onPress={onDeleteCar}>
+          <Text style={styles.carCardDeleteButton}>delete</Text>
+        </TouchableOpacity>
       </View>
 
       <CarCardProperty name='Model' value={carData.model} />
-      <CarCardProperty name='Number' value={carData.carNum} />
+      {/* <CarCardProperty name='Number' value={carData.carNum} /> */}
       <CarCardProperty name='Year' value={carData.year} />
-      <CarCardProperty name='Document'>
+      {/* <CarCardProperty name='Document'>
         <Text>
           {carData.pass ?
             <Skeleton width={15} height={15} radius="100%" color='#00BE00' /> :
             <Skeleton width={15} height={15} radius="100%" color='#BE0000' />
           }
         </Text>
-      </CarCardProperty>
+      </CarCardProperty> */}
     </View>
   );
 }
 
 const MyCars = () => {
-  const [isShowModal, setIsShowModal] = useState(false);
-  const [cars, setCars] = React.useState<Array<carDataType>>([
-    {
-      mark: "Opel",
-      model: "Zafira",
-      carNum: "36xm897",
-      year: 2000,
-      pass: true,
-    },
-    {
-      mark: "Opel",
-      model: "Vectra B",
-      carNum: "44xm894",
-      year: 2013,
-      pass: null,
-    },
-  ]);
+  const [isShowModal, setIsShowModal] = useState(true);
+  const [cars, setCars] = React.useState<Array<carDataType>>([]);
+  const [mark, setMark] = useState("");
+  const [model, setModel] = useState("");
+  const [year, setYear] = useState("");
 
-  // TODO: new car add button handler
+  const [token] = useToken();
+
   const onNewCarHandler = () => {
     setIsShowModal(true);
-  }
+  };
+
+  const addButton = () => {
+    API.carCreate(token, mark, model, year)
+    .then(d => {
+      setCars(prev => {
+        return [...prev, {mark, model, year}]
+      });
+      setIsShowModal(false);
+    });
+  };
 
   return (
     <View style={styles.root}>
@@ -89,12 +96,25 @@ const MyCars = () => {
       {
         isShowModal &&
         <View>
-          {/* <CustomInput 
-
-          /> */}
+          <CustomInput 
+            placeholder='mark'
+            value={mark}
+            setValue={setMark}
+          />
+          <CustomInput 
+            placeholder='model'
+            value={model}
+            setValue={setModel}
+          />
+          <CustomInput 
+            placeholder='year'
+            value={year}
+            setValue={setYear}
+          />
           
           <Button 
             title='Add'
+            onPress={addButton}
           />
         </View>
       }
@@ -158,6 +178,17 @@ const styles = StyleSheet.create({
   headerText: {
     fontWeight: 800,
     fontSize: 18,
+  },
+
+  carCardDeleteButton: {
+    color: 'red',
+    borderWidth: 1,
+    borderColor: "red",
+
+    borderRadius: 5,
+    padding: 10,
+    paddingTop: 3,
+    paddingBottom: 3,
   },
 
   property: {
