@@ -1,9 +1,12 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import React, { useEffect } from 'react';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Skeleton from '@/components/skeleton';
 import { Href, Link } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import * as ImagePicker from 'expo-image-picker';
+import useToken from '@/customHooks/useToken';
+import API from '@/utils/API';
 
 type statisticData = {
   icon: any;
@@ -15,7 +18,6 @@ type sectionData = {
   title: string;
   link: Href;
 };
-
 
 const Statistic = ({ data }: { data: statisticData }) => {
   return (
@@ -61,12 +63,38 @@ const Profile = () => {
     { icon: null, title: t("logout"), link: "/profileScreens/logout" },
   ];
 
+  const [token] = useToken();
+
+  const editImage = async () => {
+    // TODO: load image 
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      API.userUpdateProfilePhoto(token, result.assets[0].uri)
+      .then(d => {
+        console.log(d);
+      })
+      .catch(e => {
+        console.log('############# ERROR ###');
+        console.log(e);
+        console.log('############# ###');
+      });
+    }
+  };
+
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.mainInfoContainer}>
         <View style={styles.avatarContainer}>
           <Skeleton width={100} height={100} radius="100%" />
-          <Skeleton width={25} height={25} radius="100%" color="gray" style={styles.avatarEdit} />
+          <TouchableOpacity onPress={editImage} style={styles.avatarEdit}>
+            <Skeleton width={25} height={25} radius="100%" color="gray" />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.mainInfo}>

@@ -13,7 +13,7 @@ class API {
         password,
       }),
     })
-    .then(r => r.json())
+      .then(r => r.json())
   }
 
   static async authRegister(email: string, password: string, role: string) {
@@ -28,7 +28,7 @@ class API {
         role,
       }),
     })
-    .then(r => r.json())
+      .then(r => r.json())
   }
 
   // USER 
@@ -45,7 +45,7 @@ class API {
     pasportImageUri: string,
   ) {
     const formData = new FormData();
-  
+
     formData.append("phoneNumber", phoneNum);
     formData.append("name", name);
     formData.append("surname", surname);
@@ -55,8 +55,7 @@ class API {
     formData.append("role", role);
     formData.append("driversLicense", "(none)");
     formData.append("pasportData", "(none)");
-  
-    // Преобразуем URI в Blob и добавляем
+
     const getBlob = async (uri: string, name: string) => {
       const response = await fetch(uri);
       const blob = await response.blob();
@@ -66,22 +65,22 @@ class API {
         type: blob.type || "image/jpeg",
       };
     };
-  
+
     const driveLicenseFile = await getBlob(driveLicenseUri, "driveLicense.jpg");
     const pasportImageFile = await getBlob(pasportImageUri, "pasportImage.jpg");
-  
+
     formData.append("driversLicenseImage", {
       uri: driveLicenseFile.uri,
       name: driveLicenseFile.name,
       type: driveLicenseFile.type,
     } as any);
-  
+
     formData.append("pasportImage", {
       uri: pasportImageFile.uri,
       name: pasportImageFile.name,
       type: pasportImageFile.type,
     } as any);
-  
+
     return fetch(`${API.#SERVER_PATH}/user/personalInformation`, {
       method: "POST",
       headers: {
@@ -90,30 +89,83 @@ class API {
       body: formData,
     }).then((r) => r.json());
   }
-  static async userGetById(id: number) {
+  static async userGetById(id: string) {
     // `${API.#SERVER_PATH}/user/${id}`;
   }
-  static async userUpdateProfilePhoto() {
-    // `${API.#SERVER_PATH}/updateProfilePhoto`;
+  static async userUpdateProfilePhoto(token: string, photo: string) {
+    const formData = new FormData();
+
+    const getBlob = async (uri: string, name: string) => {
+      const response = await fetch(uri);
+      const blob = await response.blob();
+      return {
+        uri,
+        name,
+        type: blob.type || "image/jpeg",
+      };
+    };
+
+    const profilePhoto = await getBlob(photo, "driveLicense.jpg");
+
+    formData.append("profilePhoto", {
+      uri: profilePhoto.uri,
+      name: profilePhoto.name,
+      type: profilePhoto.type,
+    } as any);
+
+    return fetch(`${API.#SERVER_PATH}/user/udateProfilePhoto`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    }).then((r) => {
+      console.log("Response status:", r.status);
+      return r.json()
+    });
   }
 
   // FILE
-  static async fileGetById(id: number) {
+  static async fileGetById(id: string) {
     // `${API.#SERVER_PATH}file/${id}`;
   }
-  static async fileDeleteById(id: number) {
+  static async fileDeleteById(id: string) {
     // `${API.#SERVER_PATH}/file/${id}`;
   }
 
   // CAR
-  static async carGetById(id: number) {
+  static async getCarsByUserId(token: string, id: string) {
+    return fetch(`${API.#SERVER_PATH}/car/carByUserId/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "content-type": "application/json",
+      },
+    }).then((r) => {
+      console.log("Response status:", r.status, r.statusText);
+      return r.json()
+    });
+  }
+  static async carGetById(id: string) {
     // `${API.#SERVER_PATH}/car/${id}`;
   }
-  static async carDeleteById(id: number) {
+  static async carDeleteById(id: string) {
     // `${API.#SERVER_PATH}/car/${id}`;
   }
-  static async carCreate() {
-    // `${API.#SERVER_PATH}/car`;
+  static async carCreate(token: string, make: string, model: string, year: string) {
+    return fetch(`${API.#SERVER_PATH}/car`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        make, model, year
+      }),
+    }).then((r) => {
+      console.log("Response status:", r.status);
+      return r.json()
+    });
   }
 
   // JOURNEY
@@ -123,13 +175,13 @@ class API {
   static async journeyGetAll() {
     // `${API.#SERVER_PATH}/journey`;
   }
-  static async journeyGetById(id: number) {
+  static async journeyGetById(id: string) {
     // `${API.#SERVER_PATH}/journey/${id}`;
   }
-  static async journeyDeleteById(id: number) {
+  static async journeyDeleteById(id: string) {
     // `${API.#SERVER_PATH}/journey/${id}`;
   }
-  static async journeyJoinById(id: number) {
+  static async journeyJoinById(id: string) {
     // `${API.#SERVER_PATH}/journey/joinJourney/${id}`;
   }
 };
