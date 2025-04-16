@@ -7,23 +7,24 @@ import API from '@/utils/API';
 import useToken from '@/customHooks/useToken';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import useUserId from '@/customHooks/useUserId';
 
 const Login = () => {
   const { t, i18n } = useTranslation();  // Use the i18n object for language change
   const [login, setLogin] = React.useState("");
   const [pass, setPass] = React.useState("");
-  const [_, saveToken] = useToken();
+  const [, saveToken] = useToken();
+  const [, saveUserId] = useUserId();
   const router = useRouter();
 
   const loginHandler = () => {
     if (login !== "" && pass !== "") {
       API.authLogin(login, pass)
         .then(async (d) => {
-          if (d?.data) {
-            saveToken(d.data)
-              .then(() => {
-                router.replace("/(root)/(tabs)");
-              });
+          if (d?.data && d.data?.token && d.data?.id) {
+            await saveUserId(d.data.id);
+            await saveToken(d.data.token)
+            router.replace("/(root)/(tabs)");
           }
         });
     } else {
