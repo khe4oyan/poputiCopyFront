@@ -1,18 +1,10 @@
-import { Button, FlatList, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
+import { ActivityIndicator, Button, FlatList, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
 import React, { useState } from 'react'
 import Skeleton from '@/components/skeleton'
 import { useTranslation } from 'react-i18next';
 import CustomInput from '@/components/custom/customInput';
 import API from '@/utils/API';
 import useToken from '@/customHooks/useToken';
-
-type carDataType = {
-  mark: string,
-  model: string,
-  // carNum: string,
-  year: string | number,
-  // pass: any,
-};
 
 type carCardPropertyType = {
   name: string,
@@ -33,34 +25,39 @@ const CarCardProperty = ({ name, value, children }: carCardPropertyType) => {
   );
 }
 
-const CarCard = ({ carData }: { carData: carDataType }) => {
+const CarCard = ({ carData, deleteOneById }: any) => {
   const { t } = useTranslation();
+  const [token] = useToken();
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  // TODO: add 3 point menu touch handler
   const onDeleteCar = () => {
-    // TODO: delete car
+    setIsDeleting(true);
+    API.carDeleteById(token, carData._id)
+      .then(d => {
+        if (d?.message === 'deleted') {
+          deleteOneById(carData._id);
+        }
+      });
   };
+
   return (
     <View style={styles.carCard}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>{carData.mark}</Text>
+        <Text style={styles.headerText}>{carData.make}</Text>
         <TouchableOpacity onPress={onDeleteCar}>
           <Text style={styles.carCardDeleteButton}>delete</Text>
         </TouchableOpacity>
       </View>
 
       <CarCardProperty name={t('model')} value={carData.model} />
-      {/* <CarCardProperty name={t('number')} value={carData.carNum} /> */}
       <CarCardProperty name={t('year')} value={carData.year} />
 
-      {/* <CarCardProperty name={t('document')}>
-        <Text>
-          {carData.pass ?
-            <Skeleton width={15} height={15} radius="100%" color='#00BE00' /> :
-            <Skeleton width={15} height={15} radius="100%" color='#BE0000' />
-          }
-        </Text>
-      </CarCardProperty> */}
+      {
+        isDeleting &&
+        <View style={styles.deletingContainer}>
+          <ActivityIndicator size={"large"} />
+        </View>
+      }
     </View>
   );
 }
@@ -68,7 +65,7 @@ const CarCard = ({ carData }: { carData: carDataType }) => {
 const MyCars = () => {
   const { t } = useTranslation();
   const [isShowModal, setIsShowModal] = useState(false);
-  const [cars, setCars] = React.useState<Array<carDataType>>([]);
+  const [cars, setCars] = React.useState<any>([]);
   const [mark, setMark] = useState("");
   const [model, setModel] = useState("");
   const [year, setYear] = useState("");
@@ -79,23 +76,28 @@ const MyCars = () => {
     setIsShowModal(true);
   };
 
+  const deleteOneById = (id: string) => {
+    setCars((prev: any) => {
+      return prev.filter((item: any) => item._id !== id);
+    });
+  }
+
   const addButton = () => {
     API.carCreate(token, mark, model, year)
       .then(d => {
-        setCars(prev => {
-          return [...prev, { mark, model, year }]
+        setCars((prev: any) => {
+          return [...prev, d.data]
         });
         setIsShowModal(false);
       });
   };
 
-
   React.useEffect(() => {
     API.getCarsByUserId(token, "67fe2f3b4db439806482ebcc")
       .then(d => {
-        console.log(d);
+        setCars(d.data);
       });
-  }, []);
+  }, [token]);
 
   return (
     <View style={styles.root}>
@@ -134,10 +136,11 @@ const MyCars = () => {
 
       <FlatList
         data={cars}
-        renderItem={({ item, index }) =>
+        renderItem={({ item }) =>
           <CarCard
-            key={index}
+            key={item._id}
             carData={item}
+            deleteOneById={deleteOneById}
           />
         }
       />
@@ -169,9 +172,9 @@ const styles = StyleSheet.create({
   carCard: {
     margin: 10,
     padding: 15,
-    backgroundColor: "white",
     borderRadius: 5,
     marginBottom: 10,
+    backgroundColor: "white",
 
     shadowColor: "black",
     shadowOffset: {
@@ -213,4 +216,17 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     borderBottomWidth: .5,
   },
+
+  deletingContainer: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    padding: 10,
+    backgroundColor: "#fffe",
+    width: "109%",
+    height: "134%",
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+  }
 })

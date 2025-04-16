@@ -1,5 +1,5 @@
 class API {
-  static #SERVER_PATH = "http://localhost:3000";
+  static #SERVER_PATH = "http://192.168.0.102:3000";
 
   // AUTH
   static async authLogin(email: string, password: string) {
@@ -149,8 +149,18 @@ class API {
   static async carGetById(id: string) {
     // `${API.#SERVER_PATH}/car/${id}`;
   }
-  static async carDeleteById(id: string) {
+  static async carDeleteById(token: string, id: string) {
     // `${API.#SERVER_PATH}/car/${id}`;
+    return fetch(`${API.#SERVER_PATH}/car/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "content-type": "application/json",
+      },
+    }).then((r) => {
+      console.log("Response status:", r.status, r.statusText);
+      return r.json()
+    });
   }
   static async carCreate(token: string, make: string, model: string, year: string) {
     return fetch(`${API.#SERVER_PATH}/car`, {
