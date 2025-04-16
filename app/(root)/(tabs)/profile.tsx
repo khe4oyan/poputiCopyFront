@@ -21,7 +21,6 @@ type sectionData = {
 const sectionsData: Array<sectionData> = [
   { icon: null, title: "Personal data", link: "/profileScreens/personalData" },
   { icon: null, title: "Payments", link: "/profileScreens/paymentsMethods" },
-  { icon: null, title: "Rides history", link: "/profileScreens/ridesHistory" },
   { icon: null, title: "Settings", link: "/profileScreens/settings" },
   { icon: null, title: "My cars", link: "/profileScreens/myCars" },
   { icon: null, title: "Security", link: "/profileScreens/security" },

@@ -62,7 +62,7 @@ const CarCard = ({ carData }: { carData: carDataType }) => {
 }
 
 const MyCars = () => {
-  const [isShowModal, setIsShowModal] = useState(true);
+  const [isShowModal, setIsShowModal] = useState(false);
   const [cars, setCars] = React.useState<Array<carDataType>>([]);
   const [mark, setMark] = useState("");
   const [model, setModel] = useState("");
