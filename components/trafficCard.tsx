@@ -1,8 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Skeleton from './skeleton'
+import { useTranslation } from 'react-i18next';
 
 const TrafficCard = ({ onDelete }: { onDelete: () => void }) => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.root}>
       <View style={styles.infoContainer}>
@@ -12,7 +15,7 @@ const TrafficCard = ({ onDelete }: { onDelete: () => void }) => {
             <Text style={styles.boldText}>Kilikia Bus Station, Yerevan, Armenia</Text>
           </View>
           <Text style={styles.opacityText}>29-01-2025 | 09:30</Text>
-          <Text style={styles.opacityText}>4 free seats</Text>
+          <Text style={styles.opacityText}>4 {t('free_seats')}</Text>
           <View style={styles.prohibitedContainer}>
             <Skeleton width={20} height={20} radius={20} />
             <Skeleton width={20} height={20} radius={20} />
@@ -29,9 +32,9 @@ const TrafficCard = ({ onDelete }: { onDelete: () => void }) => {
       </View>
       <View style={styles.footer}>
         <TouchableOpacity style={styles.deleteButton} onPress={onDelete}>
-          <Text style={styles.deleteButtonText}>Delete</Text>
+          <Text style={styles.deleteButtonText}>{t('delete')}</Text>
         </TouchableOpacity>
-        <Text style={[styles.boldText, styles.statusText]}>Active</Text>
+        <Text style={[styles.boldText, styles.statusText]}>{t('active')}</Text>
       </View>
     </View>
   )

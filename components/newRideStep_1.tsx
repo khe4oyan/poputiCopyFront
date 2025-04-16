@@ -3,12 +3,14 @@ import React from 'react'
 import CustomInput from './custom/customInput'
 import { setPlace } from '@/store/slices/newRideSlice'
 import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next';
 
 const NewRideStep_1 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: any }) => {
   const [from, setFrom] = React.useState("");
   const [to, setTo] = React.useState("");
 
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     if (from !== "" && to !== "") {
@@ -24,15 +26,15 @@ const NewRideStep_1 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
       <CustomInput
         value={from}
         setValue={setFrom}
-        placeholder='enter where you are'
-        title="From"
+        placeholder={t('enterWhereYouAre')}
+        title={t('from')}
       />
 
       <CustomInput
         value={to}
         setValue={setTo}
-        placeholder='enter where you want to go'
-        title="To"
+        placeholder={t('enterWhereYouWantToGo')}
+        title={t('to')}
       />
     </View>
   )

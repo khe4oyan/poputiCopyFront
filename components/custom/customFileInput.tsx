@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native'
 import React from 'react'
 import * as ImagePicker from 'expo-image-picker';
+import { useTranslation } from 'react-i18next';
 
 type customFileInputProps = {
   value: any,
@@ -10,6 +11,8 @@ type customFileInputProps = {
 };
 
 const CustomFileInput = ({ title, value, setValue }: customFileInputProps) => {
+  const { t } = useTranslation();
+
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
@@ -28,13 +31,13 @@ const CustomFileInput = ({ title, value, setValue }: customFileInputProps) => {
       {title && <Text style={styles.title}>{title}</Text>}
 
       <View style={styles.container}>
-        <Text>{value ? "selected 1 file" : "(not selected)"}</Text>
+        <Text>{value ? t('selected_file') : t('not_selected')}</Text>
         <TouchableHighlight
           style={styles.button}
           onPress={pickImage}
         >
           <Text style={styles.buttonText}>
-            {value ? "Select other photo" : "Select photo"}
+            {value ? t('select_other_photo') : t('select_photo')}
           </Text>
         </TouchableHighlight>
       </View>

@@ -1,19 +1,19 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import React from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Skeleton from '@/components/skeleton';
 import { Href, Link } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 type statisticData = {
-  icon: any,
-  title: string | number,
+  icon: any;
+  title: string | number;
 };
 
 type sectionData = {
-  icon: any,
-  title: string,
-  link: Href,
+  icon: any;
+  title: string;
+  link: Href;
 };
 
 const sectionsData: Array<sectionData> = [
@@ -48,29 +48,31 @@ const Section = ({ data }: { data: sectionData }) => {
       </View>
     </Link>
   );
-}
+};
 
 const Profile = () => {
-  // TODO: statisticsData load dynamicaly from backend
+  const { t } = useTranslation();
+
+  // TODO: statisticsData load dynamically from backend
   const statisticsData: Array<statisticData> = [
-    { icon: null, title: "+37499111222", },
-    { icon: null, title: 0, },
-    { icon: null, title: 0, },
+    { icon: null, title: "+37499111222" },
+    { icon: null, title: 0 },
+    { icon: null, title: 0 },
   ];
 
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.mainInfoContainer}>
-        <View style={styles.avatarContainer} >
+        <View style={styles.avatarContainer}>
           <Skeleton width={100} height={100} radius="100%" />
           <Skeleton width={25} height={25} radius="100%" color="gray" style={styles.avatarEdit} />
         </View>
 
         <View style={styles.mainInfo}>
-          <Text>Name Surname</Text>
+          <Text>{t('name_surname')}</Text>
           <View>
             <View style={styles.balance}>
-              <Text>Balance</Text>
+              <Text>{t('balance')}</Text>
               <View style={styles.balanceSpan}>
                 <Text>2010 AMD</Text>
                 <Skeleton width={25} height={25} radius="100%" color="orange" />
@@ -90,7 +92,7 @@ const Profile = () => {
         <View style={styles.line}></View>
       </View>
 
-      <View style={styles.statistics} >
+      <View style={styles.statistics}>
         {statisticsData.map((statisticData, i) =>
           <Statistic
             key={i}
@@ -108,10 +110,10 @@ const Profile = () => {
         )}
       </ScrollView>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
 
 const styles = StyleSheet.create({
   root: {
@@ -209,4 +211,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 30,
   },
-})
+});

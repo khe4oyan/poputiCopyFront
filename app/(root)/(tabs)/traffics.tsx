@@ -24,6 +24,7 @@ const Traffics = () => {
   )
 }
 
+// աս
 export default Traffics
 
 const styles = StyleSheet.create({

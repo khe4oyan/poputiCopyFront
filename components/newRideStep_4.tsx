@@ -3,10 +3,12 @@ import React from 'react'
 import CustomInput from './custom/customInput'
 import { useDispatch } from 'react-redux'
 import { setPrice as setPriceSlice } from '@/store/slices/newRideSlice'
+import { useTranslation } from 'react-i18next';
 
 const NewRideStep_4 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: any}) => {
   const [price, setPrice] = React.useState("");
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     if (price !== "") {
@@ -19,8 +21,8 @@ const NewRideStep_4 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
 
   return (
     <CustomInput 
-      title="Price"
-      placeholder='enter price for this ride'
+      title={t('price')}
+      placeholder={t('enter_price')}
       value={price}
       setValue={setPrice}
       type='numeric'

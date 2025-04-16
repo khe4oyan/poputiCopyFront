@@ -1,116 +1,87 @@
-import { StyleSheet, Text, View } from 'react-native'
-import { Tabs } from 'expo-router'
-import React from 'react'
-import Skeleton from '@/components/skeleton';
+// _layout.tsx
+import '../../../i18n.js'; // 👈 Սա շատ կարևոր է՝ միացնում ենք i18n ֆայլը
+
+import React, { useEffect, useState } from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import { Tabs } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 const TabIcon = ({ title, focused }: any) => {
   return (
     <View style={styles.view}>
       <Text style={[styles.text, focused && styles.focusedText]}>{title}</Text>
-    </View >
+    </View>
   );
-}
+};
 
 const TabsLayout = () => {
+  const { t, i18n, ready } = useTranslation();
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (ready) {
+      setIsReady(true);
+    }
+  }, [ready]);
+
+  const changeLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+  };
+
+  if (!isReady) {
+    return <Text>Loading...</Text>;
+  }
+
   return (
-    <Tabs
-      screenOptions={{
-        tabBarShowLabel: false,
-        tabBarStyle: styles.tabs,
-      }}
-    >
-      <Tabs.Screen name='notifications'
-        options={{
-          headerTintColor: "#ff4e00",
-          title: "Notifications",
-          headerShown: true,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon title="Notification" focused={focused} />
-          )
-        }}
-      />
+    <View style={styles.container}>
+      <View style={styles.languageSelector}>
+        <Button title="English" onPress={() => changeLanguage('en')} />
+        <Button title="Հայերեն" onPress={() => changeLanguage('hy')} />
+        <Button title="Русский" onPress={() => changeLanguage('ru')} />
+      </View>
 
-      <Tabs.Screen name='messages'
-        options={{
-          headerTintColor: "#ff4e00",
-          title: "Chat",
-          headerShown: true,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon title="Chat" focused={focused} />
-          )
+      <Tabs
+        screenOptions={{
+          tabBarShowLabel: false,
+          tabBarStyle: styles.tabs,
         }}
-      />
-
-      <Tabs.Screen name='index'
-        options={{
-          headerTintColor: "#ff4e00",
-          title: "New Ride",
-          headerShown: true,
-          tabBarIcon: ({ focused }) => (
-            <View>
-              {/* <Skeleton
-                color='#ff4e00'
-                height={70}
-                width={50}
-                style={styles.searchIcon}
-              /> */}
-              <TabIcon title="New Ride" focused={focused} />
-            </View>
-          )
-        }}
-      />
-
-      <Tabs.Screen name='traffics'
-        options={{
-          headerTintColor: "#ff4e00",
-          title: "My Rides",
-          headerShown: true,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon title="My Rides" focused={focused} />
-          )
-        }}
-      />
-
-      <Tabs.Screen name='profile'
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon title="Profile" focused={focused} />
-          )
-        }}
-      />
-    </Tabs>
-  )
-}
-
-export default TabsLayout
+      >
+        <Tabs.Screen name="notifications" options={{ title: t('notifications') }} />
+        <Tabs.Screen name="messages" options={{ title: t('chat') }} />
+        <Tabs.Screen name="index" options={{ title: t('newRide') }} />
+        <Tabs.Screen name="profile" options={{ title: t('profile') }} />
+      </Tabs>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  languageSelector: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
   tabs: {
     position: 'absolute',
-    backgroundColor: "white",
+    backgroundColor: 'white',
     minHeight: 70,
   },
-
   view: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 10,
   },
-
   text: {
     width: 80,
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 10.9,
   },
-
   focusedText: {
-    color: "#FF4E00",
+    color: '#FF4E00',
   },
+});
 
-  searchIcon: {
-    position: 'absolute',
-    top: -65,
-    left: -8,
-  },
-})
+export default TabsLayout;

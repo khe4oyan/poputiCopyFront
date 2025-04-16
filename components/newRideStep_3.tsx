@@ -1,8 +1,9 @@
-import { ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Skeleton from './skeleton';
 import { setCar } from '@/store/slices/newRideSlice';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 type carDataType = {
   mark: string,
@@ -67,6 +68,7 @@ const NewRideStep_3 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
   ]);
 
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const [selectedInd, setSelectedInd] = React.useState(-1);
 
@@ -96,7 +98,6 @@ const NewRideStep_3 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
 }
 
 export default NewRideStep_3
-
 
 const styles = StyleSheet.create({
   root: {

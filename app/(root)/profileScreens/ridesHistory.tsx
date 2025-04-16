@@ -1,11 +1,15 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { useTranslation } from 'react-i18next';
+
 const image = require("@/assets/images/icon.png");
 
 const RidesHistory = () => {
+  const { t } = useTranslation();
+
   return (
     <View>
-      <Text style={styles.headerText}>You dont have some rides</Text>
+      <Text style={styles.headerText}>{t('noRides')}</Text>
       <Image source={image} style={styles.icon} />
     </View>
   )

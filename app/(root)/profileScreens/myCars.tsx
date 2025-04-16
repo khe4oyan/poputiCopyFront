@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import React from 'react'
 import Skeleton from '@/components/skeleton'
+import { useTranslation } from 'react-i18next';
 
 type carDataType = {
   mark: string,
@@ -30,6 +31,8 @@ const CarCardProperty = ({ name, value, children }: carCardPropertyType) => {
 }
 
 const CarCard = ({ carData }: { carData: carDataType }) => {
+  const { t } = useTranslation();
+
   // TODO: add 3 point menu touch handler
   return (
     <View style={styles.carCard}>
@@ -38,10 +41,10 @@ const CarCard = ({ carData }: { carData: carDataType }) => {
         <Skeleton width={10} height={20} />
       </View>
 
-      <CarCardProperty name='Model' value={carData.model} />
-      <CarCardProperty name='Number' value={carData.carNum} />
-      <CarCardProperty name='Year' value={carData.year} />
-      <CarCardProperty name='Document'>
+      <CarCardProperty name={t('model')} value={carData.model} />
+      <CarCardProperty name={t('number')} value={carData.carNum} />
+      <CarCardProperty name={t('year')} value={carData.year} />
+      <CarCardProperty name={t('document')}>
         <Text>
           {carData.pass ?
             <Skeleton width={15} height={15} radius="100%" color='#00BE00' /> :
@@ -54,6 +57,8 @@ const CarCard = ({ carData }: { carData: carDataType }) => {
 }
 
 const MyCars = () => {
+  const { t } = useTranslation();
+
   const [cars, setCars] = React.useState<Array<carDataType>>([
     {
       mark: "Opel",
@@ -76,7 +81,7 @@ const MyCars = () => {
     <View style={styles.root}>
       <View style={styles.addCarContainer}>
         <Skeleton width={20} height={20} radius="100%" color='#ff4e00' />
-        <Text style={styles.addCarText}>Add car</Text>
+        <Text style={styles.addCarText}>{t('addCar')}</Text>
       </View>
 
       <FlatList

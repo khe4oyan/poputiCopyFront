@@ -7,8 +7,11 @@ import { useRouter } from 'expo-router'
 import React from 'react'
 import API from '@/utils/API'
 import useToken from '@/customHooks/useToken'
+import { useTranslation } from 'react-i18next';
 
 const PersonalData = () => {
+  const { t } = useTranslation();
+  
   const [phoneNum, setPhoneNum] = React.useState("");
   const [name, setName] = React.useState("");
   const [surname, setSurname] = React.useState("");
@@ -23,23 +26,23 @@ const PersonalData = () => {
   const route = useRouter();
 
   const gendersOptions = [
-    "Male",
-    "Female",
+    t("male"),
+    t("female"),
   ];
 
   const roles = [
-    "driver",
-    "student",
+    t("driver"),
+    t("student"),
   ];
 
   const submitHandler = () => {
-    if (phoneNum === "") { Alert.alert("Invalid data", "Check phone number and try again"); return; } else
-    if (name === "") { Alert.alert("Invalid data", "Check name and try again"); return; } else
-    if (surname === "") { Alert.alert("Invalid data", "Check surname and try again"); return; } else
-    if (birthDay === "") { Alert.alert("Invalid data", "Check birth day and try again"); return; } else
-    if (residence === "") { Alert.alert("Invalid data", "Check residence and try again"); return; } else
-    if (driveLicense === "") { Alert.alert("Invalid data", "Check drive license and try again"); return; } else
-    if (pasportImage === "") { Alert.alert("Invalid data", "Check passport image and try again"); return; }
+    if (phoneNum === "") { Alert.alert(t("invalidData"), t("checkPhoneNumber")); return; } else
+    if (name === "") { Alert.alert(t("invalidData"), t("checkName")); return; } else
+    if (surname === "") { Alert.alert(t("invalidData"), t("checkSurname")); return; } else
+    if (birthDay === "") { Alert.alert(t("invalidData"), t("checkBirthDay")); return; } else
+    if (residence === "") { Alert.alert(t("invalidData"), t("checkResidence")); return; } else
+    if (driveLicense === "") { Alert.alert(t("invalidData"), t("checkDriveLicense")); return; } else
+    if (pasportImage === "") { Alert.alert(t("invalidData"), t("checkPassportImage")); return; }
 
     API.userUpdatePersonalInfo(
       token,
@@ -55,12 +58,12 @@ const PersonalData = () => {
     )
     .then(d => {
       if (d?.message) {
-        Alert.alert("Info", "Data saved");
+        Alert.alert(t("info"), t("dataSaved"));
         route.back();
       }
     })
     .catch((e) => {
-      Alert.alert("Error", "Something went wrong");
+      Alert.alert(t("error"), t("somethingWentWrong"));
     });
   };
 
@@ -69,56 +72,56 @@ const PersonalData = () => {
 
       <View style={styles.root}>
         <CustomInput
-          title="Phone number"
+          title={t("phoneNumber")}
           value={phoneNum}
           setValue={setPhoneNum}
-          placeholder='enter phone number'
+          placeholder={t("enterPhoneNumber")}
         />
 
         <CustomInput
-          title="Name"
+          title={t("name")}
           value={name}
           setValue={setName}
-          placeholder='enter your name'
+          placeholder={t("enterYourName")}
         />
 
         <CustomInput
-          title="Surname"
+          title={t("surname")}
           value={surname}
           setValue={setSurname}
-          placeholder='enter your surname'
+          placeholder={t("enterYourSurname")}
         />
 
         <CustomInput
-          title="Birth Day"
+          title={t("birthDay")}
           value={birthDay}
           setValue={setBirthDay}
-          placeholder='enter year.month.day, example: 2000.02.26'
+          placeholder={t("enterBirthDay")}
         />
 
         <CustomInput
-          title="Residence"
+          title={t("residence")}
           value={residence}
           setValue={setResidence}
-          placeholder='enter your residence'
+          placeholder={t("enterYourResidence")}
         />
 
         <CustomDropDownMenu
-          title={"Gender"}
+          title={t("gender")}
           valueIndex={genderInd}
           setValueIndex={setGenderInd}
           options={gendersOptions}
         />
 
         <CustomDropDownMenu
-          title={"Role"}
+          title={t("role")}
           valueIndex={roleInd}
           setValueIndex={setRoleInd}
           options={roles}
         />
 
         <CustomFileInput
-          title="Drive license"
+          title={t("driveLicense")}
           value={driveLicense}
           setValue={setDriveLicense}
         />
@@ -133,7 +136,7 @@ const PersonalData = () => {
         }
 
         <CustomFileInput
-          title="Passport Image"
+          title={t("passportImage")}
           value={pasportImage}
           setValue={setPassportImage}
         />
@@ -147,8 +150,7 @@ const PersonalData = () => {
           </View>
         }
 
-
-        <Button title='Save' onPress={submitHandler} />
+        <Button title={t("save")} onPress={submitHandler} />
       </View>
     </ScrollView>
   )

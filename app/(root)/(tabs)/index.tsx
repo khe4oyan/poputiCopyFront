@@ -1,5 +1,6 @@
-import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import NewRideStep_1 from '@/components/newRideStep_1';
 import NewRideStep_2 from '@/components/newRideStep_2';
@@ -9,14 +10,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { clearRide } from '@/store/slices/newRideSlice';
 import useToken from '@/customHooks/useToken';
 
-const sections = [
-  "Select Place",
-  "Select Date and Time",
-  "Choose Car",
-  "Set Price",
-];
-
 const Add = () => {
+  const { t } = useTranslation();
+
+  const sections = [
+    t('selectPlace'),
+    t('selectDateTime'),
+    t('chooseCar'),
+    t('setPrice'),
+  ];
+
   const [step, setStep] = React.useState(0);
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
   const dispatch = useDispatch();
@@ -24,7 +27,7 @@ const Add = () => {
   const [token, _, __, navigateToAuth] = useToken();
 
   useLayoutEffect(() => {
-    let timer = null
+    let timer = null;
 
     if (token === '') {
       timer = setTimeout(() => {
@@ -36,7 +39,7 @@ const Add = () => {
       if (timer !== null) {
         clearTimeout(timer);
       }
-    }
+    };
   }, [token]);
 
   const nextStep = () => {
@@ -45,7 +48,7 @@ const Add = () => {
       setStep(prev => prev + 1);
     } else {
       // TODO: send newRideData to server
-      Alert.alert("Success", "New Ride is added!");
+      Alert.alert(t('success'), t('newRideAdded'));
       dispatch(clearRide());
       setStep(0);
     }
@@ -58,9 +61,9 @@ const Add = () => {
       <Text style={styles.title}>{sections[step]}</Text>
 
       <View style={styles.progress}>
-        {sections.map((_, ind) =>
+        {sections.map((_, ind) => (
           <Text key={ind} style={ind <= step && styles.activeSection}>{ind + 1}</Text>
-        )}
+        ))}
       </View>
 
       {step === 0 && <NewRideStep_1 setIsNextButtonDisabled={setIsNextButtonDisabled} />}
@@ -68,12 +71,18 @@ const Add = () => {
       {step === 2 && <NewRideStep_3 setIsNextButtonDisabled={setIsNextButtonDisabled} />}
       {step === 3 && <NewRideStep_4 setIsNextButtonDisabled={setIsNextButtonDisabled} />}
 
-      <TouchableOpacity style={[styles.nextButton, isNextButtonDisabled && styles.nextButtonDisabled]} disabled={isNextButtonDisabled} onPress={nextStep} >
-        <Text style={styles.nextButtonText}>{step < sections.length - 1 ? "Next" : "Save"}</Text>
+      <TouchableOpacity
+        style={[styles.nextButton, isNextButtonDisabled && styles.nextButtonDisabled]}
+        disabled={isNextButtonDisabled}
+        onPress={nextStep}
+      >
+        <Text style={styles.nextButtonText}>
+          {step < sections.length - 1 ? t('next') : t('save')}
+        </Text>
       </TouchableOpacity>
     </ScrollView>
-  )
-}
+  );
+};
 
 export default Add;
 
@@ -96,7 +105,7 @@ const styles = StyleSheet.create({
 
   activeSection: {
     color: "red",
-    fontWeight: 900,
+    fontWeight: "900",
   },
 
   nextButton: {
@@ -116,4 +125,4 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     textAlign: "center",
   },
-})
+});

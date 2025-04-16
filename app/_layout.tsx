@@ -4,7 +4,7 @@ import store from '@/store/store';
 
 export default function RootLayout() {
   return (
-    <Provider store={store}>
+    <Provider store={store}> 
       <Stack screenOptions={{ headerShown: false }}/>
     </Provider>
   );

@@ -1,5 +1,5 @@
 class API {
-  static #SERVER_PATH = "http://192.168.0.102:3000";
+  static #SERVER_PATH = "http://localhost:3000";
 
   // AUTH
   static async authLogin(email: string, password: string) {

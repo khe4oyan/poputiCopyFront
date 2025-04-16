@@ -25,6 +25,7 @@ const NewRideStep_2 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
   )
 }
 
+
 export default NewRideStep_2
 
 const styles = StyleSheet.create({})

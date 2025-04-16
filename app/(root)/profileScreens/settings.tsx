@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Skeleton from '@/components/skeleton';
+import { useTranslation } from 'react-i18next';
 
 type settingData = {
   icon: any,
@@ -20,11 +21,13 @@ const Setting = ({ data }: { data: settingData }) => {
 };
 
 const Settings = () => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.root}>
-      <Setting data={{ icon: null, title: "Bank data" }} />
-      <Setting data={{ icon: null, title: "Language" }} />
-      <Setting data={{ icon: null, title: "Delete account" }} />
+      <Setting data={{ icon: null, title: t("bankData") }} />
+      <Setting data={{ icon: null, title: t("language") }} />
+      <Setting data={{ icon: null, title: t("deleteAccount") }} />
     </View>
   )
 }

@@ -9,6 +9,7 @@ type props = {
   indicatorColor?: null | string;
 };
 
+
 const Skeleton = ({
   width = 50,
   height = 50,

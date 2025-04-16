@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 const Security = () => {
+  const { t } = useTranslation();
+
   return (
     <View>
-      <Text>Security</Text>
+      <Text>{t('securityTitle')}</Text>
     </View>
   )
 }

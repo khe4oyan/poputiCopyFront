@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Skeleton from '@/components/skeleton'
+import { useTranslation } from 'react-i18next';
 
 const PaymentMethod = ({ title }: { title: string }) => {
   return (
@@ -15,12 +16,14 @@ const PaymentMethod = ({ title }: { title: string }) => {
 }
 
 const PaymentsMethods = () => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.root}>
-      <Text style={styles.headerText}>Select payment method</Text>
+      <Text style={styles.headerText}>{t('selectPaymentMethod')}</Text>
 
-      <PaymentMethod title="Credit Card" />
-      <PaymentMethod title="Telcell Wallet" />
+      <PaymentMethod title={t('creditCard')} />
+      <PaymentMethod title={t('telcellWallet')} />
     </View>
   )
 }
@@ -58,4 +61,4 @@ const styles = StyleSheet.create({
   contentText: {
     fontSize: 20
   },
-})  
+})

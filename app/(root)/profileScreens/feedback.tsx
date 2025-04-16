@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import Skeleton from '@/components/skeleton'
+import { useTranslation } from 'react-i18next';
 
 type socialIconPropsType = {
   title: string,
@@ -17,11 +18,13 @@ const SocialIcon = ({ title, icon }: socialIconPropsType) => {
 }
 
 const Feedback = () => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.root}>
       <View style={[styles.flexRow, styles.flexBetween, styles.section_1]}>
-        <SocialIcon title="Call" />
-        <SocialIcon title="Gmail" />
+        <SocialIcon title={t('call')} />
+        <SocialIcon title={t('gmail')} />
       </View>
 
       <View style={[styles.flexRow, styles.section_2]}>
@@ -30,12 +33,9 @@ const Feedback = () => {
       </View>
 
       <View style={[styles.section_3]}>
-        <Text style={styles.headerText}>About Us</Text>
+        <Text style={styles.headerText}>{t('aboutUs')}</Text>
         <Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat, tempora maiores odit earum possimus sapiente impedit laborum iure totam quae debitis modi nulla corporis autem. Veritatis quaerat dolorem perferendis.
-          Modi sapiente doloribus sed consequuntur sit tenetur a excepturi rerum incidunt quis ab rem, perferendis odit culpa nesciunt harum quidem. Officia nihil eligendi molestias distinctio cumque eaque reiciendis impedit qui?
-          Fugiat illum dignissimos eos laborum! Sit nihil modi, ratione, eum sed tempora earum consectetur cupiditate quos dolorum ad numquam in repellendus eaque? Beatae dolor aliquam mollitia. Tempore sit commodi modi!
-          Magnam eligendi asperiores quidem itaque facere esse! Nemo sequi a, esse sit reiciendis vero quia quos iste voluptates porro maiores repellat, culpa minima inventore dolorem. Iste, nulla vel. Eius, illo.
+          {t('aboutUsText')}
         </Text>
       </View>
     </View>

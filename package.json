@@ -34,8 +34,13 @@
     "expo-symbols": "~0.2.2",
     "expo-system-ui": "~4.0.8",
     "expo-web-browser": "~14.0.2",
+    "i18next": "^25.0.0",
+    "i18next-browser-languagedetector": "^8.0.4",
+    "i18next-http-backend": "^3.0.2",
+    "i18next-react-native-language-detector": "^1.0.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-i18next": "^15.4.1",
     "react-native": "0.76.7",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-reanimated": "~3.16.1",
@@ -43,7 +48,8 @@
     "react-native-screens": "~4.4.0",
     "react-native-web": "~0.19.13",
     "react-native-webview": "13.12.5",
-    "react-redux": "^9.2.0"
+    "react-redux": "^9.2.0",
+    "web-streams-polyfill": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
