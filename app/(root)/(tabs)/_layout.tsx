@@ -2,7 +2,7 @@
 import '../../../i18n.js'; // 👈 Սա շատ կարևոր է՝ միացնում ենք i18n ֆայլը
 
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Tabs } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
@@ -15,7 +15,7 @@ const TabIcon = ({ title, focused }: any) => {
 };
 
 const TabsLayout = () => {
-  const { t, i18n, ready } = useTranslation();
+  const { t, ready } = useTranslation();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -24,32 +24,70 @@ const TabsLayout = () => {
     }
   }, [ready]);
 
-  const changeLanguage = (language: string) => {
-    i18n.changeLanguage(language);
-  };
-
   if (!isReady) {
     return <Text>Loading...</Text>;
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.languageSelector}>
-        <Button title="English" onPress={() => changeLanguage('en')} />
-        <Button title="Հայերեն" onPress={() => changeLanguage('hy')} />
-        <Button title="Русский" onPress={() => changeLanguage('ru')} />
-      </View>
-
       <Tabs
         screenOptions={{
           tabBarShowLabel: false,
           tabBarStyle: styles.tabs,
         }}
       >
-        <Tabs.Screen name="notifications" options={{ title: t('notifications') }} />
-        <Tabs.Screen name="messages" options={{ title: t('chat') }} />
-        <Tabs.Screen name="index" options={{ title: t('newRide') }} />
-        <Tabs.Screen name="profile" options={{ title: t('profile') }} />
+        <Tabs.Screen name='notifications'
+          options={{
+            headerTintColor: "#ff4e00",
+            title: "Notifications",
+            headerShown: true,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon title={t('notifications')} focused={focused} />
+            )
+          }}
+        />
+
+        <Tabs.Screen name='messages'
+          options={{
+            headerTintColor: "#ff4e00",
+            title: "Chat",
+            headerShown: true,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon title={t('chat')} focused={focused} />
+            )
+          }}
+        />
+
+        <Tabs.Screen name='index'
+          options={{
+            headerTintColor: "#ff4e00",
+            title: "New Ride",
+            headerShown: true,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon title={t('newRide')} focused={focused} />
+            )
+          }}
+        />
+
+        <Tabs.Screen name='traffics'
+          options={{
+            headerTintColor: "#ff4e00",
+            title: "My Rides",
+            headerShown: true,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon title={t('myRides')} focused={focused} />
+            )
+          }}
+        />
+
+        <Tabs.Screen name='profile'
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon title={t('profile')} focused={focused} />
+            )
+          }}
+        />
       </Tabs>
     </View>
   );

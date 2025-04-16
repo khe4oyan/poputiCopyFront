@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Skeleton from '@/components/skeleton';
 import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
 
 type settingData = {
   icon: any,
@@ -23,11 +24,18 @@ const Setting = ({ data }: { data: settingData }) => {
 const Settings = () => {
   const { t } = useTranslation();
 
+  const changeLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+  };
+
   return (
     <View style={styles.root}>
       <Setting data={{ icon: null, title: t("bankData") }} />
-      <Setting data={{ icon: null, title: t("language") }} />
       <Setting data={{ icon: null, title: t("deleteAccount") }} />
+
+      <Button title="English" onPress={() => changeLanguage('en')} />
+      <Button title="Հայերեն" onPress={() => changeLanguage('hy')} />
+      <Button title="Русский" onPress={() => changeLanguage('ru')} />
     </View>
   )
 }

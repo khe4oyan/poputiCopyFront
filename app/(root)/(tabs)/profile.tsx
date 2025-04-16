@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Skeleton from '@/components/skeleton';
 import { Href, Link } from 'expo-router';
@@ -16,16 +16,6 @@ type sectionData = {
   link: Href;
 };
 
-const sectionsData: Array<sectionData> = [
-  { icon: null, title: "Personal data", link: "/profileScreens/personalData" },
-  { icon: null, title: "Payments", link: "/profileScreens/paymentsMethods" },
-  { icon: null, title: "Rides history", link: "/profileScreens/ridesHistory" },
-  { icon: null, title: "Settings", link: "/profileScreens/settings" },
-  { icon: null, title: "My cars", link: "/profileScreens/myCars" },
-  { icon: null, title: "Security", link: "/profileScreens/security" },
-  { icon: null, title: "Feedback", link: "/profileScreens/feedback" },
-  { icon: null, title: "Logout", link: "/profileScreens/logout" },
-];
 
 const Statistic = ({ data }: { data: statisticData }) => {
   return (
@@ -58,6 +48,17 @@ const Profile = () => {
     { icon: null, title: "+37499111222" },
     { icon: null, title: 0 },
     { icon: null, title: 0 },
+  ];
+
+  const sectionsData: Array<sectionData> = [
+    { icon: null, title: t("personalData"), link: "/profileScreens/personalData" },
+    { icon: null, title: t("paymentsMethods"), link: "/profileScreens/paymentsMethods" },
+    { icon: null, title: t("ridesHistory"), link: "/profileScreens/ridesHistory" },
+    { icon: null, title: t("settings"), link: "/profileScreens/settings" },
+    { icon: null, title: t("myCars"), link: "/profileScreens/myCars" },
+    { icon: null, title: t("security"), link: "/profileScreens/security" },
+    { icon: null, title: t("feedback"), link: "/profileScreens/feedback" },
+    { icon: null, title: t("logout"), link: "/profileScreens/logout" },
   ];
 
   return (
