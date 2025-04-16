@@ -9,17 +9,7 @@ const Traffics = () => {
 
   return (
     <ScrollView style={styles.root}>
-      <TrafficCard onDelete={() => trafficCardDelete()} />
-      <TrafficCard onDelete={() => trafficCardDelete()} />
-      <TrafficCard onDelete={() => trafficCardDelete()} />
-      <TrafficCard onDelete={() => trafficCardDelete()} />
-      <TrafficCard onDelete={() => trafficCardDelete()} />
-      <TrafficCard onDelete={() => trafficCardDelete()} />
-      <TrafficCard onDelete={() => trafficCardDelete()} />
-      <TrafficCard onDelete={() => trafficCardDelete()} />
-      <TrafficCard onDelete={() => trafficCardDelete()} />
-      <TrafficCard onDelete={() => trafficCardDelete()} />
-      <TrafficCard onDelete={() => trafficCardDelete()} />
+      {/* <TrafficCard onDelete={() => trafficCardDelete(ind)} /> */}
     </ScrollView>
   )
 }
