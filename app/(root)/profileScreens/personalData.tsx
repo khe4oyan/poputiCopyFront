@@ -93,7 +93,7 @@ const PersonalData = () => {
           title="Birth Day"
           value={birthDay}
           setValue={setBirthDay}
-          placeholder='enter your birth day'
+          placeholder='enter year.month.day, example: 2000.02.26'
         />
 
         <CustomInput
