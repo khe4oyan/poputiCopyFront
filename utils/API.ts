@@ -89,7 +89,7 @@ class API {
       body: formData,
     }).then((r) => r.json());
   }
-  static async userGetById(id: number) {
+  static async userGetById(id: string) {
     // `${API.#SERVER_PATH}/user/${id}`;
   }
   static async userUpdateProfilePhoto(token: string, photo: string) {
@@ -126,18 +126,30 @@ class API {
   }
 
   // FILE
-  static async fileGetById(id: number) {
+  static async fileGetById(id: string) {
     // `${API.#SERVER_PATH}file/${id}`;
   }
-  static async fileDeleteById(id: number) {
+  static async fileDeleteById(id: string) {
     // `${API.#SERVER_PATH}/file/${id}`;
   }
 
   // CAR
-  static async carGetById(id: number) {
+  static async getCarsByUserId(token: string, id: string) {
+    return fetch(`${API.#SERVER_PATH}/car/carByUserId/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "content-type": "application/json",
+      },
+    }).then((r) => {
+      console.log("Response status:", r.status, r.statusText);
+      return r.json()
+    });
+  }
+  static async carGetById(id: string) {
     // `${API.#SERVER_PATH}/car/${id}`;
   }
-  static async carDeleteById(id: number) {
+  static async carDeleteById(id: string) {
     // `${API.#SERVER_PATH}/car/${id}`;
   }
   static async carCreate(token: string, make: string, model: string, year: string) {
@@ -163,13 +175,13 @@ class API {
   static async journeyGetAll() {
     // `${API.#SERVER_PATH}/journey`;
   }
-  static async journeyGetById(id: number) {
+  static async journeyGetById(id: string) {
     // `${API.#SERVER_PATH}/journey/${id}`;
   }
-  static async journeyDeleteById(id: number) {
+  static async journeyDeleteById(id: string) {
     // `${API.#SERVER_PATH}/journey/${id}`;
   }
-  static async journeyJoinById(id: number) {
+  static async journeyJoinById(id: string) {
     // `${API.#SERVER_PATH}/journey/joinJourney/${id}`;
   }
 };

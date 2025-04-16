@@ -84,6 +84,14 @@ const MyCars = () => {
     });
   };
 
+
+  React.useEffect(() => {
+    API.getCarsByUserId(token, "67fe2f3b4db439806482ebcc")
+    .then(d => {
+      console.log(d);
+    });
+  }, []);
+
   return (
     <View style={styles.root}>
       <View style={styles.addCarContainer}>
