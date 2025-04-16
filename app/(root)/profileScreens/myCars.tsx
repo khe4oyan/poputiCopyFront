@@ -1,6 +1,7 @@
-import { FlatList, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
-import React from 'react'
+import { Button, FlatList, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
+import React, { useState } from 'react'
 import Skeleton from '@/components/skeleton'
+import CustomInput from '@/components/custom/customInput';
 
 type carDataType = {
   mark: string,
@@ -30,7 +31,6 @@ const CarCardProperty = ({ name, value, children }: carCardPropertyType) => {
 }
 
 const CarCard = ({ carData }: { carData: carDataType }) => {
-  // TODO: add 3 point menu touch handler
   return (
     <View style={styles.carCard}>
       <View style={styles.header}>
@@ -54,6 +54,7 @@ const CarCard = ({ carData }: { carData: carDataType }) => {
 }
 
 const MyCars = () => {
+  const [isShowModal, setIsShowModal] = useState(false);
   const [cars, setCars] = React.useState<Array<carDataType>>([
     {
       mark: "Opel",
@@ -72,12 +73,31 @@ const MyCars = () => {
   ]);
 
   // TODO: new car add button handler
+  const onNewCarHandler = () => {
+    setIsShowModal(true);
+  }
+
   return (
     <View style={styles.root}>
       <View style={styles.addCarContainer}>
         <Skeleton width={20} height={20} radius="100%" color='#ff4e00' />
-        <Text style={styles.addCarText}>Add car</Text>
+        <TouchableOpacity onPress={onNewCarHandler}>
+          <Text style={styles.addCarText}>Add car</Text>
+        </TouchableOpacity>
       </View>
+
+      {
+        isShowModal &&
+        <View>
+          {/* <CustomInput 
+
+          /> */}
+          
+          <Button 
+            title='Add'
+          />
+        </View>
+      }
 
       <FlatList
         data={cars}

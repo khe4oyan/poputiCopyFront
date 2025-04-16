@@ -56,7 +56,6 @@ class API {
     formData.append("driversLicense", "(none)");
     formData.append("pasportData", "(none)");
   
-    // Преобразуем URI в Blob и добавляем
     const getBlob = async (uri: string, name: string) => {
       const response = await fetch(uri);
       const blob = await response.blob();
@@ -93,8 +92,37 @@ class API {
   static async userGetById(id: number) {
     // `${API.#SERVER_PATH}/user/${id}`;
   }
-  static async userUpdateProfilePhoto() {
-    // `${API.#SERVER_PATH}/updateProfilePhoto`;
+  static async userUpdateProfilePhoto(token: string, photo: string) {
+    const formData = new FormData();
+
+    const getBlob = async (uri: string, name: string) => {
+      const response = await fetch(uri);
+      const blob = await response.blob();
+      return {
+        uri,
+        name,
+        type: blob.type || "image/jpeg",
+      };
+    };
+  
+    const profilePhoto = await getBlob(photo, "driveLicense.jpg");
+  
+    formData.append("profilePhoto", {
+      uri: profilePhoto.uri,
+      name: profilePhoto.name,
+      type: profilePhoto.type,
+    } as any);
+
+    return fetch(`${API.#SERVER_PATH}/user/udateProfilePhoto`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    }).then((r) => {
+      console.log("Response status:", r.status);
+      return r.json()
+    });
   }
 
   // FILE
