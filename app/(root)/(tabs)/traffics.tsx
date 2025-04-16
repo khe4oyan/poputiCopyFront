@@ -7,6 +7,8 @@ const Traffics = () => {
     // TODO: delete traffic data
   };
 
+  // TODO: get all journey
+
   return (
     <ScrollView style={styles.root}>
       {/* <TrafficCard onDelete={() => trafficCardDelete(ind)} /> */}
@@ -14,7 +16,6 @@ const Traffics = () => {
   )
 }
 
-// աս
 export default Traffics
 
 const styles = StyleSheet.create({
