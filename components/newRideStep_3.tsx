@@ -59,7 +59,7 @@ const NewRideStep_3 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
         setCars(d.data);
       }
     });
-  }, []);
+  }, [token]);
 
   return (
     <ScrollView style={styles.root}>
