@@ -49,7 +49,7 @@ class API {
     formData.append("phoneNumber", phoneNum);
     formData.append("name", name);
     formData.append("surname", surname);
-    formData.append("birthDay", "2025-04-15");
+    formData.append("birthDay", birthDay);
     formData.append("city", residence);
     formData.append("gender", gender);
     formData.append("role", role);
