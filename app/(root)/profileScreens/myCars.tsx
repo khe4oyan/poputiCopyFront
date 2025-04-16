@@ -93,9 +93,12 @@ const MyCars = () => {
   };
 
   React.useEffect(() => {
+    // TODO: get real user id
     API.getCarsByUserId(token, "67fe2f3b4db439806482ebcc")
       .then(d => {
-        setCars(d.data);
+        if (d?.data) {
+          setCars(d.data);
+        }
       });
   }, [token]);
 

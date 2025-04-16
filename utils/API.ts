@@ -150,7 +150,6 @@ class API {
     // `${API.#SERVER_PATH}/car/${id}`;
   }
   static async carDeleteById(token: string, id: string) {
-    // `${API.#SERVER_PATH}/car/${id}`;
     return fetch(`${API.#SERVER_PATH}/car/${id}`, {
       method: "DELETE",
       headers: {

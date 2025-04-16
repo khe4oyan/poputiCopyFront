@@ -4,14 +4,8 @@ import Skeleton from './skeleton';
 import { setCar } from '@/store/slices/newRideSlice';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-
-type carDataType = {
-  mark: string,
-  model: string,
-  carNum: string,
-  year: number,
-  pass: any,
-};
+import API from '@/utils/API';
+import useToken from '@/customHooks/useToken';
 
 type carCardPropertyType = {
   name: string,
@@ -29,46 +23,23 @@ const CarCardProperty = ({ name, value, children }: carCardPropertyType) => {
   );
 }
 
-const CarCard = ({ carData, isSelected }: { carData: carDataType, isSelected: boolean }) => {
+const CarCard = ({ carData, isSelected }: { carData: any, isSelected: boolean }) => {
   return (
     <View style={[styles.carCard, isSelected && styles.selectedCarCard]}>
-      <Text style={styles.headerText}>{carData.mark}</Text>
+      <Text style={styles.headerText}>{carData.make}</Text>
 
       <CarCardProperty name='Model' value={carData.model} />
-      <CarCardProperty name='Number' value={carData.carNum} />
       <CarCardProperty name='Year' value={carData.year} />
-      <CarCardProperty name='Document'>
-        <Text>
-          {carData.pass ?
-            <Skeleton width={15} height={15} radius="100%" color='#00BE00' /> :
-            <Skeleton width={15} height={15} radius="100%" color='#BE0000' />
-          }
-        </Text>
-      </CarCardProperty>
     </View>
   );
 }
 
 const NewRideStep_3 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: any }) => {
-  const [cars, setCars] = React.useState<Array<carDataType>>([
-    {
-      mark: "Opel",
-      model: "Zafira",
-      carNum: "36xm897",
-      year: 2000,
-      pass: true,
-    },
-    {
-      mark: "Opel",
-      model: "Vectra B",
-      carNum: "44xm894",
-      year: 2013,
-      pass: null,
-    },
-  ]);
+  const [cars, setCars] = React.useState<any>([]);
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const [token] = useToken(); 
 
   const [selectedInd, setSelectedInd] = React.useState(-1);
 
@@ -78,10 +49,22 @@ const NewRideStep_3 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
     dispatch(setCar(cars[selectedInd]));
   }
 
+  console.log(cars);
+
+  React.useEffect(() => {
+    // TODO: use real user ID
+    API.getCarsByUserId(token, "67fe2f3b4db439806482ebcc")
+    .then(d => {
+      if (d?.data) {
+        setCars(d.data);
+      }
+    });
+  }, []);
+
   return (
     <ScrollView style={styles.root}>
       {
-        cars.map((item, ind) =>
+        cars.map((item: any, ind: number) =>
           <TouchableOpacity
             key={ind}
             onPress={() => carSelect(ind)}
