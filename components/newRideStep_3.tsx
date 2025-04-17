@@ -48,7 +48,7 @@ const NewRideStep_3 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
   const carSelect = (ind: number) => {
     setIsNextButtonDisabled(false);
     setSelectedInd(ind);
-    dispatch(setCar(cars[selectedInd]));
+    dispatch(setCar(ind));
   }
 
   React.useEffect(() => {
@@ -63,14 +63,14 @@ const NewRideStep_3 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
   return (
     <ScrollView style={styles.root}>
       {
-        cars.map((item: any, ind: number) =>
+        cars.map((item: any) =>
           <TouchableOpacity
-            key={ind}
-            onPress={() => carSelect(ind)}
+            key={item._id}
+            onPress={() => carSelect(item._id)}
           >
             <CarCard
               carData={item}
-              isSelected={(ind === selectedInd)}
+              isSelected={(item._id === selectedInd)}
             />
           </TouchableOpacity>
         )

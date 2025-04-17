@@ -95,7 +95,7 @@ class API {
         Authorization: `Bearer ${token}`
       },
     }).then(r => {
-      console.log("Response status:", r.status, r.statusText);
+      // console.log("Response status:", r.status, r.statusText);
       return r.json();
     });
   }
@@ -127,7 +127,7 @@ class API {
       },
       body: formData,
     }).then((r) => {
-      console.log("Response status:", r.status);
+      // console.log("Response status:", r.status);
       return r.json()
     });
   }
@@ -149,7 +149,7 @@ class API {
         "content-type": "application/json",
       },
     }).then((r) => {
-      console.log("Response status:", r.status, r.statusText);
+      // console.log("Response status:", r.status, r.statusText);
       return r.json()
     });
   }
@@ -164,7 +164,7 @@ class API {
         "content-type": "application/json",
       },
     }).then((r) => {
-      console.log("Response status:", r.status, r.statusText);
+      // console.log("Response status:", r.status, r.statusText);
       return r.json()
     });
   }
@@ -179,14 +179,32 @@ class API {
         make, model, year
       }),
     }).then((r) => {
-      console.log("Response status:", r.status);
+      // console.log("Response status:", r.status);
       return r.json()
     });
   }
 
   // JOURNEY
-  static async journeyCreate() {
-    // `${API.#SERVER_PATH}/journey`;
+  static async journeyCreate(token: string, data: any) {
+    const bodyData = {
+      from: data.place.from,
+      to: data.place.to,
+      date: data.date,
+      count: data.price,
+      car: data.car,
+    };
+
+    return fetch(`${API.#SERVER_PATH}/journey`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(bodyData),
+    }).then((r) => {
+      // console.log("Response status:", r.status, "Text:", r.statusText);
+      return r.json();
+    });
   }
   static async journeyGetAll() {
     // `${API.#SERVER_PATH}/journey`;

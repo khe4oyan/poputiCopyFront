@@ -1,21 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState: any = {
+  place: null,
+  date: null,
+  car: null,
+  price: null,
+};
+
 const newRideSlice = createSlice({
   name: "newRideSlice",
 
-  initialState: {
-    place: null,
-    date: null,
-    car: null,
-    price: null,
-  },
+  initialState,
 
   reducers: {
     setPlace(state, actions) {
       state.place = actions.payload;
     },
     setDate(state, actions) {
-      state.date = actions.payload;
+      state.date = new Date(actions.payload).toISOString();
     },
     setCar(state, actions) {
       state.car = actions.payload;

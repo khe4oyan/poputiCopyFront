@@ -9,6 +9,7 @@ import NewRideStep_4 from '@/components/newRideStep_4';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearRide } from '@/store/slices/newRideSlice';
 import useToken from '@/customHooks/useToken';
+import API from '@/utils/API';
 
 const Add = () => {
   const { t } = useTranslation();
@@ -47,10 +48,15 @@ const Add = () => {
     if (step < sectionsCount) {
       setStep(prev => prev + 1);
     } else {
-      // TODO: send newRideData to server
-      Alert.alert(t('success'), t('newRideAdded'));
-      dispatch(clearRide());
-      setStep(0);
+      API.journeyCreate(token, newRideData)
+      .then(d => {
+        Alert.alert(t('success'), t('newRideAdded'));
+        dispatch(clearRide());
+        setStep(0);
+      })
+      .catch((e) => {
+        Alert.alert("Fail", "Undefined error");
+      });
     }
 
     setIsNextButtonDisabled(true);
