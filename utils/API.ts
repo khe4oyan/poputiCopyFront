@@ -15,7 +15,6 @@ class API {
     })
       .then(r => r.json())
   }
-
   static async authRegister(email: string, password: string, role: string) {
     return fetch(`${API.#SERVER_PATH}/auth/register`, {
       method: "POST",
@@ -27,8 +26,7 @@ class API {
         password,
         role,
       }),
-    })
-      .then(r => r.json())
+    }).then(r => r.json())
   }
 
   // USER 
@@ -89,8 +87,17 @@ class API {
       body: formData,
     }).then((r) => r.json());
   }
-  static async userGetById(id: string) {
-    // `${API.#SERVER_PATH}/user/${id}`;
+  static async userGetById(token: string, id: string) {
+    return fetch(`${API.#SERVER_PATH}/user/${id}`, {
+      method: "GET",
+      headers: {
+        'content-type': "application/json",
+        Authorization: `Bearer ${token}`
+      },
+    }).then(r => {
+      console.log("Response status:", r.status, r.statusText);
+      return r.json();
+    });
   }
   static async userUpdateProfilePhoto(token: string, photo: string) {
     const formData = new FormData();
@@ -126,8 +133,8 @@ class API {
   }
 
   // FILE
-  static async fileGetById(id: string) {
-    // `${API.#SERVER_PATH}file/${id}`;
+  static fileGetById(id: string) {
+    return `${API.#SERVER_PATH}/file/${id}?timestamp=${new Date().getTime()}`
   }
   static async fileDeleteById(id: string) {
     // `${API.#SERVER_PATH}/file/${id}`;

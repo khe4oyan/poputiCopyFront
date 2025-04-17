@@ -1,11 +1,12 @@
 import { ActivityIndicator, Button, FlatList, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import Skeleton from '@/components/skeleton'
 import { useTranslation } from 'react-i18next';
 import CustomInput from '@/components/custom/customInput';
 import API from '@/utils/API';
 import useToken from '@/customHooks/useToken';
 import useUserId from '@/customHooks/useUserId';
+import { useFocusEffect } from 'expo-router';
 
 type carCardPropertyType = {
   name: string,
@@ -94,14 +95,19 @@ const MyCars = () => {
       });
   };
 
-  React.useEffect(() => {
-    API.getCarsByUserId(token, userId)
-      .then(d => {
-        if (d?.data) {
-          setCars(d.data);
-        }
-      });
-  }, [token]);
+  useFocusEffect(
+    useCallback(() => {
+      if (!token || !userId) {
+        return;
+      }
+      API.getCarsByUserId(token, userId)
+        .then(d => {
+          if (d?.data) {
+            setCars(d.data);
+          }
+        });
+    }, [token, userId])
+  );
 
   return (
     <View style={styles.root}>

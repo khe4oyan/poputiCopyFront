@@ -1,17 +1,13 @@
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import React, { useCallback, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Skeleton from '@/components/skeleton';
-import { Href, Link } from 'expo-router';
+import { Href, Link, useFocusEffect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import * as ImagePicker from 'expo-image-picker';
 import useToken from '@/customHooks/useToken';
 import API from '@/utils/API';
-
-type statisticData = {
-  icon: any;
-  title: string | number;
-};
+import useUserId from '@/customHooks/useUserId';
 
 type sectionData = {
   icon: any;
@@ -19,11 +15,11 @@ type sectionData = {
   link: Href;
 };
 
-const Statistic = ({ data }: { data: statisticData }) => {
+const Statistic = ({ title, value }: any) => {
   return (
     <View style={styles.statistic}>
-      <Skeleton width={25} height={25} />
-      <Text>{data.title}</Text>
+      <Text>{title}</Text>
+      <Text>{value}</Text>
     </View>
   );
 };
@@ -44,18 +40,31 @@ const Section = ({ data }: { data: sectionData }) => {
 
 const Profile = () => {
   const { t } = useTranslation();
+  const [imageSrc, setImageSrc] = useState<any>(null);
+  const [userData, setUserData] = useState<any>(null);
+  const [token] = useToken();
+  const [userId] = useUserId();
 
-  // TODO: statisticsData load dynamically from backend
-  const statisticsData: Array<statisticData> = [
-    { icon: null, title: "+37499111222" },
-    { icon: null, title: 0 },
-    { icon: null, title: 0 },
-  ];
+  useFocusEffect(
+    useCallback(() => {
+      if (!userId) {
+        return;
+      }
+
+      API.userGetById(token, userId)
+        .then(d => {
+          if (d?.data) {
+            const data = d.data;
+            setUserData(data);
+            setImageSrc(data.profilePhoto);
+          }
+        });
+    }, [userId])
+  );
 
   const sectionsData: Array<sectionData> = [
     { icon: null, title: t("personalData"), link: "/profileScreens/personalData" },
     { icon: null, title: t("paymentsMethods"), link: "/profileScreens/paymentsMethods" },
-    { icon: null, title: t("ridesHistory"), link: "/profileScreens/ridesHistory" },
     { icon: null, title: t("settings"), link: "/profileScreens/settings" },
     { icon: null, title: t("myCars"), link: "/profileScreens/myCars" },
     { icon: null, title: t("security"), link: "/profileScreens/security" },
@@ -63,10 +72,7 @@ const Profile = () => {
     { icon: null, title: t("logout"), link: "/profileScreens/logout" },
   ];
 
-  const [token] = useToken();
-
   const editImage = async () => {
-    // TODO: load image 
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
       allowsEditing: true,
@@ -76,14 +82,16 @@ const Profile = () => {
 
     if (!result.canceled) {
       API.userUpdateProfilePhoto(token, result.assets[0].uri)
-      .then(d => {
-        console.log(d);
-      })
-      .catch(e => {
-        console.log('############# ERROR ###');
-        console.log(e);
-        console.log('############# ###');
-      });
+        .then(d => {
+          if (d?.data) {
+            setImageSrc(d.data);
+          }
+        })
+        .catch(e => {
+          console.log('############# ERROR ###');
+          console.log(e);
+          console.log('############# ###');
+        });
     }
   };
 
@@ -91,14 +99,23 @@ const Profile = () => {
     <SafeAreaView style={styles.root}>
       <View style={styles.mainInfoContainer}>
         <View style={styles.avatarContainer}>
-          <Skeleton width={100} height={100} radius="100%" />
+          {
+            imageSrc === null ?
+              <Skeleton width={100} height={100} radius="100%" /> :
+              <Image
+                width={100}
+                height={100}
+                borderRadius={100}
+                source={{ uri: API.fileGetById(imageSrc) }}
+              />
+          }
           <TouchableOpacity onPress={editImage} style={styles.avatarEdit}>
             <Skeleton width={25} height={25} radius="100%" color="gray" />
           </TouchableOpacity>
         </View>
 
         <View style={styles.mainInfo}>
-          <Text>{t('name_surname')}</Text>
+          <Text>{userData?.name} {userData?.surname}</Text>
           <View>
             <View style={styles.balance}>
               <Text>{t('balance')}</Text>
@@ -122,12 +139,7 @@ const Profile = () => {
       </View>
 
       <View style={styles.statistics}>
-        {statisticsData.map((statisticData, i) =>
-          <Statistic
-            key={i}
-            data={statisticData}
-          />
-        )}
+        <Statistic value={userData?.phoneNumber} title={t("phoneNumber")} />
       </View>
 
       <ScrollView style={styles.sections}>
@@ -215,9 +227,11 @@ const styles = StyleSheet.create({
 
   statistic: {
     flex: 1,
+    flexDirection: 'row',
     backgroundColor: "",
     alignItems: "center",
-    gap: 3,
+    justifyContent: "space-between",
+    gap: 10,
   },
 
   sections: {

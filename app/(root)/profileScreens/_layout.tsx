@@ -13,7 +13,6 @@ export default function ProfileScreenLayout() {
     }}>
       <Stack.Screen name="personalData" options={{ headerTintColor: "#ff4e00", title: t('personalData') }} />
       <Stack.Screen name="paymentsMethods" options={{ headerTintColor: "#ff4e00", title: t('paymentsMethods') }} />
-      <Stack.Screen name="ridesHistory" options={{ headerTintColor: "#ff4e00", title: t('ridesHistory') }} />
       <Stack.Screen name="settings" options={{ headerTintColor: "#ff4e00", title: t('settings') }} />
       <Stack.Screen name="myCars" options={{ headerTintColor: "#ff4e00", title: t('myCars') }} />
       <Stack.Screen name="security" options={{ headerTintColor: "#ff4e00", title: t('security') }} />
