@@ -12,14 +12,14 @@ const NewRideStep_1 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const puputiWays = [
-    "Մեծամոր",
-    "Երևան",
+  const poputiWays = [
+    t("poputiWays.metsamor"),
+    t("poputiWays.erevan"),
   ];
 
   React.useEffect(() => {
     if (from !== to) {
-      dispatch(setPlace({ from: puputiWays[from], to: puputiWays[to] }));
+      dispatch(setPlace({ from: poputiWays[from], to: poputiWays[to] }));
       setIsNextButtonDisabled(false);
     } else {
       setIsNextButtonDisabled(true);
@@ -30,14 +30,14 @@ const NewRideStep_1 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
     <View style={styles.root}>
       <CustomDropDownMenu 
         title={t('from')}
-        options={puputiWays}
+        options={poputiWays}
         valueIndex={from}
         setValueIndex={setFrom}
       />
 
       <CustomDropDownMenu 
         title={t('to')}
-        options={puputiWays}
+        options={poputiWays}
         valueIndex={to}
         setValueIndex={setTo}
       />

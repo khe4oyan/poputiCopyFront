@@ -106,5 +106,10 @@
   "selected_file": "выбран 1 файл",
   "not_selected": "(не выбран)",
   "select_other_photo": "Выберите другое фото",
-  "select_photo": "Выберите фото"
+  "select_photo": "Выберите фото",
+
+  "poputiWays": {
+    "metsamor": "Метсамор",
+    "erevan": "Ереван"
+  }
 }

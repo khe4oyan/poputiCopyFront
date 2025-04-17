@@ -106,5 +106,10 @@
   "selected_file": "ընտրված 1 ֆայլ",
   "not_selected": "(չեն ընտրել)",
   "select_other_photo": "Ընտրել այլ լուսանկար",
-  "select_photo": "Ընտրել լուսանկար"
+  "select_photo": "Ընտրել լուսանկար",
+
+  "poputiWays": {
+    "metsamor": "Metsamor",
+    "erevan": "Erevan"
+  }
 }

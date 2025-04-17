@@ -1,5 +1,5 @@
 import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useCallback, useLayoutEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import NewRideStep_1 from '@/components/newRideStep_1';

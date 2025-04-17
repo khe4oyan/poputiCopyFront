@@ -104,5 +104,10 @@
   "selected_file": "selected 1 file",
   "not_selected": "(not selected)",
   "select_other_photo": "Select other photo",
-  "select_photo": "Select photo"
+  "select_photo": "Select photo",
+
+  "poputiWays": {
+    "metsamor": "Metsamor",
+    "erevan": "Erevan"
+  }
 }

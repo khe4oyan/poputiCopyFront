@@ -8,7 +8,6 @@ type socialIconPropsType = {
 }
 
 const SocialIcon = ({ title, icon }: socialIconPropsType) => {
-  // TODO: add real icons
   return (
     <View style={styles.socialIconContainer}>
       <Skeleton color='#ff4e00' height={30} width={30} />
