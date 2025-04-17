@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import API from '@/utils/API';
 import useToken from '@/customHooks/useToken';
+import useUserId from '@/customHooks/useUserId';
 
 type carCardPropertyType = {
   name: string,
@@ -40,6 +41,7 @@ const NewRideStep_3 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [token] = useToken(); 
+  const [userId] = useUserId();
 
   const [selectedInd, setSelectedInd] = React.useState(-1);
 
@@ -49,11 +51,8 @@ const NewRideStep_3 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
     dispatch(setCar(cars[selectedInd]));
   }
 
-  console.log(cars);
-
   React.useEffect(() => {
-    // TODO: use real user ID
-    API.getCarsByUserId(token, "67fe2f3b4db439806482ebcc")
+    API.getCarsByUserId(token, userId)
     .then(d => {
       if (d?.data) {
         setCars(d.data);
