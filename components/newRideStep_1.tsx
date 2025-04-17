@@ -1,20 +1,25 @@
 import { StyleSheet, View } from 'react-native'
 import React from 'react'
-import CustomInput from './custom/customInput'
 import { setPlace } from '@/store/slices/newRideSlice'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next';
+import CustomDropDownMenu from './custom/customDropDownMenu'
 
 const NewRideStep_1 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: any }) => {
-  const [from, setFrom] = React.useState("");
-  const [to, setTo] = React.useState("");
+  const [from, setFrom] = React.useState(0);
+  const [to, setTo] = React.useState(1);
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
+  const puputiWays = [
+    "Մեծամոր",
+    "Երևան",
+  ];
+
   React.useEffect(() => {
-    if (from !== "" && to !== "") {
-      dispatch(setPlace({ from, to }));
+    if (from !== to) {
+      dispatch(setPlace({ from: puputiWays[from], to: puputiWays[to] }));
       setIsNextButtonDisabled(false);
     } else {
       setIsNextButtonDisabled(true);
@@ -23,18 +28,18 @@ const NewRideStep_1 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
 
   return (
     <View style={styles.root}>
-      <CustomInput
-        value={from}
-        setValue={setFrom}
-        placeholder={t('enterWhereYouAre')}
+      <CustomDropDownMenu 
         title={t('from')}
+        options={puputiWays}
+        valueIndex={from}
+        setValueIndex={setFrom}
       />
 
-      <CustomInput
-        value={to}
-        setValue={setTo}
-        placeholder={t('enterWhereYouWantToGo')}
+      <CustomDropDownMenu 
         title={t('to')}
+        options={puputiWays}
+        valueIndex={to}
+        setValueIndex={setTo}
       />
     </View>
   )

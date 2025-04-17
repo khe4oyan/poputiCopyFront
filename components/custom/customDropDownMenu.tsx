@@ -22,6 +22,7 @@ const CustomDropDownMenu = ({ title, options, valueIndex, setValueIndex }: custo
   }
 
   return (
+    <>
     <View style={styles.root}>
       {title && <Text style={styles.title}>{title}</Text>}
       <TouchableWithoutFeedback onPress={openToggle} >
@@ -45,6 +46,7 @@ const CustomDropDownMenu = ({ title, options, valueIndex, setValueIndex }: custo
         </View>
       }
     </View>
+    </>
   )
 }
 
@@ -53,7 +55,6 @@ export default CustomDropDownMenu;
 const styles = StyleSheet.create({
   root: {
     position: "relative",
-    zIndex: 10,
   },
 
   title: {
@@ -78,9 +79,6 @@ const styles = StyleSheet.create({
 
   options: {
     padding: 10,
-    width: "100%",
-    position: "absolute",
-    top: "100%",
     backgroundColor: "white",
     flexDirection: "column",
     gap: 10,
