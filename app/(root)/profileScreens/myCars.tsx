@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import CustomInput from '@/components/custom/customInput';
 import API from '@/utils/API';
 import useToken from '@/customHooks/useToken';
+import useUserId from '@/customHooks/useUserId';
 
 type carCardPropertyType = {
   name: string,
@@ -71,6 +72,7 @@ const MyCars = () => {
   const [year, setYear] = useState("");
 
   const [token] = useToken();
+  const [userId] = useUserId();
 
   const onNewCarHandler = () => {
     setIsShowModal(true);
@@ -94,7 +96,7 @@ const MyCars = () => {
 
   React.useEffect(() => {
     // TODO: get real user id
-    API.getCarsByUserId(token, "67fe2f3b4db439806482ebcc")
+    API.getCarsByUserId(token, userId)
       .then(d => {
         if (d?.data) {
           setCars(d.data);
