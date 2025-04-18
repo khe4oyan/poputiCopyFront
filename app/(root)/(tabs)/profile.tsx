@@ -101,7 +101,7 @@ const Profile = () => {
         <View style={styles.avatarContainer}>
           {
             imageSrc === null ?
-              <Skeleton width={100} height={100} radius="100%" /> :
+              <Skeleton width={100} height={100} radius="100%" indicatorColor={imageSrc ? "white" : null} /> :
               <Image
                 width={100}
                 height={100}

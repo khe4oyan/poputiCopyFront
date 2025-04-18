@@ -82,7 +82,7 @@ const TrafficCard = ({ data, onDelete }: any) => {
               width={50} height={50} 
               borderRadius={50}
             /> :
-            <Skeleton width={50} height={50} radius={50} />
+            <Skeleton width={50} height={50} radius={50} indicatorColor={"white"} />
           }
           <Text style={styles.fullName}>{`${driverData?.name} ${driverData?.surname}`}</Text>
           <Text style={styles.price}>{data?.count} AMD</Text>
