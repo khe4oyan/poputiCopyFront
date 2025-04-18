@@ -11,6 +11,7 @@ const TrafficCard = ({ data, onDelete }: any) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [token] = useToken();
   const [driverData, setDriverData] = useState<any>(null);
+  const [carData, setCardata] = useState<any>(null);
 
   const deleteButtonHandler = () => {
     onDelete();

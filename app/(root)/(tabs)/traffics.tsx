@@ -22,7 +22,6 @@ const Traffics = () => {
   }, [token]));
 
   const trafficCardDelete = (id: any) => {
-    // TODO: delete traffic data
     API.journeyDeleteById(token, id)
     .then(d => {
       if (d.message) {
