@@ -30,7 +30,11 @@ const TrafficCard = ({ data, onDelete }: any) => {
     const hours = unformatDate.getHours();
     const minutes = unformatDate.getMinutes();
 
-    return `${year}.${month}.${day} | ${hours}:${minutes}`;
+    const formatTwoNumber = (num: number) => {
+      return num < 10 ? `0${num}` : num;
+    }
+
+    return `${year}.${formatTwoNumber(month)}.${formatTwoNumber(day)} | ${formatTwoNumber(hours)}:${formatTwoNumber(minutes)}`;
   }
 
   useFocusEffect(useCallback(() => {
