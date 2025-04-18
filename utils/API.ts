@@ -153,8 +153,18 @@ class API {
       return r.json()
     });
   }
-  static async carGetById(id: string) {
+  static async carGetById(token: string, id: string) {
     // `${API.#SERVER_PATH}/car/${id}`;
+    return fetch(`${API.#SERVER_PATH}/car/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "content-type": "application/json",
+      },
+    }).then((r) => {
+      console.log("Response status:", r.status, r.statusText);
+      return r.json()
+    });
   }
   static async carDeleteById(token: string, id: string) {
     return fetch(`${API.#SERVER_PATH}/car/${id}`, {

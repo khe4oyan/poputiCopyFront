@@ -48,6 +48,11 @@ const TrafficCard = ({ data, onDelete }: any) => {
         setDriverData(d.data);
       }
     });
+
+    API.carGetById(token, data.car)
+    .then(d => {
+      setCardata(d.data);
+    });
   }, [token]));
 
   return (
@@ -65,7 +70,9 @@ const TrafficCard = ({ data, onDelete }: any) => {
             <Text style={styles.boldText}>{data.to}</Text>
           </View>
           <Text style={styles.opacityText}>{dateFormat(data.date)}</Text>
-          <Text style={styles.opacityText}>(car)</Text>
+          <Text style={styles.opacityText}>Car Mark: {carData?.make}</Text>
+          <Text style={styles.opacityText}>Car Model: {carData?.model}</Text>
+          <Text style={styles.opacityText}>Car Year: {carData?.year}</Text>
         </View>
         <View style={styles.rightSection}>
           {
