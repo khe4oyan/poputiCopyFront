@@ -18,8 +18,18 @@ const TrafficCard = ({ data, onDelete }: any) => {
   }
 
   const dateFormat = (date: any) => {
-    // TODO: format date
-    return date;
+    const unformatDate = new Date(date);
+
+    // date
+    const year = unformatDate.getFullYear();
+    const month = unformatDate.getMonth() + 1;
+    const day = unformatDate.getDate();
+
+    // time
+    const hours = unformatDate.getHours();
+    const minutes = unformatDate.getMinutes();
+
+    return `${year}.${month}.${day} | ${hours}:${minutes}`;
   }
 
   useFocusEffect(useCallback(() => {
