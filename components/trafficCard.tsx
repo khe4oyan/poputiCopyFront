@@ -1,37 +1,73 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useCallback, useEffect, useState } from 'react'
 import Skeleton from './skeleton'
 import { useTranslation } from 'react-i18next';
+import API from '@/utils/API';
+import useToken from '@/customHooks/useToken';
+import { useFocusEffect } from 'expo-router';
 
-const TrafficCard = ({ onDelete }: { onDelete: () => void }) => {
+const TrafficCard = ({ data, onDelete }: any) => {
   const { t } = useTranslation();
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [token] = useToken();
+  const [driverData, setDriverData] = useState<any>(null);
+
+  const deleteButtonHandler = () => {
+    onDelete();
+    setIsDeleting(true);
+  }
+
+  const dateFormat = (date: any) => {
+    // TODO: format date
+    return date;
+  }
+
+  useFocusEffect(useCallback(() => {
+    if (!token) {
+      return;
+    }
+
+    API.userGetById(token, data.driver)
+    .then(d => {
+      if (d?.data) {
+        setDriverData(d.data);
+      }
+    });
+  }, [token]));
 
   return (
     <View style={styles.root}>
+      {
+        isDeleting &&
+        <View style={styles.deletingContainer}>
+          <ActivityIndicator size={"large"} />
+        </View>
+      }
       <View style={styles.infoContainer}>
         <View style={styles.leftSection}>
           <View>
-            <Text style={styles.boldText}>Metsamor, Armenia</Text>
-            <Text style={styles.boldText}>Kilikia Bus Station, Yerevan, Armenia</Text>
+            <Text style={styles.boldText}>{data.from}</Text>
+            <Text style={styles.boldText}>{data.to}</Text>
           </View>
-          <Text style={styles.opacityText}>29-01-2025 | 09:30</Text>
-          <Text style={styles.opacityText}>4 {t('free_seats')}</Text>
-          <View style={styles.prohibitedContainer}>
-            <Skeleton width={20} height={20} radius={20} />
-            <Skeleton width={20} height={20} radius={20} />
-            <Skeleton width={20} height={20} radius={20} />
-            <Skeleton width={20} height={20} radius={20} />
-          </View>
-          <Text style={styles.opacityText}>Opel</Text>
+          <Text style={styles.opacityText}>{dateFormat(data.date)}</Text>
+          <Text style={styles.opacityText}>(car)</Text>
         </View>
         <View style={styles.rightSection}>
-          <Skeleton width={50} height={50} radius={50} />
-          <Text style={styles.fullName}>Name Surname</Text>
-          <Text style={styles.price}>600 AMD</Text>
+          {
+            driverData?.profilePhoto ?
+            <Image 
+              source={{uri: API.fileGetById(driverData.profilePhoto)}}
+              width={50} height={50} 
+              borderRadius={50}
+            /> :
+            <Skeleton width={50} height={50} radius={50} />
+          }
+          <Text style={styles.fullName}>{`${driverData?.name} ${driverData?.surname}`}</Text>
+          <Text style={styles.price}>{data?.count} AMD</Text>
         </View>
       </View>
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.deleteButton} onPress={onDelete}>
+        <TouchableOpacity style={styles.deleteButton} onPress={deleteButtonHandler}>
           <Text style={styles.deleteButtonText}>{t('delete')}</Text>
         </TouchableOpacity>
         <Text style={[styles.boldText, styles.statusText]}>{t('active')}</Text>
@@ -44,8 +80,9 @@ export default TrafficCard
 
 const styles = StyleSheet.create({
   root: {
-    padding: 15,
     backgroundColor: "white",
+    position: 'relative',
+    padding: 15,
     borderRadius: 10,
     shadowColor: "black",
     shadowOffset: {
@@ -55,6 +92,20 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOpacity: .1,
     marginBottom: 15,
+  },
+
+  deletingContainer: {
+    position: 'absolute',
+    zIndex: 10,
+    left: 0,
+    top: 0,
+    padding: 10,
+    backgroundColor: "#fffe",
+    width: "109%",
+    height: "120%",
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   boldText: {
@@ -67,6 +118,7 @@ const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: "row",
     gap: 30,
+    justifyContent: "space-between",
   },
 
   leftSection: {

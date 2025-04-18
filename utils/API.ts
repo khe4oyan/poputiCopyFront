@@ -206,14 +206,32 @@ class API {
       return r.json();
     });
   }
-  static async journeyGetAll() {
-    // `${API.#SERVER_PATH}/journey`;
+  static async journeyGetAll(token: string) {
+    return fetch(`${API.#SERVER_PATH}/journey`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "content-type": "application/json",
+      },
+    }).then((r) => {
+      console.log("Response status:", r.status);
+      return r.json();
+    });
   }
   static async journeyGetById(id: string) {
     // `${API.#SERVER_PATH}/journey/${id}`;
   }
-  static async journeyDeleteById(id: string) {
-    // `${API.#SERVER_PATH}/journey/${id}`;
+  static async journeyDeleteById(token:string, id: string) {
+    return fetch(`${API.#SERVER_PATH}/journey/${id}`, {
+      method: "delete",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "content-type": "application/json",
+      },
+    }).then((r) => {
+      console.log("Response status:", r.status);
+      return r.json();
+    });
   }
   static async journeyJoinById(id: string) {
     // `${API.#SERVER_PATH}/journey/joinJourney/${id}`;
