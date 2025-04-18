@@ -154,7 +154,6 @@ class API {
     });
   }
   static async carGetById(token: string, id: string) {
-    // `${API.#SERVER_PATH}/car/${id}`;
     return fetch(`${API.#SERVER_PATH}/car/${id}`, {
       method: "GET",
       headers: {
