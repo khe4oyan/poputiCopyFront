@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import useUserId from '@/customHooks/useUserId';
 
 const Login = () => {
-  const { t, i18n } = useTranslation();  // Use the i18n object for language change
+  const { t, i18n } = useTranslation();
   const [login, setLogin] = React.useState("");
   const [pass, setPass] = React.useState("");
   const [, saveToken] = useToken();
@@ -23,7 +23,7 @@ const Login = () => {
         .then(async (d) => {
           if (d?.data && d.data?.token && d.data?.id) {
             await saveUserId(d.data.id);
-            await saveToken(d.data.token)
+            await saveToken(d.data.token);
             router.replace("/(root)/(tabs)");
           }
         });
