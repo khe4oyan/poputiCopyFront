@@ -135,7 +135,7 @@ const Profile = () => {
             <View style={styles.balance}>
               <Text>{t('balance')}</Text>
               <View style={styles.balanceSpan}>
-                <Text>2010 AMD</Text>
+                <Text>0 AMD</Text>
                 <Image 
                   width={25}
                   height={25}
@@ -146,7 +146,7 @@ const Profile = () => {
             </View>
 
             <View style={styles.rating}>
-              <Text>0.00</Text>
+              <Text>5.00</Text>
               <Image 
                 width={15}
                 height={15}
