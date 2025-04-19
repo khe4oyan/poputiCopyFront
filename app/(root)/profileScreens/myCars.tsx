@@ -1,4 +1,4 @@
-import { ActivityIndicator, Button, FlatList, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
+import { ActivityIndicator, Button, FlatList, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import React, { useCallback, useState } from 'react'
 import Skeleton from '@/components/skeleton'
 import { useTranslation } from 'react-i18next';
@@ -112,7 +112,12 @@ const MyCars = () => {
   return (
     <View style={styles.root}>
       <View style={styles.addCarContainer}>
-        <Skeleton width={20} height={20} radius="100%" color='#ff4e00' />
+        <Image
+          width={25}
+          height={25}
+          borderRadius={25}
+          source={{ uri: "https://img.icons8.com/m_rounded/512/FAB005/plus.png" }}
+        />
         <TouchableOpacity onPress={onNewCarHandler}>
           <Text style={styles.addCarText}>{t('addCar')}</Text>
         </TouchableOpacity>
