@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
+import { StyleSheet, Text, TouchableWithoutFeedback, View, Image } from 'react-native'
 import React from 'react'
 import Skeleton from '../skeleton';
 
@@ -30,7 +30,11 @@ const CustomDropDownMenu = ({ title, options, valueIndex, setValueIndex }: custo
           <View style={styles.content} >
             <Text>{options[valueIndex]}</Text>
           </View>
-          <Skeleton width={20} height={10} />
+          <Image 
+            width={20}
+            height={10}
+            source={{uri: "https://www.iconpacks.net/icons/2/free-arrow-down-icon-3101-thumb.png"}}
+          />
         </View>
       </TouchableWithoutFeedback>
       {

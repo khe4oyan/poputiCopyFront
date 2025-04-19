@@ -10,22 +10,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { clearRide } from '@/store/slices/newRideSlice';
 import useToken from '@/customHooks/useToken';
 import API from '@/utils/API';
+import { useFocusEffect } from 'expo-router';
+import useUserId from '@/customHooks/useUserId';
 
 const Add = () => {
   const { t } = useTranslation();
-
-  const sections = [
-    t('selectPlace'),
-    t('selectDateTime'),
-    t('chooseCar'),
-    t('setPrice'),
-  ];
-
   const [step, setStep] = React.useState(0);
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
   const dispatch = useDispatch();
   const newRideData = useSelector((s: any) => s.newRideSlice);
   const [token, _, __, navigateToAuth] = useToken();
+  const [userRole, setUserRole] = useState(null);
+  const [userId] = useUserId();
 
   useLayoutEffect(() => {
     let timer = null;
@@ -43,20 +39,44 @@ const Add = () => {
     };
   }, [token]);
 
+  useFocusEffect(useCallback(() => {
+    API.userGetById(token, userId)
+    .then(d => {
+      if (d?.data?.role) {
+        setUserRole(d.data.role);
+      }
+    })
+  }, [userId]));
+
+  if (userRole !== 'driver') {
+    return (
+      <View style={styles.root}>
+        <Text>Change your role before add new rides</Text>
+      </View>
+    );
+  }
+
+  const sections = [
+    t('selectPlace'),
+    t('selectDateTime'),
+    t('chooseCar'),
+    t('setPrice'),
+  ];
+
   const nextStep = () => {
     const sectionsCount = sections.length - 1;
     if (step < sectionsCount) {
       setStep(prev => prev + 1);
     } else {
       API.journeyCreate(token, newRideData)
-      .then(d => {
-        Alert.alert(t('success'), t('newRideAdded'));
-        dispatch(clearRide());
-        setStep(0);
-      })
-      .catch((e) => {
-        Alert.alert("Fail", "Undefined error");
-      });
+        .then(d => {
+          Alert.alert(t('success'), t('newRideAdded'));
+          dispatch(clearRide());
+          setStep(0);
+        })
+        .catch((e) => {
+          Alert.alert("Fail", "Undefined error");
+        });
     }
 
     setIsNextButtonDisabled(true);

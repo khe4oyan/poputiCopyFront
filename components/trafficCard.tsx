@@ -1,21 +1,47 @@
-import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import Skeleton from './skeleton'
 import { useTranslation } from 'react-i18next';
 import API from '@/utils/API';
 import useToken from '@/customHooks/useToken';
 import { useFocusEffect } from 'expo-router';
+import useUserId from '@/customHooks/useUserId';
 
-const TrafficCard = ({ data, onDelete }: any) => {
+const TrafficCard = ({ data, onDelete, userRole }: any) => {
   const { t } = useTranslation();
   const [isDeleting, setIsDeleting] = useState(false);
   const [token] = useToken();
+  const [userId] = useUserId();
   const [driverData, setDriverData] = useState<any>(null);
   const [carData, setCardata] = useState<any>(null);
+  const [isJoined, setIsJoined] = useState<any>(null);
+
+  useFocusEffect(useCallback(() => {
+    if (data?.passengers) {
+      if (data.passengers.includes(userId)) {
+        setIsJoined(true);
+        return;
+      }
+    }
+  }, [userId]));
 
   const deleteButtonHandler = () => {
     onDelete();
     setIsDeleting(true);
+  }
+
+  const onJoin = () => {
+    setIsJoined(false);
+    API.journeyJoinById(token, data._id)
+      .then(d => {
+        if (d.data) {
+          setIsJoined(true);
+        }
+      })
+      .catch(e => {
+        setIsJoined(null);
+        Alert.alert("Failed", "Cant join. Try again.");
+      });
   }
 
   const dateFormat = (date: any) => {
@@ -43,16 +69,16 @@ const TrafficCard = ({ data, onDelete }: any) => {
     }
 
     API.userGetById(token, data.driver)
-    .then(d => {
-      if (d?.data) {
-        setDriverData(d.data);
-      }
-    });
+      .then(d => {
+        if (d?.data) {
+          setDriverData(d.data);
+        }
+      });
 
     API.carGetById(token, data.car)
-    .then(d => {
-      setCardata(d.data);
-    });
+      .then(d => {
+        setCardata(d.data);
+      });
   }, [token]));
 
   return (
@@ -77,25 +103,59 @@ const TrafficCard = ({ data, onDelete }: any) => {
         <View style={styles.rightSection}>
           {
             driverData?.profilePhoto ?
-            <Image 
-              source={{uri: API.fileGetById(driverData.profilePhoto)}}
-              width={50} height={50} 
-              borderRadius={50}
-            /> :
-            <Skeleton width={50} height={50} radius={50} indicatorColor={"white"} />
+              <Image
+                source={{ uri: API.fileGetById(driverData.profilePhoto) }}
+                width={50} height={50}
+                borderRadius={50}
+              /> :
+              <Skeleton width={50} height={50} radius={50} indicatorColor={"white"} />
           }
           <Text style={styles.fullName}>{`${driverData?.name} ${driverData?.surname}`}</Text>
           <Text style={styles.price}>{data?.count} AMD</Text>
         </View>
       </View>
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.deleteButton} onPress={deleteButtonHandler}>
-          <Text style={styles.deleteButtonText}>{t('delete')}</Text>
-        </TouchableOpacity>
+        {
+          userRole === 'driver' ?
+
+            <TouchableOpacity style={styles.deleteButton} onPress={deleteButtonHandler}>
+              <Text style={styles.deleteButtonText}>{t('delete')}</Text>
+            </TouchableOpacity> :
+
+            <JoinButton
+              onJoin={onJoin}
+              isJoined={isJoined}
+            />
+        }
+
         <Text style={[styles.boldText, styles.statusText]}>{t('active')}</Text>
       </View>
     </View>
   )
+}
+
+function JoinButton({ onJoin, isJoined }: any) {
+  if (isJoined === null) {
+    return (
+      <TouchableOpacity style={styles.joinButton} onPress={onJoin}>
+        <Text style={styles.joinButtonText}>Join</Text>
+      </TouchableOpacity>
+    );
+  }
+
+  if (isJoined === false) {
+    return (
+      <View style={styles.joinButton}>
+        <ActivityIndicator color="green" />
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.joinedContainer}>
+      <Text style={styles.joinButtonText}>Joined!</Text>
+    </View>
+  );
 }
 
 export default TrafficCard
@@ -184,6 +244,25 @@ const styles = StyleSheet.create({
   deleteButtonText: {
     color: "red",
   },
+
+  joinButton: {
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 5,
+    paddingLeft: 30,
+    paddingRight: 30,
+    borderColor: "green",
+  },
+  joinButtonText: {
+    color: "green",
+  },
+
+  joinedContainer: {
+    padding: 5,
+    paddingLeft: 30,
+    paddingRight: 30,
+  },
+
   statusText: {
     color: "#ff4e00",
     paddingRight: 20,

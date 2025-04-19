@@ -161,7 +161,7 @@ class API {
         "content-type": "application/json",
       },
     }).then((r) => {
-      console.log("Response status:", r.status, r.statusText);
+      // console.log("Response status:", r.status, r.statusText);
       return r.json()
     });
   }
@@ -223,7 +223,7 @@ class API {
         "content-type": "application/json",
       },
     }).then((r) => {
-      console.log("Response status:", r.status);
+      // console.log("Response status:", r.status);
       return r.json();
     });
   }
@@ -238,12 +238,21 @@ class API {
         "content-type": "application/json",
       },
     }).then((r) => {
-      console.log("Response status:", r.status);
+      // console.log("Response status:", r.status);
       return r.json();
     });
   }
-  static async journeyJoinById(id: string) {
-    // `${API.#SERVER_PATH}/journey/joinJourney/${id}`;
+  static async journeyJoinById(token: string, id: string) {
+    return fetch(`${API.#SERVER_PATH}/journey/joinJourney/${id}`, {
+      method: "put",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "content-type": "application/json",
+      },
+    }).then((r) => {
+      console.log("Response status:", r.status);
+      return r.json();
+    });
   }
 };
 

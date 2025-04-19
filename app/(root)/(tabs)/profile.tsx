@@ -29,10 +29,19 @@ const Section = ({ data }: { data: sectionData }) => {
     <Link href={data.link}>
       <View style={styles.sectionContainer}>
         <View style={styles.leftBox}>
-          <Skeleton radius="100%" width={30} height={30} />
+          <Image 
+            width={30}
+            height={30}
+            borderRadius={30}
+            source={{uri: data.icon}}
+          />
           <Text>{data.title}</Text>
         </View>
-        <Skeleton radius="0" width={8} height={18} />
+        <Image 
+          width={18}
+          height={18}
+          source={{uri: "https://cdn-icons-png.flaticon.com/512/32/32213.png"}}
+        />
       </View>
     </Link>
   );
@@ -63,13 +72,13 @@ const Profile = () => {
   );
 
   const sectionsData: Array<sectionData> = [
-    { icon: null, title: t("personalData"), link: "/profileScreens/personalData" },
-    { icon: null, title: t("paymentsMethods"), link: "/profileScreens/paymentsMethods" },
-    { icon: null, title: t("settings"), link: "/profileScreens/settings" },
-    { icon: null, title: t("myCars"), link: "/profileScreens/myCars" },
-    { icon: null, title: t("security"), link: "/profileScreens/security" },
-    { icon: null, title: t("feedback"), link: "/profileScreens/feedback" },
-    { icon: null, title: t("logout"), link: "/profileScreens/logout" },
+    { icon: "https://media.istockphoto.com/id/1332100919/vector/man-icon-black-icon-person-symbol.jpg?s=612x612&w=0&k=20&c=AVVJkvxQQCuBhawHrUhDRTCeNQ3Jgt0K1tXjJsFy1eg=", title: t("personalData"), link: "/profileScreens/personalData" },
+    { icon: "https://icons.veryicon.com/png/o/miscellaneous/template-3/payment-method-1.png", title: t("paymentsMethods"), link: "/profileScreens/paymentsMethods" },
+    { icon: "https://www.iconpacks.net/icons/2/free-settings-icon-3110-thumb.png", title: t("settings"), link: "/profileScreens/settings" },
+    { icon: "https://static.vecteezy.com/system/resources/previews/003/694/243/non_2x/car-icon-in-flat-style-simple-traffic-icon-free-vector.jpg", title: t("myCars"), link: "/profileScreens/myCars" },
+    { icon: "https://static.vecteezy.com/system/resources/thumbnails/026/960/552/small/shield-and-lock-icon-simple-flat-style-secure-safe-computer-protect-safety-web-privacy-concept-illustration-symbol-isolated-on-white-background-eps-10-vector.jpg", title: t("security"), link: "/profileScreens/security" },
+    { icon: "https://www.shutterstock.com/image-vector/feedback-icon-logo-isolated-sign-260nw-2185716263.jpg", title: t("feedback"), link: "/profileScreens/feedback" },
+    { icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/all-icons/logout-vptf0h04oyagpspzgfbr0o.png/logout-oi2tej5exikqge60p4sy1.png?_a=DAJFJtWIZAAC", title: t("logout"), link: "/profileScreens/logout" },
   ];
 
   const editImage = async () => {
@@ -106,11 +115,17 @@ const Profile = () => {
                 width={100}
                 height={100}
                 borderRadius={100}
+                style={{borderWidth: 1}}
                 source={{ uri: API.fileGetById(imageSrc) }}
               />
           }
           <TouchableOpacity onPress={editImage} style={styles.avatarEdit}>
-            <Skeleton width={25} height={25} radius="100%" color="gray" />
+            <Image 
+              width={30}
+              height={30}
+              source={{uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa0qEV_mEF19gs68CDaSmZ4e0kssbxyOAMbw&s"}}
+              style={{padding: 5, borderRadius: 50, backgroundColor: "white"}}
+            />
           </TouchableOpacity>
         </View>
 
@@ -127,8 +142,11 @@ const Profile = () => {
 
             <View style={styles.rating}>
               <Text>0.00</Text>
-              <Skeleton width={15} height={15} color="orange" />
-              <Skeleton width={15} height={15} />
+              <Image 
+                width={15}
+                height={15}
+                source={{uri: "https://static-00.iconduck.com/assets.00/rating-icon-512x488-f3wudmx0.png"}}
+              />
             </View>
           </View>
         </View>

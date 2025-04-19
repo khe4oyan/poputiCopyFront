@@ -1,5 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
-import Skeleton from '@/components/skeleton'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import { useTranslation } from 'react-i18next';
 
 type socialIconPropsType = {
@@ -10,7 +9,11 @@ type socialIconPropsType = {
 const SocialIcon = ({ title, icon }: socialIconPropsType) => {
   return (
     <View style={styles.socialIconContainer}>
-      <Skeleton color='#ff4e00' height={30} width={30} />
+      <Image 
+          width={30}
+          height={30}
+          source={{uri: icon}}
+        />
       <Text>{title}</Text>
     </View>
   );
@@ -22,13 +25,22 @@ const Feedback = () => {
   return (
     <View style={styles.root}>
       <View style={[styles.flexRow, styles.flexBetween, styles.section_1]}>
-        <SocialIcon title={t('call')} />
-        <SocialIcon title={t('gmail')} />
+        <SocialIcon title={t('call')} icon={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqvIH0qQEwp_XV51RMqRW30rtrLvU0EI9wTg&s"} />
+        <SocialIcon title={t('gmail')} icon={"https://cdn4.iconfinder.com/data/icons/logos-brands-in-colors/48/google-gmail-512.png"} />
       </View>
 
       <View style={[styles.flexRow, styles.section_2]}>
-        <Skeleton width={70} height={70} color='#3C5A98' />
-        <Skeleton width={70} height={70} color='#DE466E' radius={15} />
+        <Image 
+          width={70}
+          height={70}
+          source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Facebook_logo_%28square%29.png/960px-Facebook_logo_%28square%29.png"}}
+        />
+        <Image 
+          width={70}
+          height={70}
+          borderRadius={15}
+          source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png"}}
+        />
       </View>
 
       <View style={[styles.section_3]}>

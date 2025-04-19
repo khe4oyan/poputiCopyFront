@@ -1,16 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import Skeleton from '@/components/skeleton'
 import { useTranslation } from 'react-i18next';
 
-const PaymentMethod = ({ title }: { title: string }) => {
+const PaymentMethod = ({ title, icon }: { title: string, icon: string }) => {
   return (
     <View style={styles.payMethod}>
       <View style={styles.content}>
-        <Skeleton color='white' />
+        <Image 
+          width={50}
+          height={50}
+          source={{uri: icon}}
+        />
         <Text style={styles.contentText}>{title}</Text>
       </View>
-      <Skeleton width={12} height={30} />
     </View>
   );
 }
@@ -22,8 +25,8 @@ const PaymentsMethods = () => {
     <View style={styles.root}>
       <Text style={styles.headerText}>{t('selectPaymentMethod')}</Text>
 
-      <PaymentMethod title={t('creditCard')} />
-      <PaymentMethod title={t('telcellWallet')} />
+      <PaymentMethod title={t('creditCard')} icon={"https://cdn-icons-png.flaticon.com/512/126/126057.png"}/>
+      <PaymentMethod title={t('IDram')} icon={"https://idbank.am/documents/IDBank_logo_300x300.png"}/>
     </View>
   )
 }
