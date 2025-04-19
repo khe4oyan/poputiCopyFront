@@ -38,7 +38,6 @@ class API {
     birthDay: string,
     residence: string,
     gender: string,
-    role: string,
     driveLicenseUri: string,
     pasportImageUri: string,
   ) {
@@ -50,7 +49,6 @@ class API {
     formData.append("birthDay", birthDay);
     formData.append("city", residence);
     formData.append("gender", gender);
-    formData.append("role", role);
     formData.append("driversLicense", "(none)");
     formData.append("pasportData", "(none)");
 

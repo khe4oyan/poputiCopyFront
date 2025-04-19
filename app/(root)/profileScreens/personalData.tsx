@@ -18,7 +18,6 @@ const PersonalData = () => {
   const [birthDay, setBirthDay] = React.useState("");
   const [residence, setResidence] = React.useState("");
   const [genderInd, setGenderInd] = React.useState(0);
-  const [roleInd, setRoleInd] = React.useState(0);
   const [driveLicense, setDriveLicense] = React.useState("");
   const [pasportImage, setPassportImage] = React.useState("");
   const [token] = useToken();
@@ -28,11 +27,6 @@ const PersonalData = () => {
   const gendersOptions = [
     t("male"),
     t("female"),
-  ];
-
-  const roles = [
-    t("driver"),
-    t("student"),
   ];
 
   const submitHandler = () => {
@@ -52,7 +46,6 @@ const PersonalData = () => {
       birthDay,
       residence,
       gendersOptions[genderInd],
-      roles[roleInd],
       driveLicense,
       pasportImage,
     )
@@ -111,13 +104,6 @@ const PersonalData = () => {
           valueIndex={genderInd}
           setValueIndex={setGenderInd}
           options={gendersOptions}
-        />
-
-        <CustomDropDownMenu
-          title={t("role")}
-          valueIndex={roleInd}
-          setValueIndex={setRoleInd}
-          options={roles}
         />
 
         <CustomFileInput
