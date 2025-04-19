@@ -116,27 +116,32 @@ const Profile = () => {
                 height={100}
                 borderRadius={100}
                 style={{borderWidth: 1}}
-                source={{ uri: API.fileGetById(imageSrc) }}
+                source={{ uri: imageSrc ? API.fileGetById(imageSrc) : "https://as2.ftcdn.net/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg"}}
               />
           }
           <TouchableOpacity onPress={editImage} style={styles.avatarEdit}>
             <Image 
               width={30}
               height={30}
-              source={{uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa0qEV_mEF19gs68CDaSmZ4e0kssbxyOAMbw&s"}}
-              style={{padding: 5, borderRadius: 50, backgroundColor: "white"}}
+              source={{uri: "https://img.icons8.com/m_rounded/512/FAB005/plus.png"}}
+              style={{borderRadius: 50, backgroundColor: "white"}}
             />
           </TouchableOpacity>
         </View>
 
         <View style={styles.mainInfo}>
-          <Text>{userData?.name} {userData?.surname}</Text>
+          <Text>{userData?.name || "(none)"} {userData?.surname }</Text>
           <View>
             <View style={styles.balance}>
               <Text>{t('balance')}</Text>
               <View style={styles.balanceSpan}>
                 <Text>2010 AMD</Text>
-                <Skeleton width={25} height={25} radius="100%" color="orange" />
+                <Image 
+                  width={25}
+                  height={25}
+                  borderRadius={25}
+                  source={{uri: "https://img.icons8.com/m_rounded/512/FAB005/plus.png"}}
+                />
               </View>
             </View>
 
@@ -157,7 +162,7 @@ const Profile = () => {
       </View>
 
       <View style={styles.statistics}>
-        <Statistic value={userData?.phoneNumber} title={t("phoneNumber")} />
+        <Statistic value={userData?.phoneNumber || "(none)"} title={t("phoneNumber")} />
       </View>
 
       <ScrollView style={styles.sections}>

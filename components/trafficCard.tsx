@@ -104,7 +104,7 @@ const TrafficCard = ({ data, onDelete, userRole }: any) => {
           {
             driverData?.profilePhoto ?
               <Image
-                source={{ uri: API.fileGetById(driverData.profilePhoto) }}
+                source={{ uri: driverData?.profilePhoto ? API.fileGetById(driverData.profilePhoto) : "https://as2.ftcdn.net/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg" }}
                 width={50} height={50}
                 borderRadius={50}
               /> :
