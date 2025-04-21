@@ -12,6 +12,8 @@ const Traffics = () => {
   const [userRole, setUserRole] = useState(null);
   const [userId] = useUserId();
 
+  console.log(userRole);
+
   useFocusEffect(useCallback(() => {
     if (!token) {
       return;
@@ -32,7 +34,7 @@ const Traffics = () => {
           setUserRole(d.data.role);
         }
       })
-  }, []));
+  }, [token, userId]));
 
   const trafficCardDelete = (id: any) => {
     API.journeyDeleteById(token, id)

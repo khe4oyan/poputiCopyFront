@@ -117,7 +117,6 @@ const TrafficCard = ({ data, onDelete, userRole }: any) => {
       <View style={styles.footer}>
         {
           userRole === 'driver' ?
-
             <TouchableOpacity style={styles.deleteButton} onPress={deleteButtonHandler}>
               <Text style={styles.deleteButtonText}>{t('delete')}</Text>
             </TouchableOpacity> :
