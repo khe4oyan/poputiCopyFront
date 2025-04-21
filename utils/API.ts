@@ -175,18 +175,45 @@ class API {
       return r.json()
     });
   }
-  static async carCreate(token: string, make: string, model: string, year: string) {
+
+  static async carCreate(token: string, make: string, model: string, year: string, photos: any) {
+    const formData = new FormData();
+
+    const getBlob = async (uri: string, name: string) => {
+      const response = await fetch(uri);
+      const blob = await response.blob();
+      return {
+        uri,
+        name,
+        type: blob.type || "image/jpeg",
+      };
+    };
+
+    const blobPhotos = [];
+
+    for (let i = 0; i < photos.length; ++i) {
+      const carPhoto = await getBlob(photos[i], "driveLicense.jpg");
+
+      blobPhotos.push({
+        uri: carPhoto.uri,
+        name: carPhoto.name,
+        type: carPhoto.type,
+      });
+    }
+    
+    formData.append("carImages", blobPhotos as any);
+    formData.append("make", make);
+    formData.append("model", model);
+    formData.append("year", year);
+
     return fetch(`${API.#SERVER_PATH}/car`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
-        "content-type": "application/json",
       },
-      body: JSON.stringify({
-        make, model, year
-      }),
+      body: formData,
     }).then((r) => {
-      // console.log("Response status:", r.status);
+      console.log("Response status:", r.status);
       return r.json()
     });
   }
@@ -228,7 +255,7 @@ class API {
   static async journeyGetById(id: string) {
     // `${API.#SERVER_PATH}/journey/${id}`;
   }
-  static async journeyDeleteById(token:string, id: string) {
+  static async journeyDeleteById(token: string, id: string) {
     return fetch(`${API.#SERVER_PATH}/journey/${id}`, {
       method: "delete",
       headers: {

@@ -1,12 +1,12 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import Skeleton from './skeleton';
+import React, { useCallback } from 'react'
 import { setCar } from '@/store/slices/newRideSlice';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import API from '@/utils/API';
 import useToken from '@/customHooks/useToken';
 import useUserId from '@/customHooks/useUserId';
+import { useFocusEffect } from 'expo-router';
 
 type carCardPropertyType = {
   name: string,
@@ -51,14 +51,18 @@ const NewRideStep_3 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
     dispatch(setCar(ind));
   }
 
-  React.useEffect(() => {
+  useFocusEffect(useCallback(() => {
+    if (!token || !userId) {
+      return;
+    }
+    
     API.getCarsByUserId(token, userId)
     .then(d => {
       if (d?.data) {
         setCars(d.data);
       }
     });
-  }, [token]);
+  }, [token, userId]))
 
   return (
     <ScrollView style={styles.root}>

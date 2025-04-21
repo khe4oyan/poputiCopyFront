@@ -7,6 +7,7 @@ import API from '@/utils/API';
 import useToken from '@/customHooks/useToken';
 import useUserId from '@/customHooks/useUserId';
 import { useFocusEffect } from 'expo-router';
+import CustomFilesInput from '@/components/custom/customFilesInput';
 
 type carCardPropertyType = {
   name: string,
@@ -71,6 +72,7 @@ const MyCars = () => {
   const [mark, setMark] = useState("");
   const [model, setModel] = useState("");
   const [year, setYear] = useState("");
+  const [carPhotos, setCarPhotos] = useState([]);
 
   const [token] = useToken();
   const [userId] = useUserId();
@@ -86,7 +88,7 @@ const MyCars = () => {
   }
 
   const addButton = () => {
-    API.carCreate(token, mark, model, year)
+    API.carCreate(token, mark, model, year, carPhotos)
       .then(d => {
         setCars((prev: any) => {
           return [...prev, d.data]
@@ -140,6 +142,12 @@ const MyCars = () => {
             placeholder='year'
             value={year}
             setValue={setYear}
+          />
+
+          <CustomFilesInput 
+            title="Car images"
+            value={carPhotos}
+            setValue={setCarPhotos}
           />
 
           <Button
