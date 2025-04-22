@@ -1,4 +1,4 @@
-import { ActivityIndicator, Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Alert, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import Skeleton from './skeleton'
 import { useTranslation } from 'react-i18next';
@@ -114,6 +114,22 @@ const TrafficCard = ({ data, onDelete, userRole }: any) => {
           <Text style={styles.price}>{data?.count} AMD</Text>
         </View>
       </View>
+      {
+        carData.carImages && carData.carImages.length > 0 &&
+        <ScrollView style={{height: (carData.carImages.length > 3 ? 120 : 100), width: "100%", marginTop: 10}}>
+          <View  style={styles.carImageContainer}>
+            {
+              carData.carImages.map((photo: any, i: number) =>
+                <Image 
+                  style={styles.carImage}
+                  source={{uri: API.fileGetById(photo)}}
+                  key={i}
+                />
+              )
+            }
+          </View >
+        </ScrollView>
+      }
       <View style={styles.footer}>
         {
           userRole === 'driver' ?
@@ -265,5 +281,18 @@ const styles = StyleSheet.create({
   statusText: {
     color: "#ff4e00",
     paddingRight: 20,
+  },
+
+  carImageContainer: {
+    flexDirection: "row",
+    gap: 5,
+    width: '100%',
+    flexWrap: "wrap",
+  },
+
+  carImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 3,
   }
 })
