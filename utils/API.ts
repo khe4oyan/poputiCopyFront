@@ -200,8 +200,15 @@ class API {
         type: carPhoto.type,
       });
     }
+
+    blobPhotos.forEach((photo:any) => {
+      formData.append("carImages", {
+        uri: photo.uri,
+        name: photo.name,
+        type: photo.type,
+      } as any);
+    });
     
-    formData.append("carImages", blobPhotos as any);
     formData.append("make", make);
     formData.append("model", model);
     formData.append("year", year);

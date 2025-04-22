@@ -35,25 +35,25 @@ const CarCard = ({ carData, deleteOneById }: any) => {
 
   const onDeleteCar = () => {
     setIsDeleting(true);
-    API.carDeleteById(token, carData._id)
-      .then(d => {
-        if (d?.message === 'deleted') {
-          deleteOneById(carData._id);
-        }
-      });
+    API.carDeleteById(token, carData?._id)
+    .then(d => {
+      if (d?.message === 'deleted') {
+        deleteOneById(carData?._id);
+      }
+    });
   };
-
+  
   return (
     <View style={styles.carCard}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>{carData.make}</Text>
+        <Text style={styles.headerText}>{carData?.make}</Text>
         <TouchableOpacity onPress={onDeleteCar}>
           <Text style={styles.carCardDeleteButton}>delete</Text>
         </TouchableOpacity>
       </View>
 
-      <CarCardProperty name={t('model')} value={carData.model} />
-      <CarCardProperty name={t('year')} value={carData.year} />
+      <CarCardProperty name={t('model')} value={carData?.model} />
+      <CarCardProperty name={t('year')} value={carData?.year} />
 
       {
         isDeleting &&
@@ -83,7 +83,7 @@ const MyCars = () => {
 
   const deleteOneById = (id: string) => {
     setCars((prev: any) => {
-      return prev.filter((item: any) => item._id !== id);
+      return prev.filter((item: any) => item?._id !== id);
     });
   }
 
@@ -161,7 +161,7 @@ const MyCars = () => {
         data={cars}
         renderItem={({ item }) =>
           <CarCard
-            key={item._id}
+            key={item?._id}
             carData={item}
             deleteOneById={deleteOneById}
           />
