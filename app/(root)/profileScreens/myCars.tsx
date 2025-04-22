@@ -36,13 +36,13 @@ const CarCard = ({ carData, deleteOneById }: any) => {
   const onDeleteCar = () => {
     setIsDeleting(true);
     API.carDeleteById(token, carData?._id)
-    .then(d => {
-      if (d?.message === 'deleted') {
-        deleteOneById(carData?._id);
-      }
-    });
+      .then(d => {
+        if (d?.message === 'deleted') {
+          deleteOneById(carData?._id);
+        }
+      });
   };
-  
+
   return (
     <View style={styles.carCard}>
       <View style={styles.header}>
@@ -148,7 +148,7 @@ const MyCars = () => {
             setValue={setYear}
           />
 
-          <CustomFilesInput 
+          <CustomFilesInput
             title="Car images"
             value={carPhotos}
             setValue={setCarPhotos}
