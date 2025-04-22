@@ -1,4 +1,4 @@
-import { ActivityIndicator, Button, FlatList, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
+import { ActivityIndicator, Button, FlatList, StyleSheet, Text, TouchableOpacity, View, Image, Alert } from 'react-native'
 import React, { useCallback, useState } from 'react'
 import Skeleton from '@/components/skeleton'
 import { useTranslation } from 'react-i18next';
@@ -90,10 +90,14 @@ const MyCars = () => {
   const addButton = () => {
     API.carCreate(token, mark, model, year, carPhotos)
       .then(d => {
-        setCars((prev: any) => {
-          return [...prev, d.data]
-        });
-        setIsShowModal(false);
+        if (d?.data) {
+          setCars((prev: any) => {
+            return [...prev, d.data]
+          });
+          setIsShowModal(false);
+        } else {
+          Alert.alert("FAILED", "Cant create car. Try later");
+        }
       });
   };
 
