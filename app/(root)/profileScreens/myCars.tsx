@@ -1,4 +1,4 @@
-import { ActivityIndicator, Button, FlatList, StyleSheet, Text, TouchableOpacity, View, Image, Alert } from 'react-native'
+import { ActivityIndicator, Button, FlatList, StyleSheet, Text, TouchableOpacity, View, Image, Alert, ScrollView } from 'react-native'
 import React, { useCallback, useState } from 'react'
 import Skeleton from '@/components/skeleton'
 import { useTranslation } from 'react-i18next';
@@ -45,6 +45,13 @@ const CarCard = ({ carData, deleteOneById }: any) => {
 
   return (
     <View style={styles.carCard}>
+      {
+        isDeleting &&
+        <View style={styles.deletingContainer}>
+          <ActivityIndicator size={"large"} />
+        </View>
+      }
+
       <View style={styles.header}>
         <Text style={styles.headerText}>{carData?.make}</Text>
         <TouchableOpacity onPress={onDeleteCar}>
@@ -56,11 +63,22 @@ const CarCard = ({ carData, deleteOneById }: any) => {
       <CarCardProperty name={t('year')} value={carData?.year} />
 
       {
-        isDeleting &&
-        <View style={styles.deletingContainer}>
-          <ActivityIndicator size={"large"} />
-        </View>
+        carData.carImages && carData.carImages.length > 0 &&
+        <ScrollView style={{height: (carData.carImages.length > 3 ? 120 : 100), width: "100%"}}>
+          <View  style={styles.carImageContainer}>
+            {
+              carData.carImages.map((photo: any, i: number) =>
+                <Image 
+                  style={styles.carImage}
+                  source={{uri: API.fileGetById(photo)}}
+                  key={i}
+                />
+              )
+            }
+          </View >
+        </ScrollView>
       }
+      
     </View>
   );
 }
@@ -255,5 +273,18 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  carImageContainer: {
+    flexDirection: "row",
+    gap: 5,
+    width: '100%',
+    flexWrap: "wrap",
+  },
+
+  carImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 3,
   }
 })
