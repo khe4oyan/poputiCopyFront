@@ -115,7 +115,7 @@ const TrafficCard = ({ data, onDelete, userRole }: any) => {
         </View>
       </View>
       {
-        carData.carImages && carData.carImages.length > 0 &&
+        carData?.carImages && carData.carImages?.length > 0 &&
         <ScrollView style={{height: (carData.carImages.length > 3 ? 120 : 100), width: "100%", marginTop: 10}}>
           <View  style={styles.carImageContainer}>
             {
