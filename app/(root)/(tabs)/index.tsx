@@ -88,6 +88,7 @@ const Add = () => {
 
       <View style={styles.progress}>
         {sections.map((_, ind) => (
+          // <View></View>
           <Text key={ind} style={ind <= step && styles.activeSection}>{ind + 1}</Text>
         ))}
       </View>

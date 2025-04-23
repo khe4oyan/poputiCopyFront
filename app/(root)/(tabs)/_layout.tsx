@@ -2,13 +2,17 @@
 import '../../../i18n.js'; // 👈 Սա շատ կարևոր է՝ միացնում ենք i18n ֆայլը
 
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { Tabs } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
-const TabIcon = ({ title, focused }: any) => {
+const TabIcon = ({ title, focused, icon }: any) => {
   return (
     <View style={styles.view}>
+      <Image 
+        style={styles.viewImage}
+        source={{uri: icon}}
+      />
       <Text style={[styles.text, focused && styles.focusedText]}>{title}</Text>
     </View>
   );
@@ -42,7 +46,7 @@ const TabsLayout = () => {
             title: "Notifications",
             headerShown: true,
             tabBarIcon: ({ focused }) => (
-              <TabIcon title={t('notifications')} focused={focused} />
+              <TabIcon title={t('notifications')} focused={focused} icon={"https://cdn-icons-png.flaticon.com/512/3119/3119338.png"} />
             )
           }}
         />
@@ -53,7 +57,7 @@ const TabsLayout = () => {
             title: "Chat",
             headerShown: true,
             tabBarIcon: ({ focused }) => (
-              <TabIcon title={t('chat')} focused={focused} />
+              <TabIcon title={t('chat')} focused={focused} icon={"https://static.thenounproject.com/png/27709-200.png"}/>
             )
           }}
         />
@@ -64,7 +68,7 @@ const TabsLayout = () => {
             title: "New Ride",
             headerShown: true,
             tabBarIcon: ({ focused }) => (
-              <TabIcon title={t('newRide')} focused={focused} />
+              <TabIcon title={t('newRide')} focused={focused}/>
             )
           }}
         />
@@ -112,13 +116,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
   },
+  viewImage: {
+    width: 20,
+    height: 20,
+    marginBottom: 5,
+  },
   text: {
     width: 80,
     textAlign: 'center',
     fontSize: 10.9,
   },
   focusedText: {
-    color: '#FF4E00',
+    color: '#ff4e00',
   },
 });
 

@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 40,
     marginBottom: 50,
+    marginTop: 120,
   },
   button: {
     backgroundColor: "#ff4e00",
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     color: "#ff4e00",
   },
   languageSelector: {
-    marginTop: 20,
-    gap: 10,
+    marginTop: 180,
+    alignItems: 'flex-end',
   }
 });

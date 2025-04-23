@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
   headerText: {
     textAlign: "center",
     fontSize: 40,
+    marginTop: 120,
     marginBottom: 50,
   },
   button: {
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     color: "#ff4e00",
   },
   languageSelector: {
-    marginTop: 20,
-    gap: 10,
+    marginTop: 250,
+    alignItems: 'flex-end',
   }
 });
