@@ -12,8 +12,6 @@ const Traffics = () => {
   const [userRole, setUserRole] = useState(null);
   const [userId] = useUserId();
 
-  console.log(userRole);
-
   useFocusEffect(useCallback(() => {
     if (!token) {
       return;
