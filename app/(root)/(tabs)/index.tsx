@@ -88,8 +88,8 @@ const Add = () => {
 
       <View style={styles.progress}>
         {sections.map((_, ind) => (
-          // <View></View>
-          <Text key={ind} style={ind <= step && styles.activeSection}>{ind + 1}</Text>
+          <View key={ind} style={[styles.section, (ind <= step && styles.activeSection) ]}></View>
+          // <Text key={ind} style={ind <= step && styles.activeSection}>{ind + 1}</Text>
         ))}
       </View>
 
@@ -130,8 +130,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
 
+  section: {
+    height: 10,
+    width: '24%',
+    borderRadius: 10,
+    backgroundColor: "gray",
+  },
   activeSection: {
-    color: "red",
+    backgroundColor: "#ff4e00",
     fontWeight: "900",
   },
 
