@@ -9,10 +9,13 @@ import { useTranslation } from 'react-i18next';
 const TabIcon = ({ title, focused, icon }: any) => {
   return (
     <View style={styles.view}>
-      <Image 
-        style={styles.viewImage}
-        source={{uri: icon}}
-      />
+      {
+        icon &&
+        <Image 
+          style={styles.viewImage}
+          source={{uri: icon}}
+        />
+      }
       <Text style={[styles.text, focused && styles.focusedText]}>{title}</Text>
     </View>
   );
@@ -68,7 +71,7 @@ const TabsLayout = () => {
             title: "New Ride",
             headerShown: true,
             tabBarIcon: ({ focused }) => (
-              <TabIcon title={t('newRide')} focused={focused}/>
+              <TabIcon title={t('newRide')} focused={focused} icon="https://cdn4.iconfinder.com/data/icons/maps-and-location-4/16/16_pin-map-location-navigation-plus-512.png"/>
             )
           }}
         />
@@ -79,7 +82,7 @@ const TabsLayout = () => {
             title: "My Rides",
             headerShown: true,
             tabBarIcon: ({ focused }) => (
-              <TabIcon title={t('myRides')} focused={focused} />
+              <TabIcon title={t('myRides')} focused={focused} icon={"https://upload.wikimedia.org/wikipedia/commons/8/87/Arrow_top.png"} />
             )
           }}
         />
@@ -88,7 +91,7 @@ const TabsLayout = () => {
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (
-              <TabIcon title={t('profile')} focused={focused} />
+              <TabIcon title={t('profile')} focused={focused} icon={"https://www.shareicon.net/data/512x512/2015/10/04/111640_personal_512x512.png"}/>
             )
           }}
         />
@@ -129,6 +132,12 @@ const styles = StyleSheet.create({
   focusedText: {
     color: '#ff4e00',
   },
+  newRideImg: {
+    position: "absolute",
+    top: 0,
+    width: "100%",
+    height: 200,
+  }
 });
 
 export default TabsLayout;
