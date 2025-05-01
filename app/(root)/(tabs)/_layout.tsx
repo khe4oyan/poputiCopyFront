@@ -1,5 +1,4 @@
-// _layout.tsx
-import '../../../i18n.js'; // 👈 Սա շատ կարևոր է՝ միացնում ենք i18n ֆայլը
+import '../../../i18n.js';
 
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
