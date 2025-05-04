@@ -13,7 +13,7 @@ const Setting = ({ data }: { data: settingData }) => {
   return (
     <View style={styles.statistic}>
       <View style={styles.header}>
-        <Skeleton width={25} height={25} color='#ff4e00' />
+        <Skeleton width={25} height={25} color='#1C2A82' />
         <Text>{data.title}</Text>
       </View>
       <Skeleton width={10} height={25} />

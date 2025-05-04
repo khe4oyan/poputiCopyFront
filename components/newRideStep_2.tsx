@@ -17,7 +17,7 @@ const NewRideStep_2 = ({ setIsNextButtonDisabled }: { setIsNextButtonDisabled: a
   return (
     <DateTimePicker
       textColor='black'
-      accentColor='#ff4e00'
+      accentColor='#1C2A82'
       themeVariant="light"
       testID="dateTimePicker"
       value={date}

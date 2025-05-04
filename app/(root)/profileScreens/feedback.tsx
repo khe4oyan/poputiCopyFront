@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   headerText: {
     textAlign: "center",
     fontSize: 20,
-    color: "#ff4e00",
+    color: "#1C2A82",
     marginBottom: 10,
   }
 })

@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   },
 
   addCarText: {
-    color: "#ff4e00"
+    color: "#1C2A82"
   },
 
   carCard: {

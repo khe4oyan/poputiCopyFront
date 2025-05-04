@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: "#ff4e00",
+    color: "#1C2A82",
     marginBottom: 4,
   },
 
@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     backgroundColor: "white",
-    borderColor: "#ff4e00",
-    color: "#ff4e00",
+    borderColor: "#1C2A82",
+    color: "#1C2A82",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
