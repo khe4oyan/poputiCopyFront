@@ -136,12 +136,12 @@ const styles = StyleSheet.create({
     backgroundColor: "gray",
   },
   activeSection: {
-    backgroundColor: "#1C2A82",
+    backgroundColor: "#A55CCF",
     fontWeight: "900",
   },
 
   nextButton: {
-    backgroundColor: "#1C2A82",
+    backgroundColor: "#A55CCF",
     padding: 15,
     borderRadius: 10,
     marginTop: 20,

@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     marginTop: 120,
   },
   button: {
-    backgroundColor: "#1C2A82",
+    backgroundColor: "#A55CCF",
     color: "white",
     textAlign: "center",
     padding: 10,
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   link: {
-    color: "#1C2A82",
+    color: "#A55CCF",
   },
   languageSelector: {
     marginTop: 180,

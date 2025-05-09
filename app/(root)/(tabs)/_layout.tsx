@@ -44,7 +44,7 @@ const TabsLayout = () => {
       >
         <Tabs.Screen name='notifications'
           options={{
-            headerTintColor: "#1C2A82",
+            headerTintColor: "#A55CCF",
             title: "Notifications",
             headerShown: true,
             tabBarIcon: ({ focused }) => (
@@ -55,7 +55,7 @@ const TabsLayout = () => {
 
         <Tabs.Screen name='messages'
           options={{
-            headerTintColor: "#1C2A82",
+            headerTintColor: "#A55CCF",
             title: "Chat",
             headerShown: true,
             tabBarIcon: ({ focused }) => (
@@ -66,7 +66,7 @@ const TabsLayout = () => {
 
         <Tabs.Screen name='index'
           options={{
-            headerTintColor: "#1C2A82",
+            headerTintColor: "#A55CCF",
             title: "New Ride",
             headerShown: true,
             tabBarIcon: ({ focused }) => (
@@ -77,7 +77,7 @@ const TabsLayout = () => {
 
         <Tabs.Screen name='traffics'
           options={{
-            headerTintColor: "#1C2A82",
+            headerTintColor: "#A55CCF",
             title: "My Rides",
             headerShown: true,
             tabBarIcon: ({ focused }) => (
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     fontSize: 10.9,
   },
   focusedText: {
-    color: '#1C2A82',
+    color: '#A55CCF',
   },
   newRideImg: {
     position: "absolute",

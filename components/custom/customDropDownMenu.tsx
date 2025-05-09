@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: "#1C2A82",
+    color: "#A55CCF",
     marginBottom: 4,
   },
 
@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     backgroundColor: "white",
-    borderColor: "#1C2A82",
-    color: "#1C2A82",
+    borderColor: "#A55CCF",
+    color: "#A55CCF",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

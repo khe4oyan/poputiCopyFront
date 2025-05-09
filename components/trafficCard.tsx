@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
 
   price: {
     fontWeight: 500,
-    color: "#1C2A82",
+    color: "#A55CCF",
   },
 
   prohibitedContainer: {
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
   },
 
   statusText: {
-    color: "#1C2A82",
+    color: "#A55CCF",
     paddingRight: 20,
   },
 

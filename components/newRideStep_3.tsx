@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
 
   addCarText: {
-    color: "#1C2A82"
+    color: "#A55CCF"
   },
 
   carCard: {
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   },
 
   selectedCarCard: {
-    shadowColor: "#1C2A82",
+    shadowColor: "#A55CCF",
     shadowOffset: {
       width: 0,
       height: 0,
