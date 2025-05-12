@@ -48,7 +48,6 @@ export default function ProfilePage() {
     { icon: "https://icons.veryicon.com/png/o/miscellaneous/template-3/payment-method-1.png", title: t("paymentsMethods"), link: ROUTES.PROFILE_PAYMENTS },
     { icon: "https://www.iconpacks.net/icons/2/free-settings-icon-3110-thumb.png", title: t("settings"), link: ROUTES.PROFILE_SETTINGS },
     { icon: "https://static.vecteezy.com/system/resources/previews/003/694/243/non_2x/car-icon-in-flat-style-simple-traffic-icon-free-vector.jpg", title: t("myCars"), link: ROUTES.PROFILE_CARS },
-    { icon: "https://static.vecteezy.com/system/resources/thumbnails/026/960/552/small/shield-and-lock-icon-simple-flat-style-secure-safe-computer-protect-safety-web-privacy-concept-illustration-symbol-isolated-on-white-background-eps-10-vector.jpg", title: t("security"), link: ROUTES.PROFILE_SECURITY },
     { icon: "https://www.shutterstock.com/image-vector/feedback-icon-logo-isolated-sign-260nw-2185716263.jpg", title: t("feedback"), link: ROUTES.PROFILE_FEEDBACK },
     { icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/all-icons/logout-vptf0h04oyagpspzgfbr0o.png/logout-oi2tej5exikqge60p4sy1.png?_a=DAJFJtWIZAAC", title: t("logout"), link: ROUTES.PROFILE_LOGOUT },
   ];
