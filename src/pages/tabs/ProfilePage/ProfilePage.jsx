@@ -58,6 +58,7 @@ export default function ProfilePage() {
       .then(d => {
         if (d?.data) {
           setImageSrc(d.data);
+          setIsShowModal(false);
         }
       })
       .catch(e => {
@@ -80,7 +81,7 @@ export default function ProfilePage() {
                 <img
                   width={100}
                   height={100}
-                  style={{ borderWidth: "1px", borderRadius: "50%" }}
+                  className={classes.avatar}
                   src={imageSrc ? API.fileGetById(imageSrc) : "https://as2.ftcdn.net/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg"}
                 />
             }

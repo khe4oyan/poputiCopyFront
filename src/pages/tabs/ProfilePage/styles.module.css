@@ -30,6 +30,12 @@
   gap: 15px;
 }
 
+.avatar {
+  border-width: 1px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .mainInfo {
   display: flex;
   justify-content: space-between;
