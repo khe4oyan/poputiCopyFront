@@ -1,4 +1,4 @@
-profile screens
+## Profile Screens
 
 ```tsx
 <Stack screenOptions={{
@@ -15,9 +15,13 @@ profile screens
 </Stack>
 ```
 
-[ ] yndhanur fony lini bac.
-[ ] buttoneri guny aveli mug.
-[ ] logo
-[ ] login/registration error message
+## Tasks
 
-[x] password *
+### In Process
+- 🔄 yndhanur fony lini bac.
+- 🔄 buttoneri guny aveli mug.
+- 🔄 logo
+- 🔄 login/registration error message
+
+### Done
+- ✅ password *
