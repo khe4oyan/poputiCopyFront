@@ -139,34 +139,15 @@ class API {
   static async carCreate(token, make, model, year, photos) {
     const formData = new FormData();
 
-    const getBlob = async (uri, name) => {
-      const response = await fetch(uri);
-      const blob = await response.blob();
-      return {
-        uri,
-        name,
-        type: blob.type || "image/jpeg",
-      };
-    };
-
     const blobPhotos = [];
 
     for (let i = 0; i < photos.length; ++i) {
-      const carPhoto = await getBlob(photos[i], "driveLicense.jpg");
-
-      blobPhotos.push({
-        uri: carPhoto.uri,
-        name: carPhoto.name,
-        type: carPhoto.type,
-      });
+      const carPhoto = await blobUrlToURL(photos[i], `driveLicense_${i}.jpg`);
+      blobPhotos.push(carPhoto);
     }
 
     blobPhotos.forEach((photo) => {
-      formData.append("carImages", {
-        uri: photo.uri,
-        name: photo.name,
-        type: photo.type,
-      });
+      formData.append("carImages", photo);
     });
 
     formData.append("make", make);
