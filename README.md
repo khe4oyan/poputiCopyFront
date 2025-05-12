@@ -1,10 +1,10 @@
 ## Tasks
 
 ### In Process
-- 🔄 yndhanur fony lini bac.
 - 🔄 buttoneri guny aveli mug.
 - 🔄 logo
 
 ### Done
+- ✅ gradient fon
 - ✅ login/registration error message
 - ✅ password *

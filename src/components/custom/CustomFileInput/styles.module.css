@@ -3,7 +3,7 @@
 }
 
 .title {
-  color: #A55CCF;
+  color: white;
   margin-bottom: 4px;
 }
 
@@ -12,16 +12,21 @@
   padding: 10px;
   border-radius: 5px;
   background-color: white;
-  border-color: #A55CCF;
-  color: #A55CCF;
+  border-color: #2C0E4A;
+  color: #2C0E4A;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
+}
+
+.value {
+  color: #2C0E4A;
 }
 
 .button {
-  background-color: #A55CCF;
+  background-color: #2C0E4A;
   padding: 10px;
   border-radius: 3px;
   color: white;

@@ -3,16 +3,16 @@
 }
 
 .title {
-  color: #A55CCF;
+  color: white;
   margin-bottom: 4px;
 }
 
 .input {
   height: 40px;
-  border: 1px solid #A55CCF;
+  border: 1px solid #2C0E4A;
   padding: 10px;
   width: 100%;
   border-radius: 5px;
-  background-color: white;
-  color: #A55CCF;
+  background-color:#2C0E4A;
+  color: white;
 }

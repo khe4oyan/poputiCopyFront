@@ -20,7 +20,7 @@ export default function CustomFilesInput({ title, value, setValue }) {
       <div className={classes.container}>
         <p>{value.length ? `${t('selected_files')}: ${value.length}` : t('not_selected')}</p>
         <label className={classes.button}>
-          {value.length ? t('select_other_photos') : t('select_photos')}
+          {value.length ? t('select_other_photo') : t('select_photo')}
           <input
             type="file"
             accept="image/*"

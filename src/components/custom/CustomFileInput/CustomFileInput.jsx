@@ -20,7 +20,7 @@ export default function CustomFileInput({ title, value, setValue }) {
       {title && <p className={classes.title}>{title}</p>}
 
       <div className={classes.container}>
-        <p>{value ? t('selected_file') : t('not_selected')}</p>
+        <p className={classes.value}>{value ? t('selected_file') : t('not_selected')}</p>
         <label className={classes.button}>
           {value ? t('select_other_photo') : t('select_photo')}
           <input
