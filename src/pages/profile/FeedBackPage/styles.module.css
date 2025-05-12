@@ -1,0 +1,46 @@
+.root {
+  padding: 20px;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.flexBetween {
+  justify-content: space-around;
+}
+
+.socialIconContainer {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section_1 {
+  margin-top: 50px;
+}
+
+.section_2 {
+  margin-top: 50px;
+  gap: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.section_3 {
+  margin-top: 50px;
+}
+
+.headerText {
+  text-align: center;
+  font-size: 20px;
+  color: #A55CCF;
+  margin-bottom: 10px;
+}
