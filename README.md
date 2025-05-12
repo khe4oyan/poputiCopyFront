@@ -14,3 +14,10 @@ profile screens
   <Stack.Screen name="logout" options={{ headerTintColor: "#A55CCF", title: t('logout') }} />
 </Stack>
 ```
+
+[ ] yndhanur fony lini bac.
+[ ] buttoneri guny aveli mug.
+[ ] logo
+[ ] login/registration error message
+
+[x] password *
