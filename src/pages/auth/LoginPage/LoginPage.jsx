@@ -1,0 +1,82 @@
+// libs
+import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
+// components
+import CustomInput from '../../../components/custom/CustomInput';
+
+// utils
+import ROUTES from '../../../utils/routes';
+import API from '../../../utils/API';
+
+// custom hooks
+import useToken from '../../../customHooks/useToken';
+import useUserId from '../../../customHooks/useUserId';
+
+// styles
+import classes from './styles.module.css';
+
+export default function LoginPage() {
+  const { t, i18n } = useTranslation();
+  const [login, setLogin] = React.useState("");
+  const [pass, setPass] = React.useState("");
+  const [, saveToken] = useToken();
+  const [, saveUserId] = useUserId();
+  const navigate = useNavigate();
+
+  const loginHandler = () => {
+    if (login !== "" && pass !== "") {
+      API.authLogin(login, pass)
+        .then(async (d) => {
+          if (d?.data && d.data?.token && d.data?.id) {
+            await saveUserId(d.data.id);
+            await saveToken(d.data.token);
+            navigate(ROUTES.TAB_ADD_RIDE);
+          }
+        });
+    } else {
+      alert(`${t('error')}: ${t('invalidInputs')}`);
+    }
+  };
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+  };
+
+  return (
+    <div className={classes.root}>
+      <p className={classes.headerText}>{t('login')}</p>
+      
+      <CustomInput
+        value={login}
+        setValue={setLogin}
+        placeholder={t('loginPlaceholder')}
+      />
+
+      <CustomInput
+        value={pass}
+        type='password'
+        setValue={setPass}
+        placeholder={t('passwordPlaceholder')}
+      />
+
+      <button className={classes.button} onClick={loginHandler}>
+        {t('loginButton')}
+      </button>
+
+      <div className={classes.footer}>
+        <p>{t('dontHaveAccount')}</p>
+        <Link to={ROUTES.AUTH_REGISTER} className={classes.link}>{t('register')}</Link>
+      </div>
+
+      {/* Language Selector */}
+      <div className={classes.languageSelector}>
+        <button onClick={() => changeLanguage('en')}>{t('english')}</button>
+        <button onClick={() => changeLanguage('hy')}>{t('armenian')}</button>
+        <button onClick={() => changeLanguage('ru')}>{t('russian')}</button>
+      </div>
+    </div>
+  )
+}
+

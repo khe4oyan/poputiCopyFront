@@ -1,0 +1,42 @@
+.root {
+  padding: 10px;
+  margin-bottom: 90px;
+}
+
+.title {
+  text-align: center;
+}
+
+.progress {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.section {
+  height: 10px;
+  width: 24%;
+  border-radius: 10px;
+  background-color: gray;
+}
+
+.activeSection {
+  background-color: #A55CCF;
+  font-weight: 900;
+}
+
+.nextButton {
+  background-color: #A55CCF;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.nextButtonDisabled {
+  background-color: gray;
+}

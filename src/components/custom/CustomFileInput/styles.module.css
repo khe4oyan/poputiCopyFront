@@ -1,0 +1,28 @@
+.root {
+  padding: 12px;
+}
+
+.title {
+  color: #A55CCF;
+  margin-bottom: 4px;
+}
+
+.container {
+  border-width: 1px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  border-color: #A55CCF;
+  color: #A55CCF;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  background-color: #A55CCF;
+  padding: 10px;
+  border-radius: 3px;
+  color: white;
+}

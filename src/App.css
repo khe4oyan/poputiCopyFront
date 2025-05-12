@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+body {
+  min-height: 100dvh;
+  background: #0001;
+  max-width: 600px;
+  margin: auto;
+}
+
+.container {
+  padding: 10px;
+}
+
+input, button {
+  outline: none;
+  border: 1px solid #0002;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: no-drop;
+}

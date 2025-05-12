@@ -1,0 +1,33 @@
+.root {
+  padding: 10px;
+}
+
+.inputBox {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 5px;
+}
+
+/* .input {} */
+
+.button {
+  height: 40px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: white;
+  background: #A55CCF;
+}
+
+.button:disabled {
+  color: gray;
+  background: #dbc6e7;
+}
+
+.message {
+  padding: 10px;
+  border: 1px solid #A55CCF;
+  border-radius: 5px;
+  margin-top: 5px;
+  background-color: white;
+}

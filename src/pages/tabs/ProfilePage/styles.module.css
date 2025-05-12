@@ -1,0 +1,124 @@
+.root {
+  height: 100%;
+  background-color: white;
+
+  button {
+    background: none;
+    border: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.avatarContainer {
+  position: relative;
+}
+
+.avatarEdit {
+  position: absolute;
+  top: 70%;
+  right: 0;
+}
+
+.mainInfoContainer {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.mainInfo {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.balance {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.balanceSpan {
+  display: flex;
+  margin-left: 5px;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.lineBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line {
+  width: 90%;
+  height: 1px;
+  background-color: #0002;
+}
+
+.statistics {
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+}
+
+.statistic {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.sections {
+  padding: 10px;
+}
+
+.sectionContainer {
+  width: 100%;
+  padding: 15px;
+  border-bottom: 1px solid #0003;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.leftBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+.modal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100dvh;
+  background-color: #0008;
+  backdrop-filter: blur(10px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

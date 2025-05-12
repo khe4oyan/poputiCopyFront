@@ -1,0 +1,122 @@
+.root {
+  background-color: white;
+  position: relative;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.deletingContainer {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.93); /* "#fffe" */
+  width: 109%;
+  height: 120%;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boldText {
+  font-weight: 700;
+}
+
+.opacityText {
+  color: #646464;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.leftSection {
+  max-width: 200px;
+}
+
+.rightSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.fullName {
+  font-weight: 500;
+}
+
+.price {
+  font-weight: 500;
+  color: #A55CCF;
+}
+
+.prohibitedContainer {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.footer {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deleteButton {
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 5px 30px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.deleteButtonText {
+  color: red;
+}
+
+.joinButton {
+  border: 1px solid green;
+  border-radius: 5px;
+  padding: 5px 30px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.joinButtonText {
+  color: green;
+}
+
+.joinedContainer {
+  padding: 5px 30px;
+}
+
+.statusText {
+  color: #A55CCF;
+  padding-right: 20px;
+}
+
+.carImageContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 100%;
+}
+
+.carImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 3px;
+  object-fit: cover;
+}

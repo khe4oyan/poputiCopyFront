@@ -1,0 +1,36 @@
+.root {
+  position: relative;
+  margin: 5px 0;
+}
+
+.title {
+  color: #A55CCF;
+  margin-bottom: 4px;
+}
+
+.button {
+  display: flex;
+  gap: 10px;
+}
+
+.box {
+  border-width: 1px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  border-color: #A55CCF;
+  color: #A55CCF;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+/* .content {} */
+
+.options {
+  display: flex;
+  padding: 10px;
+  background-color: white;
+  flex-direction: column;
+  gap: 10px;
+}

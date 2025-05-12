@@ -1,0 +1,47 @@
+.root {
+  padding: 10px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerText {
+  text-align: center;
+  font-size: 40px;
+  margin-top: 120px;
+  margin-bottom: 50px;
+}
+
+.button {
+  background-color: #A55CCF;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.link {
+  color: #A55CCF;
+}
+
+.languageSelector {
+  margin-top: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  justify-content: flex-end;
+
+  button {
+    padding: 10px;
+    background: #0a71df;
+    color: white;
+    border-radius: 5px;
+  }
+}

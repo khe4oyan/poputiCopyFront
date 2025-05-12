@@ -1,0 +1,10 @@
+.root {
+  margin: 5px 0;
+}
+
+.input {
+  padding: 15px;
+  width: 100%;
+  border-radius: 5px;
+  border-color: #A55CCF;
+}

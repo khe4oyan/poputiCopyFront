@@ -1,0 +1,50 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.addCarContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  gap: 10px;
+}
+
+.addCarText {
+  color: #A55CCF;
+}
+
+.carCard {
+  margin-bottom: 10px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 5px;
+
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.selectedCarCard {
+  box-shadow: 0 0 2px 2px #A55CCF;
+}
+
+.headerText {
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.property {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.07);
+}
+
+.carCardButton {
+  padding: 0;
+  height: fit-content;
+  border: none;
+}
