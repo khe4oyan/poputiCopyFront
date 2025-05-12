@@ -17,6 +17,7 @@ import classes from './styles.module.css';
 export default function RegisterPage() {
   const { t, i18n } = useTranslation(); 
   const [email, setEmail] = React.useState("");
+  const [emailError, setEmailError] = React.useState("");
   const [pass, setPass] = React.useState("");
   const [role, setRole] = React.useState(0);
 
@@ -38,7 +39,7 @@ export default function RegisterPage() {
           }
         })
         .catch((e) => {
-          alert(`${t('error')}: ${email} ${t('alreadyRegistered')}`);
+          setEmailError(`${email} ${t('alreadyRegistered')}`);
         });
     } else {
       alert(`${t('error')}: ${t('invalidInputs')}`);
@@ -54,6 +55,10 @@ export default function RegisterPage() {
         setValue={setEmail}
         placeholder={t('mail')}
       />
+      {
+        emailError &&
+        <p className={classes.errorMessage}>{emailError}</p>
+      }
 
       <CustomInput
         value={pass}

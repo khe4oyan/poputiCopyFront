@@ -20,7 +20,7 @@
   "dontHaveAccount": "Нет аккаунта?",
   "register": "Зарегистрироваться",
   "error": "Ошибка",
-  "invalidInputs": "Неверные данные",
+  "invalidInputs": "Логин или пароль неверный",
   "english": "Английский",
   "armenian": "Армянский",
   "russian": "Русский",

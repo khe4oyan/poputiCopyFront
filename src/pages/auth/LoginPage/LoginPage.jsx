@@ -1,5 +1,5 @@
 // libs
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -19,6 +19,7 @@ import classes from './styles.module.css';
 
 export default function LoginPage() {
   const { t, i18n } = useTranslation();
+  const [authErrorMessage, setAuthErrorMessage] = useState("");
   const [login, setLogin] = React.useState("");
   const [pass, setPass] = React.useState("");
   const [, saveToken] = useToken();
@@ -34,9 +35,11 @@ export default function LoginPage() {
             await saveToken(d.data.token);
             navigate(ROUTES.TAB_ADD_RIDE);
           }
+        })
+        .catch(e => {
+          setAuthErrorMessage(t('invalidInputs'));
         });
     } else {
-      alert(`${t('error')}: ${t('invalidInputs')}`);
     }
   };
 
@@ -61,6 +64,10 @@ export default function LoginPage() {
         placeholder={t('passwordPlaceholder')}
       />
 
+      {
+        authErrorMessage &&
+        <p className={classes.errorMessage}>{authErrorMessage}</p>
+      }
       <button className={classes.button} onClick={loginHandler}>
         {t('loginButton')}
       </button>

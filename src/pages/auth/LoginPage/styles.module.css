@@ -45,3 +45,9 @@
     border-radius: 5px;
   }
 }
+
+
+.errorMessage {
+  color: red;
+  font-size: .9em;
+}

@@ -30,6 +30,11 @@
   color: #A55CCF;
 }
 
+.errorMessage {
+  color: red;
+  font-size: .9em;
+}
+
 .languageSelector {
   margin-top: 171px;
   display: flex;
