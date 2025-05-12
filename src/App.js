@@ -11,7 +11,6 @@ import LogoutPage from './pages/profile/LogoutPage';
 import MyCarsPage from './pages/profile/MyCarsPage';
 import PaymentsMethodsPage from './pages/profile/PaymentsMethodsPage';
 import PersonalDataPage from './pages/profile/PersonalDataPage';
-import SecurityPage from './pages/profile/SecurityPage';
 import SettingsPage from './pages/profile/SettingsPage';
 // tabs
 import AddRidePage from './pages/tabs/AddRidePage';
@@ -45,7 +44,6 @@ function App() {
 				<Route path={ROUTES.PROFILE_CARS} element={<MyCarsPage />}/>
 				<Route path={ROUTES.PROFILE_PAYMENTS} element={<PaymentsMethodsPage />}/>
 				<Route path={ROUTES.PROFILE_PERSONAL_DATA} element={<PersonalDataPage />}/>
-				<Route path={ROUTES.PROFILE_SECURITY} element={<SecurityPage />}/>
 				<Route path={ROUTES.PROFILE_SETTINGS} element={<SettingsPage />}/>
 
 				{/* tabs */}

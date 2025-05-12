@@ -7,7 +7,6 @@ const ROUTES = {
   PROFILE_CARS: "/profile/cars",
   PROFILE_PAYMENTS: "/profile/payments",
   PROFILE_PERSONAL_DATA: "/profile/data",
-  PROFILE_SECURITY: "/profile/security",
   PROFILE_SETTINGS: "/profile/settings",
   
   TAB_ADD_RIDE: "/",
