@@ -2,9 +2,9 @@
 
 ### In Process
 - 🔄 buttoneri guny aveli mug.
-- 🔄 logo
 
 ### Done
+- ✅ logo
 - ✅ gradient fon
 - ✅ login/registration error message
 - ✅ password *

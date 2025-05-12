@@ -89,7 +89,7 @@ export default function ProfilePage() {
                 width={30}
                 height={30}
                 src='https://img.icons8.com/m_rounded/512/FAB005/plus.png'
-                style={{ borderRadius: "50px", backgroundColor: "white" }}
+                style={{ borderRadius: "50%", backgroundColor: "white" }}
               />
             </button>
           </div>

@@ -15,8 +15,10 @@
 .socialIconContainer {
   width: 100px;
   height: 100px;
-  background-color: white;
+  border-radius: 10px;
+  background: white;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -36,11 +38,11 @@
 
 .section_3 {
   margin-top: 50px;
+  color: white;
 }
 
 .headerText {
   text-align: center;
   font-size: 20px;
-  color: #A55CCF;
   margin-bottom: 10px;
 }

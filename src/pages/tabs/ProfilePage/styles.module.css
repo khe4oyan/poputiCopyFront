@@ -40,12 +40,12 @@
 }
 
 .mainInfo {
-  display: flex;
   justify-content: space-between;
   flex: 1;
 }
 
 .balance {
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
