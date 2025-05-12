@@ -1,4 +1,4 @@
-import blobUrlToFile from './blobToURL';
+import blobUrlToURL from './blobToURL';
 
 class API {
   static #SERVER_PATH = "http://192.168.0.102:3001";
@@ -54,30 +54,11 @@ class API {
     formData.append("driversLicense", "(none)");
     formData.append("pasportData", "(none)");
 
-    const getBlob = async (uri, name) => {
-      const response = await fetch(uri);
-      const blob = await response.blob();
-      return {
-        uri,
-        name,
-        type: blob.type || "image/jpeg",
-      };
-    };
+    const driveLicenseFile = await blobUrlToURL(driveLicenseUri, "driveLicense.jpg");
+    const pasportImageFile = await blobUrlToURL(pasportImageUri, "pasportImage.jpg");
 
-    const driveLicenseFile = await getBlob(driveLicenseUri, "driveLicense.jpg");
-    const pasportImageFile = await getBlob(pasportImageUri, "pasportImage.jpg");
-
-    formData.append("driversLicenseImage", {
-      uri: driveLicenseFile.uri,
-      name: driveLicenseFile.name,
-      type: driveLicenseFile.type,
-    });
-
-    formData.append("pasportImage", {
-      uri: pasportImageFile.uri,
-      name: pasportImageFile.name,
-      type: pasportImageFile.type,
-    });
+    formData.append("driversLicenseImage", driveLicenseFile);
+    formData.append("pasportImage", pasportImageFile);
 
     return fetch(`${API.#SERVER_PATH}/user/personalInformation`, {
       method: "POST",
@@ -100,7 +81,7 @@ class API {
   }
   static async userUpdateProfilePhoto(token, photo) {
     const formData = new FormData();
-    const photoBlobURL = await blobUrlToFile(photo, "blobUrl.png");
+    const photoBlobURL = await blobUrlToURL(photo, "blobUrl.png");
     formData.append("profilePhoto", photoBlobURL);
 
     return fetch(`${API.#SERVER_PATH}/user/udateProfilePhoto`, {

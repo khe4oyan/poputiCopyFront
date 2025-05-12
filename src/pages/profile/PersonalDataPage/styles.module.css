@@ -1,0 +1,23 @@
+.root {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.imagePreview {
+  position: relative;
+  width: 100px;
+}
+
+.closeButton {
+  position: absolute;
+  right: 0;
+  background-color: red;
+  z-index: 100;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
