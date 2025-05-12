@@ -1,3 +1,5 @@
+import blobUrlToFile from './blobToURL';
+
 class API {
   static #SERVER_PATH = "http://192.168.0.102:3001";
 
@@ -97,9 +99,9 @@ class API {
     });
   }
   static async userUpdateProfilePhoto(token, photo) {
-    // TODO: backend cant response image. message: buffer error
     const formData = new FormData();
-    formData.append("profilePhoto", photo);
+    const photoBlobURL = await blobUrlToFile(photo, "blobUrl.png");
+    formData.append("profilePhoto", photoBlobURL);
 
     return fetch(`${API.#SERVER_PATH}/user/udateProfilePhoto`, {
       method: "POST",
