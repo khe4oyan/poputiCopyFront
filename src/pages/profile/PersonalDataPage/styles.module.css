@@ -21,3 +21,10 @@
   border: none;
   cursor: pointer;
 }
+
+.saveButton {
+  background-color: #A55CCF;
+  padding: 10px;
+  border-radius: 3px;
+  color: white;
+}

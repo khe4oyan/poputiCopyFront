@@ -150,7 +150,7 @@ export default function PersonalDataPage() {
         </div>
       }
 
-      <button onClick={submitHandler}>{t("save")}</button>
+      <button onClick={submitHandler} className={classes.saveButton}>{t("save")}</button>
     </div>
   )
 }
