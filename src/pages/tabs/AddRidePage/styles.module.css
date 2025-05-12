@@ -12,19 +12,23 @@
   margin-bottom: 20px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-around;
+  height: 8px;
+  background: #0002;
+  border-radius: 10px;
 }
 
 .section {
   height: 10px;
-  width: 24%;
+  width: 100px;
   border-radius: 10px;
-  background-color: gray;
 }
 
 .activeSection {
-  background-color: #A55CCF;
+  background-color: #2C0E4A;
   font-weight: 900;
+  scale: 1.1;
 }
 
 .nextButton {

@@ -85,14 +85,14 @@ export default function AddRidePage() {
       setStep(prev => prev + 1);
     } else {
       API.journeyCreate(token, newRideData)
-        .then(d => {
-          alert(t('success'), t('newRideAdded'));
-          dispatch(clearRide());
-          setStep(0);
-        })
-        .catch((e) => {
-          alert("Fail", "Undefined error");
-        });
+      .then(d => {
+        alert(t('success'), t('newRideAdded'));
+        dispatch(clearRide());
+        setStep(0);
+      })
+      .catch((e) => {
+        alert("Fail", "Undefined error");
+      });
     }
 
     setIsNextButtonDisabled(true);
@@ -101,12 +101,12 @@ export default function AddRidePage() {
   return (
     <div className={classes.root}>
       <Header title={t("newRide")} />
-      
+
       <p className={classes.title}>{sections[step]}</p>
 
       <div className={classes.progress}>
         {sections.map((_, ind) => (
-          <div key={ind} className={[classes.section, (ind <= step && classes.activeSection)]}></div>
+          <div key={ind} className={`${classes.section} ${((ind <= step) && classes.activeSection)}`}></div>
         ))}
       </div>
 
