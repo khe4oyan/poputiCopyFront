@@ -67,7 +67,9 @@ export default function AddRidePage() {
   if (userRole !== 'driver') {
     return (
       <div className={classes.root}>
+        <Header title={t("newRide")} />
         <p>Change your role before add new rides</p>
+        <TabNavigation />
       </div>
     );
   }
