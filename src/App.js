@@ -56,6 +56,8 @@ function App() {
 				{/* other */}
 				<Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />}/>
 			</Routes>
+
+			<p style={{position: "absolute", top: "3px", right: "3px", opacity: ".3"}}>v.0.0.2</p>
 		</div>
 	);
 }
