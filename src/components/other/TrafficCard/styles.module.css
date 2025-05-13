@@ -79,6 +79,7 @@
   padding: 5px 30px;
   background: transparent;
   cursor: pointer;
+  background: rgb(248, 218, 218) !important;
 }
 
 .deleteButtonText {
@@ -91,6 +92,7 @@
   padding: 5px 30px;
   background: transparent;
   cursor: pointer;
+  background: rgb(241, 255, 241) !important;
 }
 
 .joinButtonText {
