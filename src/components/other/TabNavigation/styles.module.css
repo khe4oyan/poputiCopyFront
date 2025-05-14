@@ -5,7 +5,6 @@
   width: 100%;
   background-color: rgba(220, 218, 226, 0.66);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
   align-items: center;
   border-top: 1px solid #0003;
   left: 0;
@@ -13,6 +12,15 @@
   left: 0;
   right: 0;
 }
+
+.roleDriver { 
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.roleStudent {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 
 .navigationTop {
   height: 90px;

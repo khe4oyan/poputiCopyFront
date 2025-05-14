@@ -8,6 +8,8 @@ import ROUTES from '../../../utils/routes';
 
 // custom hooks
 import useToken from '../../../customHooks/useToken';
+import useUserId from '../../../customHooks/useUserId';
+import useRole from '../../../customHooks/useRole';
 
 // styles
 import classes from './styles.module.css';
@@ -15,11 +17,15 @@ import classes from './styles.module.css';
 export default function LogoutPage() {
   const { t } = useTranslation();
   const [, , deleteToken] = useToken();
+  const [, , deleteUserId] = useUserId();
+  const [, , deleteRole] = useRole();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    deleteToken()
+    deleteToken();
+    deleteUserId();
+    deleteRole();
     navigate(ROUTES.AUTH_LOGIN);
   }, []);
 
