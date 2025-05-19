@@ -15,8 +15,8 @@
   height: 40px;
   padding: 5px 15px;
   border-radius: 5px;
-  color: white;
-  background: #A55CCF;
+  color: rgba(220, 218, 226, 0.66);
+  background: #a55ccf;
 }
 
 .button:disabled {
@@ -26,8 +26,8 @@
 
 .message {
   padding: 10px;
-  border: 1px solid #A55CCF;
+  border: 1px solid #a55ccf;
   border-radius: 5px;
   margin-top: 5px;
-  background-color: white;
+  background-color: rgba(220, 218, 226, 0.66);
 }

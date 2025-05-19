@@ -1,5 +1,5 @@
 .root {
-  background-color: white;
+  background-color: rgba(220, 218, 226, 0.66);
   position: relative;
   padding: 15px;
   border-radius: 10px;
@@ -55,7 +55,7 @@
 
 .price {
   font-weight: 500;
-  color: #A55CCF;
+  color: #a55ccf;
 }
 
 .prohibitedContainer {
@@ -104,7 +104,7 @@
 }
 
 .statusText {
-  color: #A55CCF;
+  color: #a55ccf;
   padding-right: 20px;
 }
 

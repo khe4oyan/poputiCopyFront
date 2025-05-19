@@ -3,7 +3,7 @@
 }
 
 .title {
-  color: white;
+  color: rgba(220, 218, 226, 0.66);
   margin-bottom: 4px;
 }
 
@@ -11,9 +11,9 @@
   border-width: 1px;
   padding: 10px;
   border-radius: 5px;
-  background-color: white;
-  border-color: #2C0E4A;
-  color: #2C0E4A;
+  background-color: rgba(220, 218, 226, 0.66);
+  border-color: #2c0e4a;
+  color: #2c0e4a;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -22,12 +22,12 @@
 }
 
 .value {
-  color: #2C0E4A;
+  color: #2c0e4a;
 }
 
 .button {
-  background-color: #2C0E4A;
+  background-color: #2c0e4a;
   padding: 10px;
   border-radius: 3px;
-  color: white;
+  color: rgba(220, 218, 226, 0.66);
 }

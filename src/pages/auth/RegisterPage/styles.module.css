@@ -13,8 +13,8 @@
 }
 
 .button {
-  background-color: #A55CCF;
-  color: white;
+  background-color: #a55ccf;
+  color: rgba(220, 218, 226, 0.66);
   text-align: center;
   padding: 10px;
   border-radius: 5px;
@@ -27,12 +27,12 @@
 }
 
 .link {
-  color: #A55CCF;
+  color: #a55ccf;
 }
 
 .errorMessage {
   color: red;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 .languageSelector {
@@ -46,7 +46,7 @@
   button {
     padding: 10px;
     background: #0a71df;
-    color: white;
+    color: rgba(220, 218, 226, 0.66);
     border-radius: 5px;
   }
 }

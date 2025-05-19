@@ -5,8 +5,8 @@
 .notification {
   display: flex;
   border-radius: 5px;
-  border: 1px solid rgb(219, 219, 219);
-  background: rgb(255, 255, 255);
+  border: 1px solid rgba(220, 218, 226, 0.66);;
+  background: rgba(220, 218, 226, 0.66);;
   padding: 9px;
   gap: 10px;
   align-items: center;
@@ -15,8 +15,8 @@
 
 .icon {
   border-radius: 50%;
-  background-color: rgb(231, 231, 231);
-  /* color: white; */
+  background-color: rgba(220, 218, 226, 0.66);
+  /* color:rgba(220, 218, 226, 0.66); */
   height: 20px;
   display: flex;
   justify-content: center;

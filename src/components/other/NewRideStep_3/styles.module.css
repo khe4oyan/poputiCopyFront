@@ -13,20 +13,20 @@
 }
 
 .addCarText {
-  color: #A55CCF;
+  color: #a55ccf;
 }
 
 .carCard {
   margin-bottom: 10px;
   padding: 15px;
-  background-color: white;
+  background-color: rgba(220, 218, 226, 0.66);
   border-radius: 5px;
 
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 .selectedCarCard {
-  box-shadow: 0 0 2px 2px #A55CCF;
+  box-shadow: 0 0 2px 2px #a55ccf;
 }
 
 .headerText {

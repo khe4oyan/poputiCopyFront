@@ -14,17 +14,17 @@
 }
 
 .addCarText {
-  color: white;
+  color: rgba(220, 218, 226, 0.66);
   padding: 10px;
   border-radius: 5px;
-  background: #A55CCF;
+  background: #a55ccf;
 }
 
 .addButton {
   color: rgba(255, 255, 255, 0.701);
   padding: 10px;
   border-radius: 5px;
-  background: #A55CCF;
+  background: #a55ccf;
 }
 
 .carCard {

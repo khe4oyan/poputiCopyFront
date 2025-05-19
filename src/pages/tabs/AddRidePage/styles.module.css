@@ -26,17 +26,17 @@
 }
 
 .activeSection {
-  background-color: #2C0E4A;
+  background-color: #2c0e4a;
   font-weight: 900;
   scale: 1.1;
 }
 
 .nextButton {
-  background-color: #A55CCF;
+  background-color: #a55ccf;
   padding: 10px;
   border-radius: 10px;
   margin-top: 10px;
-  color: white;
+  color: rgba(220, 218, 226, 0.66);
   text-transform: uppercase;
   text-align: center;
 }

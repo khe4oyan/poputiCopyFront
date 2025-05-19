@@ -4,7 +4,7 @@
 }
 
 .title {
-  color: white;
+  color: rgba(220, 218, 226, 0.66);
   margin-bottom: 4px;
 }
 
@@ -17,9 +17,9 @@
   border-width: 1px;
   padding: 10px;
   border-radius: 5px;
-  background-color: white;
-  border-color: #A55CCF;
-  color: white;
+  background-color: rgba(220, 218, 226, 0.66);
+  border-color: #a55ccf;
+  color: rgba(220, 218, 226, 0.66);
   align-items: center;
   width: 100%;
   justify-content: space-between;
