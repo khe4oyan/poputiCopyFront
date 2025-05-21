@@ -22,15 +22,9 @@
   border-width: 1px;
   padding: 10px;
   border-radius: 5px;
-<<<<<<< HEAD
   background-color: rgba(220, 218, 226, 0.66);
   border-color: #a55ccf;
   color: rgba(220, 218, 226, 0.66);
-=======
-  background: rgba(220, 218, 226, 0.66);
-  border-color: #A55CCF;
-  color: white;
->>>>>>> 7f2d2d75e5b1d99b75643cffd5a87f6f50ec265e
   align-items: center;
   width: 100%;
   justify-content: space-between;
