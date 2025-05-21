@@ -12,6 +12,7 @@ import CustomFileInput from '../../../components/custom/CustomFileInput';
 // custom hooks
 import useToken from '../../../customHooks/useToken';
 import useUserId from '../../../customHooks/useUserId';
+import useRole from '../../../customHooks/useRole';
 
 // utils
 import API from '../../../utils/API';
@@ -27,6 +28,7 @@ export default function ProfilePage() {
   const [isShowModal, setIsShowModal] = useState(false);
   const [token] = useToken();
   const [userId] = useUserId();
+  const [role] = useRole();
 
   useEffect(() => {
     if (!userId) {
@@ -47,7 +49,7 @@ export default function ProfilePage() {
     { icon: "https://media.istockphoto.com/id/1332100919/vector/man-icon-black-icon-person-symbol.jpg?s=612x612&w=0&k=20&c=AVVJkvxQQCuBhawHrUhDRTCeNQ3Jgt0K1tXjJsFy1eg=", title: t("personalData"), link: ROUTES.PROFILE_PERSONAL_DATA },
     { icon: "https://icons.veryicon.com/png/o/miscellaneous/template-3/payment-method-1.png", title: t("paymentsMethods"), link: ROUTES.PROFILE_PAYMENTS },
     { icon: "https://www.iconpacks.net/icons/2/free-settings-icon-3110-thumb.png", title: t("settings"), link: ROUTES.PROFILE_SETTINGS },
-    { icon: "https://static.vecteezy.com/system/resources/previews/003/694/243/non_2x/car-icon-in-flat-style-simple-traffic-icon-free-vector.jpg", title: t("myCars"), link: ROUTES.PROFILE_CARS },
+    { icon: "https://static.vecteezy.com/system/resources/previews/003/694/243/non_2x/car-icon-in-flat-style-simple-traffic-icon-free-vector.jpg", title: t("myCars"), link: ROUTES.PROFILE_CARS, isDisabled: role !== "driver" },
     { icon: "https://www.shutterstock.com/image-vector/feedback-icon-logo-isolated-sign-260nw-2185716263.jpg", title: t("feedback"), link: ROUTES.PROFILE_FEEDBACK },
     { icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/all-icons/logout-vptf0h04oyagpspzgfbr0o.png/logout-oi2tej5exikqge60p4sy1.png?_a=DAJFJtWIZAAC", title: t("logout"), link: ROUTES.PROFILE_LOGOUT },
   ];
@@ -59,11 +61,6 @@ export default function ProfilePage() {
           setImageSrc(d.data);
           setIsShowModal(false);
         }
-      })
-      .catch(e => {
-        console.log('############# ERROR ###');
-        console.log(e);
-        console.log('############# ###');
       });
   }
 
@@ -130,11 +127,12 @@ export default function ProfilePage() {
         </div>
 
         <div className={classes.sections}>
-          {sectionsData.map((sectionsData, i) =>
-            <Section
-              key={i}
-              data={sectionsData}
-            />
+          {sectionsData.map((sectionData, i) =>
+            sectionData.isDisabled ? <span key={i}></span> :
+              <Section
+                key={i}
+                data={sectionData}
+              />
           )}
         </div>
       </div>

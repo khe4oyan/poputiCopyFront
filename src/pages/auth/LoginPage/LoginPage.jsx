@@ -13,6 +13,7 @@ import API from '../../../utils/API';
 // custom hooks
 import useToken from '../../../customHooks/useToken';
 import useUserId from '../../../customHooks/useUserId';
+import useRole from '../../../customHooks/useRole';
 
 // styles
 import classes from './styles.module.css';
@@ -24,6 +25,7 @@ export default function LoginPage() {
   const [pass, setPass] = React.useState("");
   const [, saveToken] = useToken();
   const [, saveUserId] = useUserId();
+  const [, saveRole] = useRole();
   const navigate = useNavigate();
 
   const loginHandler = () => {
@@ -33,7 +35,13 @@ export default function LoginPage() {
           if (d?.data && d.data?.token && d.data?.id) {
             await saveUserId(d.data.id);
             await saveToken(d.data.token);
-            navigate(ROUTES.TAB_ADD_RIDE);
+            API.userGetById(d.data.token, d.data.id)
+            .then(d => {
+              if (d?.data?.role) {
+                saveRole(d.data.role);
+                navigate(ROUTES.TAB_ADD_RIDE);
+              }
+            });
           }
         })
         .catch(e => {

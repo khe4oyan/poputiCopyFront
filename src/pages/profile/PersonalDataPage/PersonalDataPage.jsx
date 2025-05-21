@@ -10,6 +10,7 @@ import CustomDropDownMenu from '../../../components/custom/CustomDropDownMenu';
 
 // custom hooks
 import useToken from '../../../customHooks/useToken';
+import useRole from '../../../customHooks/useRole';
 
 // utils
 import API from '../../../utils/API';
@@ -29,6 +30,7 @@ export default function PersonalDataPage() {
   const [driveLicense, setDriveLicense] = React.useState("");
   const [pasportImage, setPassportImage] = React.useState("");
   const [token] = useToken();
+  const [role] = useRole();
   
   const navigate = useNavigate();
 
@@ -43,7 +45,6 @@ export default function PersonalDataPage() {
     if (surname === "") { alert(t("invalidData"), t("checkSurname")); return; } else
     if (birthDay === "") { alert(t("invalidData"), t("checkBirthDay")); return; } else
     if (residence === "") { alert(t("invalidData"), t("checkResidence")); return; } else
-    if (driveLicense === "") { alert(t("invalidData"), t("checkDriveLicense")); return; } else
     if (pasportImage === "") { alert(t("invalidData"), t("checkPassportImage")); return; }
 
     API.userUpdatePersonalInfo(
@@ -112,11 +113,14 @@ export default function PersonalDataPage() {
         options={gendersOptions}
       />
 
-      <CustomFileInput
-        title={t("driveLicense")}
-        value={driveLicense}
-        setValue={setDriveLicense}
-      />
+      {
+        role === "driver" &&
+        <CustomFileInput
+          title={t("driveLicense")}
+          value={driveLicense}
+          setValue={setDriveLicense}
+        />
+      }
 
       {
         driveLicense &&

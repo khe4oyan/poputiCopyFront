@@ -9,10 +9,19 @@
 
 .input {
   height: 40px;
+<<<<<<< HEAD
   border: 1px solid #2c0e4a;
   padding: 10px;
   width: 100%;
   border-radius: 5px;
   background-color: #2c0e4a;
   color: rgba(220, 218, 226, 0.66);
+=======
+  border: 1px solid rgba(220, 218, 226, 0.66);
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  background: rgba(220, 218, 226, 0.66);
+  color: #2C0E4A;
+>>>>>>> 7f2d2d75e5b1d99b75643cffd5a87f6f50ec265e
 }
