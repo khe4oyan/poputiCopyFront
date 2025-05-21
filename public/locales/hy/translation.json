@@ -13,7 +13,7 @@
   "name_surname": "Անուն Ազգանուն",
   "balance": "Մնացորդ",
   "login": "Մուտք",
-  "myRides": "Im ertery",
+  "myRides": "Իմ երթերը",
 
   "loginPlaceholder": "Մուտք",
   "passwordPlaceholder": "Գաղտնաբառ",
@@ -21,7 +21,7 @@
   "dontHaveAccount": "Չունեք հաշիվ?",
   "register": "Գրանցվել",
   "error": "Սխալ",
-  "invalidInputs": "Չարաշահված տվյալներ",
+  "invalidInputs": "սխալ անձնանուն կամ ծածկագիր",
   "english": "Անգլերեն",
   "armenian": "Հայերեն",
   "russian": "Ռուսերեն",
@@ -32,7 +32,7 @@
   "registrationSuccess": "Դուք գրանցված եք!",
   "invalidServerResponse": "Սխալ պատասխան սերվերից",
   "alreadyRegistered": " արդեն գրանցված է",
-  "alreadyHaveAccount": "Այլևս հաշիվ ունեք?",
+  "alreadyHaveAccount": "արդեն հաշիվ ունեք?",
 
   "back": "Հետ",
   "personalData": "Անձնական տվյալներ",
@@ -47,7 +47,7 @@
   "call": "Հեռախոսազանգ",
   "gmail": "մաիլ",
   "aboutUs": "Մեր մասին",
-  "aboutUsText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat, tempora maiores odit earum possimus sapiente impedit laborum iure totam quae debitis modi nulla corporis autem. Veritatis quaerat dolorem perferendis. Modi sapiente doloribus sed consequuntur sit tenetur a excepturi rerum incidunt quis ab rem, perferendis odit culpa nesciunt harum quidem. Officia nihil eligendi molestias distinctio cumque eaque reiciendis impedit qui? Fugiat illum dignissimos eos laborum! Sit nihil modi, ratione, eum sed tempora earum consectetur cupiditate quos dolorum ad numquam in repellendus eaque? Beatae dolor aliquam mollitia. Tempore sit commodi modi! Magnam eligendi asperiores quidem itaque facere esse! Nemo sequi a, esse sit reiciendis vero quia quos iste voluptates porro maiores repellat, culpa minima inventore dolorem. Iste, nulla vel. Eius, illo.",
+  "aboutUsText": "«Ուսանողական երթուղի․ Մեծամոր–Երևան» պարզ և վստահելի համատեղ երթևեկության հավելված է, նախատեսված Մեծամորից Երևան ուղևորվող ուսանողների համար։ Հավելվածը թույլ է տալիս գտնել վարորդներ, նախապես ամրագրել տեղ առանց զանգերի, տեսնել երթուղու ժամանակացույցը և շփվել ուղևորների հետ։ Մեր առաքելությունն է ստեղծել վստահելի և արդյունավետ հարթակ, որը կդարձնի ուսանողների փոխադրումը ավելի հեշտ, անվտանգ և կազմակերպված։",
   "logoutInProcess": "Փակվում է...",
 
   "model": "Մոդել",
@@ -74,7 +74,7 @@
   "driveLicense": "Վարորդական իրավունքը",
   "passportImage": "Փասպորտի նկար",
   "save": "Պահպանել",
-  "invalidData": "Ավելի ճիշտ տվյալներ",
+  "invalidData": "Անվավեր տվյալներ",
   "checkPhoneNumber": "Ստուգեք հեռախոսահամարը և կրկին փորձեք",
   "checkName": "Ստուգեք անունը և կրկին փորձեք",
   "checkSurname": "Ստուգեք ազգանունը և կրկին փորձեք",
@@ -104,7 +104,7 @@
   "delete": "Հեռացնել",
   "active": "Ակտիվ",
   "selected_file": "ընտրված 1 ֆայլ",
-  "not_selected": "(չեն ընտրել)",
+  "not_selected": "(ընտրված չի)",
   "select_other_photo": "Ընտրել այլ լուսանկար",
   "select_photo": "Ընտրել լուսանկար",
 
