@@ -11,7 +11,7 @@ import classes from './styles.module.css';
 export default function NewRideStep_2({ setIsNextButtonDisabled }) {
   const [date, setDate] = useState(new Date());
   const dispatch = useDispatch();
-  
+
   const onChange = (e) => {
     const selectedDate = e.target.value;
     dispatch(setDateSlice(new Date(selectedDate).getTime()));
@@ -21,12 +21,14 @@ export default function NewRideStep_2({ setIsNextButtonDisabled }) {
 
   return (
     <div className={classes.root}>
-      <input 
-        type="datetime-local" 
-        value={date} 
-        className={classes.input}
-        onChange={onChange}
-      />
+      <div className={classes.wrapper}>
+        <input
+          type="datetime-local"
+          value={date}
+          className={classes.input}
+          onChange={onChange}
+        />
+      </div>
     </div>
   )
 }

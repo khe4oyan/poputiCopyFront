@@ -1,5 +1,6 @@
 .root {
   margin: 5px 0;
+  width: 100%;
 }
 
 .input {
@@ -7,4 +8,18 @@
   width: 100%;
   border-radius: 5px;
   border-color: #A55CCF;
+}
+
+@media (width < 400px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  .input[type="datetime-local"] {
+    width: 100%;
+    box-sizing: border-box;
+    min-width: calc(100% - 20px);
+    height: 40px;
+    font-size: 16px;
+  }
 }
