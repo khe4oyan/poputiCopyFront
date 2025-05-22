@@ -1,7 +1,7 @@
 import blobUrlToURL from './blobToURL';
 
 class API {
-  static #SERVER_PATH = "http://192.168.1.55:3001";
+  static #SERVER_PATH = "http://localhost:3001";
 
   // AUTH
   static async authLogin(email, password) {

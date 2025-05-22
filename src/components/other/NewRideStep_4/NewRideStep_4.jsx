@@ -10,7 +10,7 @@ import { setPrice as setPriceSlice } from '../../../store/slices/newRideSlice';
 import CustomInput from '../../custom/CustomInput';
 
 // styles
-// import classes from './styles.module.css';
+import classes from './styles.module.css';
 
 export default function NewRideStep_4({ setIsNextButtonDisabled }) {
   const [price, setPrice] = React.useState("");
@@ -35,6 +35,7 @@ export default function NewRideStep_4({ setIsNextButtonDisabled }) {
       value={price}
       setValue={setPrice}
       type='number'
+      classValue={classes.centerPrice}
     />
   )
 }
