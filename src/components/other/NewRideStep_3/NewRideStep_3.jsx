@@ -74,12 +74,22 @@ const CarCardProperty = ({ name, value, children }) => {
 }
 
 const CarCard = ({ carData, isSelected }) => {
+  console.log(carData);
+  
   return (
     <div className={`${classes.carCard} ${isSelected && classes.selectedCarCard}`}>
       <p className={classes.headerp}>{carData.make}</p>
 
       <CarCardProperty name='Model' value={carData.model} />
       <CarCardProperty name='Year' value={carData.year} />
+
+      <div className={classes.carImages}>
+        {
+          carData.carImages.map((imageId) =>
+            <img src={API.fileGetById(imageId)} alt="image" className={classes.carImage}/>
+          )
+        }
+      </div>
     </div>
   );
 }
